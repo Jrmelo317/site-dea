@@ -10,6 +10,9 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
+/** Rota bloqueante: garante HTTP 404 real para slug inválido. */
+export const instant = false;
+
 export function generateStaticParams() {
   return getProducts().map((product) => ({ slug: product.slug }));
 }
