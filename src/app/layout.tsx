@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Gochi_Hand, Jost, Newsreader } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/shop/SiteHeader";
+import { CartProvider } from "@/hooks/useCart";
 import { cn } from "@/lib/utils";
 
 const fraunces = Fraunces({
@@ -43,9 +45,15 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
+      suppressHydrationWarning
       className={cn(fraunces.variable, jost.variable, gochiHand.variable, newsreader.variable)}
     >
-      <body className="font-ui antialiased bg-dea-paper text-dea-ink min-h-screen">{children}</body>
+      <body className="font-ui antialiased bg-dea-paper text-dea-ink min-h-screen overflow-x-hidden">
+        <CartProvider>
+          <SiteHeader />
+          {children}
+        </CartProvider>
+      </body>
     </html>
   );
 }
