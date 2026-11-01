@@ -8,7 +8,7 @@ export function ProfileHeader({ productCount }: ProfileHeaderProps) {
   const stats = [
     { value: String(productCount), label: "produtos" },
     { value: "250", label: "jovens" },
-    { value: "Quinta", label: "encontro" },
+    { value: "Qui.", label: "encontro" },
   ];
 
   return (
