@@ -1,8 +1,9 @@
 "use client";
 
-import { MessageCircle, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { HandDrawing } from "@/components/shop/decor/HandDrawing";
 import { WashiTape } from "@/components/shop/decor/WashiTape";
 import { QuantityStepper } from "@/components/shop/QuantityStepper";
@@ -191,7 +192,7 @@ export function CartView() {
             <div className="mt-5 flex flex-col gap-2">
               <Button asChild size="lg" className="bg-dea-good text-dea-cream hover:bg-dea-good/90">
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle aria-hidden="true" />
+                  <WhatsAppIcon />
                   Confirmar pelo WhatsApp
                   <span className="sr-only"> (abre em nova aba)</span>
                 </a>
