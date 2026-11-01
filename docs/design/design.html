@@ -1,0 +1,1214 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Design Deus é Amor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Jost:ital,wght@0,300..700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Gochi+Hand&family=Caveat:wght@500..700&display=swap">
+<style>
+/* CSS completo usado na Galeria de páginas (referência). Classes m-* = peças do site; .wrap/.s/.pg = moldura do documento. */
+
+
+/* Layout: documento de uma coluna (~1120px); protótipos em molduras de navegador que escalam por container query */
+:root{
+  --bg:#F1F3F6; --surface:#FFFFFF; --fg:#121826; --muted:#5A6476; --line:#D9DEE6; --accent:#00479F; --accent-soft:#E3EBF6; --good:#1E7A4C; --warn:#A35A00;
+  /* paleta do site (fixa) */
+  --m-blue:#00479F; --m-sky:#84ADBD; --m-sand:#E7E0CA; --m-paper:#F6F2E7; --m-ink:#000000; --m-night:#0B2550; --m-heart:#C8372D; --m-cream:#FBF8F0; --lbg:#F6F2E7;
+  --f-display:"Fraunces", "Cooper Black", Georgia, serif;
+  --f-read:"Newsreader", Georgia, serif;
+  --f-ui:"Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+  --f-hand:"Gochi Hand", "Caveat", "Comic Sans MS", cursive;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .15 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --crumple:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.011' numOctaves='4' seed='7'/%3E%3CfeDiffuseLighting lighting-color='%23F6F2E7' surfaceScale='2.4'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+  --ruled:repeating-linear-gradient(to bottom, transparent 0 31px, rgba(132,173,189,.5) 31px 32px);
+  --margin:linear-gradient(to right, transparent 0 38px, rgba(200,55,45,.38) 38px 39.5px, transparent 39.5px);
+  --grid:repeating-linear-gradient(to right, rgba(132,173,189,.35) 0 1px, transparent 1px 22px), repeating-linear-gradient(to bottom, rgba(132,173,189,.35) 0 1px, transparent 1px 22px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0C1220;--surface:#141C2E;--fg:#E9E4D4;--muted:#9AA6BA;--line:#26314A;--accent:#9DC0D0;--accent-soft:#1A2A48;--good:#5CC08C;--warn:#E3A24A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1220;--surface:#141C2E;--fg:#E9E4D4;--muted:#9AA6BA;--line:#26314A;--accent:#9DC0D0;--accent-soft:#1A2A48;--good:#5CC08C;--warn:#E3A24A;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--f-ui);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.doc-head{display:grid;gap:18px;padding-block:24px 36px;border-bottom:1px solid var(--line)}
+.eyebrow{font:500 12.5px/1.3 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.doc-head h1{font:900 clamp(38px,6.4vw,76px)/1.0 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--accent);letter-spacing:-.01em;max-width:16ch}
+.doc-head .lede{font-size:clamp(17px,2vw,20px);max-width:62ch}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin-top:6px}
+.toc a{text-decoration:none;color:var(--muted)}
+.toc a:hover{color:var(--accent)}
+.changes{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px;display:grid;gap:8px;max-width:820px}
+.changes b{font-weight:600}
+.changes ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:15px}
+
+section.s{padding-block:56px 8px;display:grid;gap:22px}
+.s-head{display:grid;gap:8px;max-width:70ch}
+.s-head h2{font:800 clamp(28px,3.6vw,40px)/1.1 var(--f-display);font-variation-settings:"SOFT" 100}
+.s-head p{color:var(--muted)}
+.num{font:500 13px var(--f-ui);color:var(--accent);letter-spacing:.08em}
+h3.sub{font:700 20px/1.25 var(--f-display);font-variation-settings:"SOFT" 100;margin-top:18px}
+.note{font-size:14.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.note b{color:var(--fg)}
+.cap{font-size:13.5px;color:var(--muted);margin-top:10px;max-width:75ch}
+.badge{display:inline-flex;align-items:center;gap:6px;width:max-content;font:600 12.5px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--bg);padding:5px 10px;border-radius:999px}
+
+/* combinação */
+.mix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:760px){.mix{grid-template-columns:1fr}}
+.mode{border-radius:16px;padding:22px;display:grid;gap:10px;align-content:start;position:relative;overflow:hidden;border:1px solid var(--line)}
+.mode.caderno{background-color:var(--m-paper);background-image:var(--margin),var(--ruled);color:var(--m-ink);padding-left:56px}
+.mode.lote{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand)}
+.mode h3{font:900 30px/1 var(--f-display);font-variation-settings:"SOFT" 100}
+.mode.caderno h3{color:var(--m-blue)}
+.mode.lote h3{color:var(--m-sky)}
+.mode .hand{font:400 22px/1.1 var(--f-hand)}
+.mode ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.rhythm{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:700px){.rhythm{grid-template-columns:1fr}}
+.strip{border-radius:14px;overflow:hidden;border:1px solid var(--line);display:grid}
+.strip div{padding:10px 14px;font:500 13px var(--f-ui);display:flex;justify-content:space-between;gap:10px}
+.strip .l{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand)}
+.strip .c{background-color:var(--m-paper);background-image:var(--margin),var(--ruled);color:var(--m-blue);padding-left:50px}
+.strip .p{background:var(--m-paper);color:var(--m-blue)}
+.strip .n{background:var(--m-night);color:var(--m-sky)}
+.strip span.t{opacity:.75;font-weight:400}
+.rules{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.rules li{padding-left:22px;position:relative;font-size:15px}
+.rules li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;border-radius:50%;border:2px solid var(--accent)}
+.rules.cols{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px 26px}
+
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.lg{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);display:grid;align-content:start}
+.lg .stage{background:var(--m-paper);color:var(--m-blue);display:grid;place-items:center;padding:26px 16px;min-height:260px;gap:10px;position:relative}
+.lg .stage svg.sym{width:120px;height:140px}
+.lg .wm{font:900 30px/1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.lg .info{padding:14px 18px 18px;display:grid;gap:6px;font-size:14.5px}
+.lg .info b{font-size:17px;font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:800}
+.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.use{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);display:grid}
+.use .stage{height:150px;display:grid;place-items:center;position:relative}
+.use p{padding:10px 14px;font-size:13.5px}
+.lockup-h{display:flex;align-items:center;gap:12px;color:var(--m-blue)}
+.lockup-h svg{width:40px;height:48px;flex:none}
+.lockup-h span{white-space:nowrap;font:900 22px/1 var(--f-display);font-variation-settings:"SOFT" 100}
+.fav{width:64px;height:64px;border-radius:14px;background-color:var(--m-blue);background-image:var(--grain);display:grid;place-items:center;color:var(--m-sand);--lbg:#00479F}
+.fav svg{width:38px;height:44px}
+.avatar{width:104px;height:104px;border-radius:50%;background:var(--m-sand);display:grid;place-items:center;color:var(--m-blue);--lbg:#E7E0CA;border:3px solid var(--m-cream);box-shadow:0 0 0 2px var(--m-blue)}
+.avatar svg{width:56px;height:66px}
+.keep{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;border-top:1px solid var(--line)}
+.keep div{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);font-size:14.5px;display:grid;gap:4px}
+.keep b{font-weight:600}
+
+/* fontes */
+.fonts{display:grid;gap:22px}
+.frow{display:grid;gap:10px}
+.frow h4{margin:0;font:600 13px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,195px),1fr));gap:12px}
+.fc{background:var(--m-paper);color:var(--m-ink);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px;align-content:space-between;min-height:150px;position:relative}
+.fc.pick{border:2px solid var(--m-blue);padding-top:36px}
+.fc .pk{position:absolute;top:10px;right:10px;font:600 10.5px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;background:var(--m-blue);color:var(--m-cream);padding:3px 8px;border-radius:999px}
+.fc .smp{color:var(--m-blue);overflow-wrap:anywhere}
+.fc .nm{font:500 13px var(--f-ui);color:#4A5466;display:grid;gap:2px}
+.fc .nm b{color:#11141B;font-weight:600;font-size:14px}
+
+/* paleta */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:14px}
+.sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);display:grid}
+.sw .chipc{height:90px;display:flex;align-items:flex-end;padding:10px 12px;font:900 22px var(--f-display);font-variation-settings:"SOFT" 100}
+.sw .info{padding:12px 14px 14px;display:grid;gap:4px;font-size:14px}
+.sw .info b{font-weight:600;font-size:15px}
+.sw code{font:500 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}
+.sw .new{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-weight:600;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.ok{color:var(--good);font-weight:600}.mid{color:var(--warn);font-weight:600}
+.pair{display:inline-flex;align-items:center;justify-content:center;width:64px;height:30px;border-radius:7px;font:800 15px var(--f-display);font-variation-settings:"SOFT" 100;border:1px solid var(--line)}
+
+/* texturas */
+.tex{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:12px}
+.tx{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);display:grid}
+.tx .sf{height:130px;position:relative;display:flex;align-items:flex-end;padding:10px 12px}
+.tx .sf span{font:400 20px var(--f-hand);color:var(--m-blue)}
+.tx p{padding:10px 14px;font-size:13.5px}
+.tx p b{font-weight:600;display:block;font-size:14.5px}
+.t-liso{background:var(--m-paper)}
+.t-grao{background-color:var(--m-paper);background-image:var(--grain-dark)}
+.t-paut{background-color:var(--m-paper);background-image:var(--margin),var(--ruled);padding-left:50px!important}
+.t-quad{background-color:var(--m-paper);background-image:var(--grid)}
+.t-amas{background-color:var(--m-paper);background-image:var(--crumple)}
+.t-azul{background-color:var(--m-blue);background-image:var(--grain)}
+.t-azul span{color:var(--m-sand)!important}
+.t-areia{background-color:var(--m-sand);background-image:var(--grain-dark)}
+
+/* rabiscos */
+.dcat{display:grid;gap:10px}
+.dcat h4{margin:0;font:600 13px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doodles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,118px),1fr));gap:10px}
+.dd{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);display:grid}
+.dd .stage{height:92px;display:grid;place-items:center;background:var(--m-paper);color:var(--m-blue)}
+.dd .stage.b{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sky)}
+.dd .stage svg{width:46px;height:46px}
+.dd .stage svg.wide{width:96px;height:34px}
+.dd p{padding:8px 10px;font-size:13px;line-height:1.35}
+.dd .new{display:inline-block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+
+/* fotos */
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.ph-card{display:grid;gap:8px;align-content:start}
+.ph-card p{font-size:14px}
+.ph-card p b{font-weight:600}
+.ph-stage{background:var(--m-paper);border-radius:14px;padding:22px;display:grid;place-items:center;min-height:230px;border:1px solid var(--line);position:relative;overflow:hidden}
+.duo{position:relative;overflow:hidden;display:block}
+.duo img{display:block;width:100%;filter:grayscale(1) contrast(1.15) brightness(1.05)}
+.duo::after{content:"";position:absolute;inset:0;background:var(--m-blue);mix-blend-mode:screen}
+.bw img{filter:grayscale(1) contrast(1.1)}
+.torn{clip-path:polygon(0 3%,8% 0,17% 2%,26% 0,38% 3%,49% 1%,60% 3%,71% 0,83% 2%,93% 0,100% 3%,100% 97%,91% 100%,80% 97%,68% 100%,56% 98%,44% 100%,33% 97%,21% 100%,10% 98%,0 100%)}
+
+/* componentes */
+.comp{background:var(--m-paper);border:1px solid var(--line);border-radius:14px;padding:clamp(16px,3vw,28px);color:var(--m-ink);display:grid;gap:22px;container-type:inline-size}
+.comp.blue{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand)}
+.comp-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.comp-lbl{font:500 12px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:#4A5466;width:100%}
+.comp.blue .comp-lbl{color:var(--m-sky)}
+
+/* mapa */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.node h4{margin:0;font:800 19px var(--f-display);font-variation-settings:"SOFT" 100;color:var(--accent);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.node h4 small{font:500 11px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.node ul{margin:0;padding-left:16px;font-size:14px;display:grid;gap:3px}
+.node.cta{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.node.cta h4,.node.cta h4 small{color:var(--bg)}
+
+/* moldura */
+.frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:0 18px 40px -28px rgba(10,20,40,.45);min-width:0}
+.bar{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}
+.url{flex:1;min-width:0;font:400 12.5px var(--f-ui);color:var(--muted);background:var(--bg);border-radius:7px;padding:4px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== protótipos ===== */
+.mk{container-type:inline-size;background:var(--m-paper);color:var(--m-ink);font-family:var(--f-ui);position:relative;overflow:hidden}
+.mk *{min-width:0}
+.dood{display:inline-block;width:1em;height:1em;vertical-align:middle}
+.abs{position:absolute;pointer-events:none}
+.pad{padding-inline:clamp(14px,4cqi,48px)}
+.m-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:clamp(10px,2.2cqi,22px) clamp(14px,4cqi,48px);position:relative;z-index:2}
+.m-logo{display:flex;align-items:center;gap:8px;font:900 clamp(14px,2.1cqi,21px)/1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue);white-space:nowrap}
+.m-logo svg{width:1.5em;height:1.75em}
+.m-links{display:flex;align-items:center;gap:clamp(10px,2.6cqi,30px);font-size:clamp(11px,1.45cqi,15px)}
+.m-links span{white-space:nowrap}
+@container (max-width:560px){.m-links span.hide-s{display:none}}
+.m-btn{display:inline-flex;align-items:center;gap:.5em;font:500 clamp(11.5px,1.5cqi,16px)/1 var(--f-ui);padding:.85em 1.3em;border-radius:14px;white-space:nowrap;border:1.5px solid transparent}
+.m-btn.pri{background:var(--m-blue);color:var(--m-cream)}
+.m-btn.sec{border-color:var(--m-blue);color:var(--m-blue)}
+.m-btn.sand{background:var(--m-sand);color:var(--m-blue)}
+.m-btn.ghost{border-color:var(--m-sand);color:var(--m-sand)}
+.m-link{color:var(--m-blue);font-weight:500;white-space:nowrap}
+.m-eyebrow{font:500 clamp(10px,1.25cqi,13px)/1.3 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--m-blue)}
+.m-h1{font:900 clamp(30px,6.6cqi,82px)/.98 var(--f-display);font-variation-settings:"SOFT" 100,"WONK" 1;color:var(--m-blue);letter-spacing:-.012em}
+.m-h2{font:900 clamp(22px,3.7cqi,46px)/1.02 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.m-p{font-size:clamp(13px,1.65cqi,18px);line-height:1.55;max-width:46ch}
+.m-small{font-size:clamp(11px,1.3cqi,14px)}
+.m-hand{font:400 clamp(16px,2.6cqi,30px)/1.05 var(--f-hand);color:var(--m-blue)}
+.scrib{position:relative;white-space:nowrap}
+.scrib svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.32em;color:var(--m-sky)}
+.chip{display:inline-block;width:max-content;font:500 clamp(9.5px,1.15cqi,12.5px)/1 var(--f-ui);letter-spacing:.08em;text-transform:uppercase;padding:.5em .8em;border-radius:999px;background:var(--m-sand);color:var(--m-blue)}
+.chip.sky{background:rgba(132,173,189,.3)}
+.chip.on{background:var(--m-blue);color:var(--m-cream)}
+.chip.inv{background:rgba(231,224,202,.16);color:var(--m-sand)}
+.meta{font-size:clamp(10.5px,1.25cqi,13.5px);color:#4A5466}
+
+.band{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand);position:relative;overflow:hidden}
+.ruled{background-color:var(--m-paper);background-image:var(--margin),var(--ruled)}
+.crumple{background-color:var(--m-paper);background-image:var(--crumple)}
+.rep{font:900 clamp(40px,11cqi,130px)/.86 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-sky);letter-spacing:.02em;white-space:nowrap}
+.rep span{display:block}
+.rep span:nth-child(2){opacity:.7;padding-left:5cqi}
+.rep span:nth-child(3){opacity:.4;padding-left:10cqi}
+.rep.faint{position:absolute;inset:auto 0 0 0;opacity:.18;pointer-events:none}
+
+/* hero novo lote */
+.h-lote{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,4cqi,48px);align-items:center;padding-block:clamp(10px,3cqi,40px) clamp(30px,7cqi,84px);position:relative;z-index:1}
+@container (max-width:560px){.h-lote{grid-template-columns:1fr}}
+.h-lote .txt{display:grid;gap:clamp(10px,2cqi,22px)}
+.h-lote .m-h1{color:var(--m-cream)}
+.h-lote .m-eyebrow{color:var(--m-sky)}
+.h-lote .m-p{color:var(--m-sand)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.polaroid{position:relative;background:var(--m-cream);padding:clamp(6px,1.2cqi,12px) clamp(6px,1.2cqi,12px) clamp(26px,4.6cqi,52px);transform:rotate(2deg);box-shadow:0 2px 0 rgba(0,0,0,.05),0 22px 30px -16px rgba(0,10,40,.55)}
+.polaroid img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.polaroid .hand{position:absolute;left:0;right:0;bottom:clamp(4px,1cqi,12px);text-align:center;font:400 clamp(14px,2.3cqi,26px) var(--f-hand);color:var(--m-blue)}
+.tape{position:absolute;top:-10px;left:50%;width:30%;height:20px;transform:translateX(-50%) rotate(-3deg);background:rgba(132,173,189,.6)}
+.sticky{position:absolute;font:400 clamp(14px,2.2cqi,24px)/1.05 var(--f-hand);color:var(--m-sand);transform:rotate(-6deg)}
+
+.verse{padding-block:clamp(26px,6cqi,76px);display:grid;gap:12px}
+.verse q{font:800 clamp(20px,4cqi,48px)/1.12 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-sand);quotes:"“" "”";max-width:24ch;display:block}
+.verse cite{font:500 clamp(11px,1.4cqi,15px) var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--m-sky);font-style:normal}
+
+.invite{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,4cqi,48px);align-items:start;padding-block:clamp(26px,6cqi,70px)}
+@container (max-width:560px){.invite{grid-template-columns:1fr}}
+.invite .ruled-pad{padding-left:clamp(30px,5cqi,58px)}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,2cqi,18px)}
+.steps3 div{display:grid;gap:4px;justify-items:start}
+.steps3 svg{width:clamp(26px,4.4cqi,46px);height:clamp(26px,4.4cqi,46px);color:var(--m-blue)}
+.steps3 b{font:800 clamp(14px,2cqi,21px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+
+.meet{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,3cqi,32px);align-items:center;background:var(--m-sand);border-radius:18px;padding:clamp(14px,2.6cqi,28px);background-image:var(--grain-dark)}
+@container (max-width:560px){.meet{grid-template-columns:auto 1fr}.meet .m-btn{grid-column:1/-1;justify-self:start}}
+.date{display:grid;justify-items:center;background:var(--m-blue);color:var(--m-cream);border-radius:14px;padding:.55em .9em;line-height:1}
+.date .d1,.date .d3{font:500 clamp(10px,1.2cqi,13px) var(--f-ui);letter-spacing:.14em}
+.date .d2{font:900 clamp(26px,4.2cqi,48px)/1 var(--f-display);font-variation-settings:"SOFT" 100}
+.meet-t{font:800 clamp(16px,2.6cqi,28px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2cqi,24px)}
+@container (max-width:560px){.cards3{grid-template-columns:1fr}}
+.pcard{background:var(--m-cream);border:1.5px solid var(--m-sand);border-radius:18px;overflow:hidden;display:grid;align-content:start}
+.pcard .art{aspect-ratio:16/10;display:grid;place-items:center;position:relative;overflow:hidden}
+.pcard .art .duo{position:absolute;inset:0}
+.pcard .art .duo img{height:100%;object-fit:cover}
+.pcard .body{padding:clamp(10px,2cqi,20px);display:grid;gap:6px}
+.pcard h5{margin:0;font:800 clamp(15px,2.1cqi,23px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+
+.shop{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(14px,4cqi,48px);align-items:center;padding-block:clamp(24px,6cqi,72px)}
+@container (max-width:560px){.shop{grid-template-columns:1fr}}
+.tees{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,1.6cqi,18px)}
+.tee svg{width:100%;height:auto;display:block;color:var(--m-cream)}
+.burst{position:absolute;right:-2%;bottom:-6%;width:34%;aspect-ratio:1;display:grid;place-items:center}
+.burst svg{position:absolute;inset:0;width:100%;height:100%}
+.burst span{position:relative;font:900 clamp(13px,2.6cqi,30px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream)}
+
+.foot{background:var(--m-night);color:var(--m-sand);padding-block:clamp(18px,4cqi,44px);display:grid;gap:14px;--lbg:#0B2550}
+.foot .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+.foot .vals{font:500 clamp(10px,1.3cqi,14px) var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--m-sky)}
+
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2cqi,22px)}
+@container (max-width:700px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+.prod{display:grid;gap:8px;align-content:start}
+.prod .ph{aspect-ratio:1;border-radius:18px;display:grid;place-items:center;position:relative;overflow:hidden}
+.prod .ph.blue{background-color:var(--m-blue);background-image:var(--grain)}
+.prod .ph.sand{background-color:var(--m-sand);background-image:var(--grain-dark)}
+.prod .ph.sky{background:var(--m-sky)}
+.prod .ph svg.t{width:72%}
+.prod h5{margin:0;font:700 clamp(13px,1.8cqi,19px)/1.2 var(--f-display);font-variation-settings:"SOFT" 100;color:#11141B}
+.prod .price{font:900 clamp(14px,2cqi,22px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.prod .flag{position:absolute;top:8%;left:8%;font:500 clamp(9px,1.1cqi,12px)/1 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;background:var(--m-cream);color:var(--m-heart);padding:.5em .7em;border-radius:999px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2cqi,22px);border-radius:20px;padding:clamp(14px,3cqi,32px) clamp(14px,3cqi,32px) clamp(14px,3cqi,32px) clamp(40px,6cqi,64px)}
+@container (max-width:560px){.how{grid-template-columns:1fr}}
+.how div{display:grid;gap:4px}
+.how b{font:400 clamp(26px,4cqi,44px)/1 var(--f-hand);color:var(--m-blue)}
+
+.proj-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(16px,4cqi,48px);align-items:center;padding-block:clamp(16px,4cqi,48px) clamp(26px,6cqi,64px)}
+@container (max-width:600px){.proj-hero{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,2cqi,18px)}
+@container (max-width:560px){.facts{grid-template-columns:1fr}}
+.fact{background:var(--m-cream);border:1.5px solid var(--m-sand);border-radius:16px;padding:clamp(10px,2cqi,18px);display:grid;gap:4px}
+.fact .k{font:500 clamp(9.5px,1.15cqi,12px) var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:#4A5466}
+.fact .v{font:800 clamp(15px,2.2cqi,24px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.gallery{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(6px,1.4cqi,14px)}
+.gallery > *{border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+
+.two{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.phone{max-width:380px;justify-self:center;width:100%;border-radius:30px;border:8px solid #11141B;overflow:hidden;background:#11141B}
+.phone .mk{border-radius:22px}
+
+/* histórico */
+details.hist{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+details.hist summary{cursor:pointer;font-weight:600}
+details.hist .dirs{display:grid;gap:14px;margin-top:14px}
+details.hist .d{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;font-size:14.5px;align-items:start}
+details.hist .d b{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:800;font-size:17px;color:var(--accent)}
+
+.voice{display:grid;gap:10px}
+.vrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.vrow{grid-template-columns:1fr}}
+.vrow div{border-radius:12px;padding:12px 16px;font-size:15px;border:1px solid var(--line);background:var(--surface)}
+.vrow .no{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.vrow .yes{border-color:var(--accent);background:var(--accent-soft)}
+.vrow small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.next{counter-reset:n;display:grid;gap:12px;padding:0;margin:0;list-style:none}
+.next li{counter-increment:n;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:start}
+.next li::before{content:counter(n);width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font:700 14px var(--f-ui)}
+.next b{font-weight:600}
+.next .done{color:var(--good);font-weight:600}
+
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(12deg)}}
+.tw{animation:twinkle 3.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@media (prefers-reduced-motion:reduce){.tw{animation:none}}
+
+.night{background:var(--m-night);color:var(--m-sand)}.night .m-h1,.night .m-h2{color:var(--m-cream)}
+
+/* ===== galeria v2 ===== */
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px}
+.intro-grid a{display:grid;gap:2px;text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.intro-grid a b{font:800 17px var(--f-display);font-variation-settings:"SOFT" 100;color:var(--accent)}
+.intro-grid a span{font-size:13.5px;color:var(--muted)}
+.rules-v2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
+.rules-v2 div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;display:grid;gap:4px}
+.rules-v2 b{font-weight:600}
+.pg{display:grid;gap:12px;padding-block:44px 6px}
+.pg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 18px}
+.pg-head h2{font:800 clamp(24px,3vw,34px)/1.1 var(--f-display);font-variation-settings:"SOFT" 100}
+.pg-head .tags{display:flex;flex-wrap:wrap;gap:6px}
+.pg-head .tags span{font:500 11.5px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 9px}
+.pg-head .tags span.ok{border-color:var(--good);color:var(--good)}
+.explore{font-size:14.5px;color:var(--muted);max-width:80ch}
+.explore b{color:var(--fg);font-weight:600}
+
+/* vermelho */
+.red{color:var(--m-heart)}
+.stamp{display:inline-grid;place-items:center;text-align:center;width:clamp(76px,12cqi,128px);aspect-ratio:1;border-radius:50%;border:2px solid var(--m-heart);box-shadow:inset 0 0 0 4px var(--m-paper),inset 0 0 0 5.5px var(--m-heart);color:var(--m-heart);font:600 clamp(9px,1.25cqi,13px)/1.15 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;transform:rotate(-12deg);opacity:.92}
+.stamp b{display:block;font:900 clamp(18px,3cqi,32px)/1 var(--f-display);font-variation-settings:"SOFT" 100;letter-spacing:0}
+.stamp.on-blue{box-shadow:inset 0 0 0 4px var(--m-blue),inset 0 0 0 5.5px var(--m-heart);background:transparent}
+.circ{position:relative;white-space:nowrap;margin-inline:.4em}
+.circ svg{position:absolute;left:-14%;top:-22%;width:128%;height:150%;color:var(--m-heart);pointer-events:none}
+.hl{background:linear-gradient(transparent 58%,rgba(132,173,189,.55) 58%,rgba(132,173,189,.55) 92%,transparent 92%)}
+.hl-r{background:linear-gradient(transparent 60%,rgba(200,55,45,.22) 60%,rgba(200,55,45,.22) 92%,transparent 92%)}
+.margin-l{border-left:1.5px solid rgba(200,55,45,.55);padding-left:clamp(16px,3cqi,34px)}
+.scrib.r svg{color:var(--m-heart)}
+
+/* quem somos */
+.qs-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(16px,4cqi,48px);align-items:center;padding-block:clamp(14px,3cqi,40px) clamp(24px,5cqi,60px)}
+@container (max-width:600px){.qs-hero{grid-template-columns:1fr}}
+.verse-big{font:italic 400 clamp(17px,2.6cqi,28px)/1.45 var(--f-read);color:#1D2230;max-width:34ch}
+.stickies{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2.4cqi,28px)}
+@container (max-width:620px){.stickies{grid-template-columns:repeat(2,1fr)}}
+.stk{padding:clamp(12px,2.2cqi,22px);aspect-ratio:1;display:grid;align-content:space-between;box-shadow:0 10px 18px -12px rgba(0,20,60,.45);position:relative}
+.stk:nth-child(1){background:#F1E7B8;transform:rotate(-2.5deg)}
+.stk:nth-child(2){background:#CFE0E7;transform:rotate(1.8deg)}
+.stk:nth-child(3){background:var(--m-sand);transform:rotate(-1.2deg)}
+.stk:nth-child(4){background:#EDD9D2;transform:rotate(2.4deg)}
+.stk b{font:400 clamp(18px,3cqi,32px)/1 var(--f-hand);color:var(--m-blue)}
+.stk span{font-size:clamp(11px,1.4cqi,15px);line-height:1.4}
+.stk svg{width:clamp(24px,4cqi,44px);height:clamp(24px,4cqi,44px);color:var(--m-blue)}
+.pin{position:absolute;top:-6px;left:50%;width:14px;height:14px;border-radius:50%;background:var(--m-heart);transform:translateX(-50%);box-shadow:0 2px 2px rgba(0,0,0,.25)}
+.timeline{display:grid;border-left:2px dashed var(--m-sky);margin-left:8px}
+.tl{display:grid;grid-template-columns:clamp(76px,13cqi,150px) 1fr;gap:clamp(10px,2cqi,22px);padding:0 0 clamp(14px,2.6cqi,26px) clamp(14px,2.4cqi,26px);position:relative}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--m-paper);border:2px solid var(--m-blue)}
+.tl.r::before{border-color:var(--m-heart);background:var(--m-heart)}
+.tl b{font:900 clamp(17px,2.8cqi,32px)/1.05 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.tl p{font-size:clamp(12.5px,1.55cqi,17px)}
+.tl .m-hand{font-size:clamp(14px,2cqi,22px);display:block}
+
+/* ministérios */
+.mins{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2cqi,22px)}
+@container (max-width:700px){.mins{grid-template-columns:repeat(2,1fr)}}
+.min{background:var(--m-cream);border:1.5px solid var(--m-sand);border-radius:18px;padding:clamp(12px,2.2cqi,22px);display:grid;gap:8px;align-content:start;position:relative}
+.min svg.ic{width:clamp(28px,4.6cqi,48px);height:clamp(28px,4.6cqi,48px);color:var(--m-blue)}
+.min h5{margin:0;font:800 clamp(16px,2.3cqi,25px)/1.1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.min p{font-size:clamp(11.5px,1.45cqi,15px);line-height:1.45}
+.min.feat{grid-column:span 2;grid-row:span 2;padding:0;overflow:hidden;background:var(--m-night);border-color:var(--m-night);color:var(--m-sand);grid-template-rows:1fr auto}
+.min.feat img{width:100%;height:0;min-height:100%;object-fit:cover;display:block}
+.min.feat .body{padding:clamp(12px,2.2cqi,22px);display:grid;gap:6px}
+.min.feat h5{color:var(--m-cream)}
+@container (max-width:700px){.min.feat{grid-row:auto}.min.feat img{aspect-ratio:4/3;height:auto}}
+.steps-r{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2cqi,24px)}
+@container (max-width:560px){.steps-r{grid-template-columns:1fr}}
+.steps-r div{display:grid;gap:4px}
+.steps-r b{font:400 clamp(30px,5cqi,56px)/1 var(--f-hand);color:var(--m-heart)}
+.steps-r h6{margin:0;font:800 clamp(15px,2.1cqi,22px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+
+/* caminhada */
+.trail{position:relative;display:grid;gap:clamp(18px,4cqi,44px);padding-block:clamp(10px,2cqi,20px)}
+.trail svg.path{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.stop{display:grid;grid-template-columns:auto 1fr;gap:clamp(12px,2.6cqi,28px);align-items:center;width:min(100%,62%);position:relative}
+.stop:nth-child(odd of .stop){justify-self:start}
+.stop:nth-child(even of .stop){justify-self:end}
+@container (max-width:620px){.stop{width:100%}}
+.stop .badge-et{width:clamp(64px,11cqi,120px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--m-blue);background-image:var(--grain);color:var(--m-cream);font:500 clamp(9px,1.15cqi,12px)/1.15 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;border:3px solid var(--m-paper);box-shadow:0 0 0 2px var(--m-blue)}
+.stop .badge-et b{display:block;max-width:86%;margin-inline:auto;overflow-wrap:anywhere;font:900 clamp(13px,2.1cqi,24px)/1 var(--f-display);font-variation-settings:"SOFT" 100;letter-spacing:0}
+.stop.sand .badge-et{background-color:var(--m-sand);color:var(--m-blue)}
+.stop h5{margin:0;font:900 clamp(18px,3cqi,34px)/1.05 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.stop p{font-size:clamp(12px,1.5cqi,16px)}
+.serv{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2cqi,22px)}
+@container (max-width:560px){.serv{grid-template-columns:1fr}}
+.serv div{border-top:2px solid var(--m-heart);padding-top:10px;display:grid;gap:4px}
+.serv b{font:800 clamp(16px,2.3cqi,24px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+
+/* máscaras */
+.mk-ev{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(16px,4cqi,48px);align-items:center;padding-block:clamp(10px,3cqi,36px) clamp(26px,6cqi,70px);position:relative;z-index:1}
+@container (max-width:600px){.mk-ev{grid-template-columns:1fr}}
+.count{display:flex;gap:clamp(6px,1.4cqi,14px);flex-wrap:wrap}
+.count div{background:rgba(231,224,202,.12);border:1px solid rgba(231,224,202,.25);border-radius:14px;padding:.5em .8em;display:grid;justify-items:center;line-height:1}
+.count b{font:900 clamp(22px,4cqi,46px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream)}
+.count span{font:500 clamp(9px,1.1cqi,12px) var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--m-sky);margin-top:4px}
+.clap{width:clamp(130px,28cqi,320px)}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(16px,4cqi,48px);align-items:center}
+@container (max-width:600px){.split{grid-template-columns:1fr}}
+.photo-bw{border-radius:16px;overflow:hidden;filter:grayscale(1) contrast(1.1)}
+.photo-bw img{display:block;width:100%}
+.kv{display:grid;gap:clamp(8px,1.6cqi,14px)}
+.kv div{display:grid;grid-template-columns:clamp(80px,14cqi,150px) 1fr;gap:10px;align-items:baseline;border-bottom:1px solid rgba(231,224,202,.2);padding-bottom:8px}
+.kv span.k{font:400 clamp(15px,2.2cqi,22px) var(--f-hand);color:var(--m-sky)}
+
+/* artigos */
+.arts{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(14px,3cqi,36px)}
+@container (max-width:620px){.arts{grid-template-columns:1fr}}
+.art-feat{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand);border-radius:20px;padding:clamp(16px,3.4cqi,36px);display:grid;gap:10px;align-content:end;min-height:clamp(220px,34cqi,380px);position:relative;overflow:hidden}
+.art-feat h4{margin:0;font:900 clamp(24px,4.4cqi,50px)/1.02 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream);max-width:16ch}
+.art-list{display:grid;gap:0}
+.art-i{display:grid;gap:4px;padding-block:clamp(10px,2cqi,18px);border-bottom:1px solid var(--m-sand)}
+.art-i:first-child{padding-top:0}
+.art-i h5{margin:0;font:800 clamp(15px,2.1cqi,22px)/1.2 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.art-read{display:grid;grid-template-columns:minmax(0,1fr) clamp(120px,22cqi,240px);gap:clamp(14px,3cqi,40px);padding-block:clamp(16px,4cqi,48px) clamp(24px,6cqi,64px)}
+@container (max-width:620px){.art-read{grid-template-columns:1fr}}
+.art-body{font:400 clamp(15px,1.9cqi,19px)/1.75 var(--f-read);color:#11141B;max-width:60ch;display:grid;gap:1em}
+.margin-notes{display:grid;gap:clamp(30px,8cqi,90px);align-content:start;padding-top:clamp(40px,10cqi,120px)}
+.mnote{font:400 clamp(15px,2.1cqi,22px)/1.1 var(--f-hand);color:var(--m-heart);transform:rotate(-3deg);position:relative}
+.mnote svg{width:1.6em;height:1.6em;vertical-align:middle;color:var(--m-heart)}
+
+/* aquarela v2 */
+.wcp{background:#FBF8F0 url("img/papel-aquarela.jpg");background-size:600px}
+.brush{position:relative;display:inline-block;line-height:1.05;padding:.04em .25em .14em;z-index:0;color:var(--m-cream)}
+.brush::before{content:"";position:absolute;inset:-.06em -.3em -.12em -.3em;background:url("img/wc-pincel.png") center/100% 100% no-repeat;z-index:-1}
+.brush.r{padding:0 .12em .04em}.brush.r::before{background-image:url("img/wc-pincel-vermelho.png")}
+.camp2{display:grid;grid-template-columns:1fr .85fr;gap:clamp(16px,4cqi,56px);align-items:center;padding-block:clamp(16px,4cqi,48px) clamp(26px,6cqi,64px)}
+@container (max-width:600px){.camp2{grid-template-columns:1fr}}
+.c2-title{font:900 clamp(30px,6.4cqi,80px)/1.05 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.painting{position:relative;padding:clamp(10px,2cqi,22px);background:#FBF8F0;box-shadow:0 1px 0 rgba(0,0,0,.05),0 24px 40px -26px rgba(0,30,80,.55)}
+.painting img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 70%}
+.painting .lbl{font:400 clamp(13px,1.8cqi,19px) var(--f-hand);color:var(--m-blue);margin-top:8px;display:block;text-align:right}
+.eps2{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,3cqi,32px)}
+@container (max-width:560px){.eps2{grid-template-columns:1fr}}
+.ep2{display:grid;gap:6px;justify-items:start}
+.ep2 .num{width:clamp(70px,12cqi,130px);aspect-ratio:1.4;display:grid;place-items:center;background:url("img/wc-ceu.png") center/contain no-repeat;font:900 clamp(26px,4.6cqi,52px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.ep2:nth-child(2) .num{background-image:url("img/wc-areia.png")}
+.ep2:nth-child(3) .num{background-image:url("img/wc-azul.png");color:var(--m-cream)}
+.ep2 h5{margin:0;font:800 clamp(16px,2.3cqi,25px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.ep2 p{font-size:clamp(12px,1.5cqi,16px)}
+
+/* loja */
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2cqi,22px)}
+@container (max-width:700px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+.prod{display:grid;gap:6px;align-content:start}
+.prod .ph{aspect-ratio:1;border-radius:18px;display:grid;place-items:center;position:relative;overflow:hidden}
+.prod .ph.blue{background-color:var(--m-blue);background-image:var(--grain)}
+.prod .ph.sand{background-color:var(--m-sand);background-image:var(--grain-dark)}
+.prod .ph.sky{background:var(--m-sky)}
+.prod .ph.night{background:var(--m-night)}
+.prod .ph svg.t{width:68%;height:auto}
+.prod h5{margin:0;font:700 clamp(13px,1.8cqi,19px)/1.2 var(--f-display);font-variation-settings:"SOFT" 100;color:#11141B}
+.prod .price{font:900 clamp(14px,2cqi,22px) var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.prod .flag{position:absolute;top:8%;left:8%;font:500 clamp(9px,1.1cqi,12px)/1 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;background:var(--m-heart);color:var(--m-cream);padding:.5em .7em;border-radius:999px}
+.prod .flag.cream{background:var(--m-cream);color:var(--m-heart)}
+.prod .desc{font-size:clamp(11px,1.3cqi,14px);color:#4A5466}
+
+/* agenda + story */
+.ag-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(16px,4cqi,48px);align-items:start}
+@container (max-width:640px){.ag-wrap{grid-template-columns:1fr}}
+.ag-list{display:grid;gap:clamp(8px,1.6cqi,14px)}
+.ag{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(10px,2.4cqi,24px);align-items:center;padding:clamp(10px,1.8cqi,18px);border-radius:16px;background:var(--m-cream);border:1.5px solid var(--m-sand)}
+@container (max-width:560px){.ag > .chip{display:none}.ag{grid-template-columns:auto 1fr}}
+.ag h5{margin:0;font:800 clamp(14px,2cqi,22px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.ag.feat{background-color:var(--m-blue);background-image:var(--grain);border-color:var(--m-blue)}
+.ag.feat h5{color:var(--m-cream)} .ag.feat .meta{color:var(--m-sky)}
+.ag.feat .date{background:var(--m-sand);color:var(--m-blue)}
+.ag .date{min-width:clamp(52px,7.4cqi,80px)}
+.ag .date.red{background:var(--m-heart)}.ag .date.red,.ag .date.red span{color:var(--m-cream)!important}
+.month{display:flex;align-items:baseline;gap:14px}
+.month b{font:900 clamp(26px,4.6cqi,56px)/1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.story{aspect-ratio:9/16;border-radius:18px;background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand);padding:clamp(14px,2.6cqi,26px);display:grid;align-content:space-between;position:relative;overflow:hidden;box-shadow:0 24px 34px -22px rgba(0,20,60,.6);--lbg:#00479F}
+.story .big{font:900 clamp(28px,5.4cqi,58px)/.95 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream)}
+
+/* galeria */
+.masonry{columns:4;column-gap:clamp(8px,1.6cqi,16px)}
+@container (max-width:700px){.masonry{columns:2}}
+.masonry > *{break-inside:avoid;margin-bottom:clamp(8px,1.6cqi,16px);display:block;border-radius:14px;overflow:hidden;position:relative}
+.masonry img{display:block;width:100%}
+.masonry .lbl{position:absolute;left:8px;bottom:8px;font:400 clamp(13px,1.8cqi,19px) var(--f-hand);background:var(--m-cream);color:var(--m-blue);padding:.15em .5em;border-radius:6px;transform:rotate(-2deg)}
+.masonry .lbl.r{color:var(--m-heart)}
+
+/* celular */
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;justify-items:center}
+.phones>div{width:100%}.phones .phone{max-width:330px;width:100%;align-self:start}
+.phones .phone > .mk{min-height:660px}
+.phones .cap{text-align:center;max-width:32ch}
+.menu-open{background-color:var(--m-blue);background-image:var(--grain);color:var(--m-sand);min-height:660px;display:grid;align-content:start;gap:8px;padding:18px 20px 26px;position:relative;overflow:hidden;--lbg:#00479F}
+.menu-open nav{display:grid;gap:4px;margin-top:20px}
+.menu-open nav span{font:900 38px/1.12 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream)}
+.menu-open nav span.cur{color:var(--m-sky)}
+.e404{min-height:660px;display:grid;align-content:center;justify-items:center;text-align:center;gap:12px;padding:24px}
+
+/* ===== galeria v3 ===== */
+.margin-l{border-left:3.5px solid rgba(200,55,45,.78)!important}
+.v3new{display:inline-block;font:600 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;background:var(--m-heart);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:middle;margin-left:6px}
+.same-note{display:flex;align-items:center;gap:10px;justify-content:center;padding:14px;font:500 13px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--m-blue);background:repeating-linear-gradient(135deg,#EFE8D6 0 10px,#F6F2E7 10px 20px);border-bottom:1px dashed rgba(0,71,159,.35)}
+
+/* foto de fundo inteira */
+.fb{position:relative;overflow:hidden;color:var(--m-cream);min-height:clamp(340px,56cqi,680px);display:grid;align-items:end;isolation:isolate}
+.fb>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.fb::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(11,37,80,.92) 0%,rgba(11,37,80,.55) 42%,rgba(11,37,80,.08) 78%)}
+.fb.left::after{background:linear-gradient(to right,rgba(11,37,80,.92) 0%,rgba(11,37,80,.6) 42%,rgba(11,37,80,0) 75%)}
+.fb.right::after{background:linear-gradient(to left,rgba(11,37,80,.92) 0%,rgba(11,37,80,.6) 42%,rgba(11,37,80,0) 75%)}
+.fb.duo>img{filter:grayscale(1) contrast(1.1) brightness(1.05)}
+.fb.duo::before{content:"";position:absolute;inset:0;z-index:-1;background:#00479F;mix-blend-mode:multiply}
+.fb.duo::after{background:linear-gradient(to top,rgba(11,37,80,.75),rgba(11,37,80,0) 60%)}
+.fb.center{align-items:center;justify-items:center;text-align:center}
+.fb.dark::after{background:rgba(0,0,0,.45)}
+.fb .in{position:relative;padding-block:clamp(26px,6cqi,76px);display:grid;gap:clamp(8px,1.8cqi,18px);max-width:min(100%,62ch)}
+.fb.right .in{justify-self:end;text-align:right;justify-items:end}
+.fb .m-h1,.fb .m-h2{color:var(--m-cream)}
+.fb .m-p{color:var(--m-sand)}
+.fb.hero{grid-template-rows:auto 1fr;align-items:stretch}
+.fb.hero .in{align-self:end}
+.fb .verse q{max-width:20ch}
+.fb .eyebrow-r{font:600 clamp(11px,1.4cqi,14px) var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:#F2A49B}
+.chapter{font:900 clamp(56px,13cqi,170px)/.8 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-heart);opacity:.95}
+.chap-time{font:400 clamp(18px,3cqi,34px)/1 var(--f-hand);color:#F2A49B}
+
+/* palavras repetidas no fundo */
+.echo{position:absolute;inset:0;overflow:hidden;pointer-events:none;display:flex;flex-direction:column;justify-content:center;gap:.06em;font:900 clamp(34px,8.4cqi,112px)/.92 var(--f-display);font-variation-settings:"SOFT" 100;white-space:nowrap;text-transform:uppercase;color:currentColor;opacity:.08;z-index:0}
+.echo span:nth-child(even){margin-left:-2.2em}
+.echo.top{justify-content:flex-start}
+.echo.sm{font-size:clamp(22px,5cqi,64px)}
+.echo.out{color:transparent;-webkit-text-stroke:1.5px currentColor;opacity:.22}
+.on-paper .echo{color:var(--m-blue);opacity:.04}
+.foot .echo{opacity:.05;justify-content:flex-end}
+.band .echo{opacity:.07}
+.fb .echo{z-index:-1;color:var(--m-cream);opacity:.07}
+.rel{position:relative}
+.rel>*:not(.echo):not(.abs):not(.drops){position:relative;z-index:1}
+
+/* traço + aquarela */
+.lw{position:relative;display:inline-block;width:var(--s,80px);aspect-ratio:1;flex:none}
+.lw img{position:absolute;left:10%;top:12%;width:88%;height:88%;object-fit:contain}
+.lw svg{position:absolute;left:0;top:0;width:86%;height:86%;color:var(--m-night)}
+
+/* aquarela explorada */
+.wband{background:url("img/wc-faixa-ceu.png") center/100% 100% no-repeat}
+.wband.areia{background-image:url("img/wc-faixa-areia.png")}
+.wband.azul{background-image:url("img/wc-faixa-azul.png");color:var(--m-cream)}
+.wband.azul .m-h2{color:var(--m-cream)}
+.drops{position:absolute;pointer-events:none;background:url("img/wc-respingos.png") center/contain no-repeat;opacity:.85}
+.wc-title{position:relative;display:inline-block}
+.wc-title::before{content:"";position:absolute;inset:-18% -8% -24% -10%;background:url("img/wc-faixa-ceu.png") center/100% 100% no-repeat;z-index:-1;transform:rotate(-1.5deg)}
+.wc-card{display:grid;gap:8px;justify-items:start;padding:clamp(12px,2cqi,22px);background:rgba(255,255,255,.55);border-radius:4px;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.wc-card h5{margin:0;font:800 clamp(16px,2.3cqi,25px)/1.15 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.wc-card p{font-size:clamp(12px,1.5cqi,16px)}
+.wc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2.4cqi,28px)}
+@container (max-width:620px){.wc-grid{grid-template-columns:1fr}}
+.wc-verse{font:italic 400 clamp(20px,3.4cqi,38px)/1.35 var(--f-read);color:#1D2230;max-width:28ch}
+.kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:14px}
+.kit div{display:grid;gap:6px;justify-items:center;text-align:center;font:500 12px var(--f-ui);color:#4A4F5C;padding:12px 8px;background:rgba(255,255,255,.5);border-radius:6px}
+
+/* folha de caderno arrancada (em faixa, nunca na página toda) */
+.sheet{position:relative;background-color:#FBF8F0;background-image:var(--margin),var(--ruled);background-position:0 18px;box-shadow:0 10px 24px rgba(0,0,0,.22);padding:clamp(30px,4.6cqi,52px) clamp(18px,3cqi,36px) clamp(18px,3cqi,30px) clamp(54px,7cqi,72px);color:#1D2230}
+.sheet::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:radial-gradient(circle at 50% 100%,transparent 4px,#FBF8F0 4.5px) 0 0/22px 10px repeat-x;transform:translateY(-9px)}
+.sheet.tilt{transform:rotate(-1.6deg)}
+.sheet .hand-v{font:400 clamp(19px,2.7cqi,28px)/32px var(--f-hand);color:var(--m-blue)}
+.sheet .tape{position:absolute;top:-14px;left:50%;width:90px;height:26px;background:rgba(132,173,189,.6);transform:translateX(-50%) rotate(3deg)}
+
+/* home v3 */
+.rolando3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3cqi,34px);align-items:start}
+@container (max-width:620px){.rolando3{grid-template-columns:1fr}}
+.note3{position:relative;padding:clamp(18px,2.6cqi,28px) clamp(14px,2.2cqi,24px);display:grid;gap:8px;box-shadow:0 8px 18px rgba(0,0,0,.12);color:#1D2230}
+.note3:nth-child(1){background:#F3E7B3;transform:rotate(-2deg)}
+.note3:nth-child(2){background:#D5E4EA;transform:rotate(1.4deg);margin-top:18px}
+.note3:nth-child(3){background:#F1D9D3;transform:rotate(-.8deg)}
+.note3 h5{margin:0;font:800 clamp(17px,2.4cqi,26px)/1.12 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.note3 .meta{font-size:clamp(11px,1.35cqi,14px);color:#4A4F5C}
+.note3 .m-hand{font-size:clamp(15px,2.1cqi,22px)}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,4cqi,48px);align-items:center}
+@container (max-width:620px){.split2{grid-template-columns:1fr}}
+.list-x{display:grid;gap:clamp(10px,1.8cqi,18px)}
+.list-x div{display:grid;grid-template-columns:auto 1fr;gap:clamp(10px,2cqi,20px);align-items:center}
+.list-x b{display:block;font:800 clamp(16px,2.2cqi,24px)/1.1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-blue)}
+.list-x span{font-size:clamp(12px,1.5cqi,16px)}
+.prod-hero .price{font:900 clamp(30px,5cqi,58px)/1 var(--f-display);font-variation-settings:"SOFT" 100;color:var(--m-cream)}
+.night{background:var(--m-night);color:var(--m-sand)}
+.night .m-h1,.night .m-h2{color:var(--m-cream)}
+
+.fb .m-nav{justify-self:stretch;width:100%;text-align:left;position:relative;background:linear-gradient(to bottom,rgba(11,37,80,.65),rgba(11,37,80,0))}
+.fb.center .m-nav{justify-content:space-between}
+.wband:not(.areia){padding-block:clamp(56px,10cqi,120px)!important}
+@container (max-width:620px){
+.fb.left::after,.fb.right::after{background:linear-gradient(to top,rgba(11,37,80,.95) 15%,rgba(11,37,80,.65) 60%,rgba(11,37,80,.25))}
+.fb.right .in{text-align:left;justify-self:start;justify-items:start}
+.prod-hero>img{left:0!important;width:100%!important}
+}
+/* ===== v4 ===== */
+.tack{position:absolute;top:-18px;left:50%;width:24px;height:34px;transform:translateX(-50%) rotate(14deg);color:var(--m-heart);filter:drop-shadow(2px 3px 1.5px rgba(0,0,0,.28));z-index:3;pointer-events:none}
+.sheet>.tack{top:-20px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(22px,4cqi,44px) clamp(14px,2.6cqi,30px)}
+@container (max-width:700px){.board{grid-template-columns:repeat(2,1fr)}}
+.pi{position:relative;padding:clamp(18px,2.6cqi,26px) clamp(12px,2cqi,20px) clamp(14px,2cqi,20px);display:grid;gap:6px;align-content:start;box-shadow:0 12px 18px -12px rgba(0,20,60,.5);color:#1D2230;min-height:clamp(150px,22cqi,240px)}
+.pi.c1{background:#F3E7B3;transform:rotate(-2deg)} .pi.c2{background:#D3E3EA;transform:rotate(1.6deg)} .pi.c3{background:#EDE3CC;transform:rotate(-1deg)} .pi.c4{background:#F1D7D0;transform:rotate(2deg)} .pi.c5{background:#DCE8D6;transform:rotate(-1.6deg)}
+.pi:nth-child(3n){transform:rotate(1.2deg)} 
+.pi svg:not(.tack){width:clamp(26px,4cqi,42px);height:clamp(26px,4cqi,42px);color:var(--m-blue)}
+.pi b{font:400 clamp(20px,3cqi,32px)/1 var(--f-hand);color:var(--m-blue)}
+.pi span{font-size:clamp(11.5px,1.45cqi,15px);line-height:1.4}
+.pi i{font:400 clamp(14px,1.9cqi,19px)/1.15 var(--f-hand);color:var(--m-heart);font-style:normal;margin-top:4px}
+.pi.blank{background:transparent;border:2px dashed rgba(200,55,45,.6);box-shadow:none;transform:rotate(1deg)}
+.pi.tall{transform:rotate(1.5deg);min-height:0}
+.map4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,3cqi,34px);align-items:start}
+.map4 .path{position:absolute;left:0;top:-6%;width:100%;height:60%;pointer-events:none;z-index:0}
+.map4 .stopc{z-index:1}
+.map4 .stopc:nth-of-type(even){margin-top:clamp(20px,6cqi,70px)}
+.stopc .et{font:600 clamp(9.5px,1.15cqi,12px) var(--f-ui)!important;letter-spacing:.12em;text-transform:uppercase;color:var(--m-heart)}
+.stopc u{text-decoration-thickness:1.5px}
+@container (max-width:700px){.map4{grid-template-columns:repeat(2,1fr)}.map4 .path{display:none}}
+@container (max-width:420px){.map4{grid-template-columns:1fr}.pi{min-height:0}.map4 .stopc:nth-of-type(even){margin-top:0}}
+.cursive{font:600 clamp(28px,4.8cqi,56px)/1.15 "Caveat",cursive;color:#1D2230;text-align:center;max-width:24ch;margin-inline:auto}
+.cursive-cite{display:block;text-align:center}
+/* aquarela: mais respiro dentro das manchas */
+.wband>.pad{padding-inline:clamp(34px,8cqi,100px)}
+.wband:not(.areia){padding-block:clamp(70px,12cqi,140px)!important;background-size:104% 100%!important}
+.wc-title::before{inset:-34% -16% -40% -14%}
+
+.pin{z-index:3}
+.pi:nth-child(even)>.pin,.note3:nth-child(2)>.pin,.stk:nth-child(even)>.pin,.sheet>.pin{background:var(--m-blue)}
+.sheet>.pin{top:-8px}
+
+/* ===== design doc final ===== */
+.dd-intro{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px}
+.dd-intro div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:4px;font-size:14.5px}
+.dd-intro b{font-weight:600}
+.dd-intro a{color:var(--accent)}
+.golden{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px;counter-reset:g}
+.golden div{background:var(--surface);border:1px solid var(--line);border-left:4px solid #C8372D;border-radius:10px;padding:12px 14px 12px 16px;display:grid;gap:4px;font-size:14.5px}
+.golden b{font-weight:600}
+.golden b::before{counter-increment:g;content:counter(g) ". ";color:#C8372D}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:700px){.dodont{grid-template-columns:1fr}}
+.dodont>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.dodont h4{font:600 13px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
+.dodont .do h4{color:var(--good)} .dodont .dont h4{color:#C8372D}
+.dodont ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14.5px}
+.propbar{display:flex;height:64px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.propbar div{display:grid;place-items:end start;padding:6px 8px;font:500 11.5px/1.2 var(--f-ui)}
+.proplegend{font-size:13.5px;color:var(--muted);margin-top:6px}
+.postits-sw{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.postits-sw span{width:84px;height:84px;display:grid;place-items:end start;padding:6px;font:400 15px var(--f-hand);color:#1D2230;box-shadow:0 8px 14px -10px rgba(0,20,60,.5)}
+.scale{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.scale>div{display:grid;grid-template-columns:150px 1fr 220px;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
+.scale>div:first-child{border-top:0}
+.scale code{font-size:12px;color:var(--muted)}
+.scale .lbl{font:600 12px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:760px){.scale>div{grid-template-columns:1fr}}
+.demo{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.demo .mk{border-radius:0}
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.demo-card{display:grid;gap:8px;align-content:start}
+.demo-card .stage{min-height:170px;display:grid;place-items:center;padding:26px 18px;border-radius:14px;border:1px solid var(--line);position:relative;overflow:hidden;container-type:inline-size}
+.demo-card p{font-size:13.5px;color:var(--muted);margin:0}
+.demo-card p b{color:var(--fg);font-weight:600;display:block}
+.demo-card code{font-size:12px}
+.pat{width:100%;border-collapse:collapse;font-size:14px}
+.pat th{text-align:left;font:600 12px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}
+.pat td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.pat td:first-child{font-weight:600;white-space:nowrap}
+.pat .md{display:inline-block;font:500 11px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.pages .pgc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.pages .pgc h4{margin:0;font:800 18px var(--f-display);font-variation-settings:"SOFT" 100;color:var(--accent)}
+.pages .pgc h4 small{font:500 12px var(--f-ui);color:var(--muted);margin-left:6px}
+.pages ol{margin:0;padding-left:20px;font-size:14px;display:grid;gap:3px}
+.pages .st{font:500 11px var(--f-ui);letter-spacing:.08em;text-transform:uppercase}
+.pages .st.ok{color:var(--good)} .pages .st.pend{color:var(--warn)}
+pre.code{background:#0B1222;color:#E6E9F0;border-radius:12px;padding:16px;overflow:auto;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:420px}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.files a{display:grid;gap:3px;text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.files a b{color:var(--accent);font-weight:600}
+.files a span{font-size:13px;color:var(--muted)}
+.glos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px}
+.glos div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
+.glos s{color:#C8372D}
+.facts{columns:2 320px;column-gap:28px;font-size:14.5px}
+.facts p{break-inside:avoid;margin:0 0 10px}
+.pend-list{display:grid;gap:8px}
+.pend-list div{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;padding:10px 14px;font-size:14.5px}
+.doodles.all{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+.dd code{font-size:11px;color:var(--muted)}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo-a" viewBox="0 0 100 120">
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M44 4H56V50H88V62H56V116H44V62H12V50H44Z" style="fill:var(--lbg)"/>
+        <path d="M50 92C40 84 25 74 25 59C25 50 31 44.5 38.5 44.5C43.5 44.5 47.5 47.5 50 51.5C52.5 47.5 56.5 44.5 61.5 44.5C69 44.5 75 50 75 59C75 74 60 84 50 92Z" style="fill:var(--lbg)"/>
+        <path d="M44 47C40.5 40 44 33.5 46.5 27.5C47.5 32 49.5 33 50.8 30C52.2 26.5 50.6 22 52.6 16.5C57 23.5 60.5 30.5 58 38C57 41 57.5 44 56 47" style="fill:var(--lbg)"/>
+        <path d="M21 62C31 55 40 69 50 62S69 55 79 62"/>
+        <path d="M21 65.5C31 72.5 40 58.5 50 65.5S69 72.5 79 65.5"/>
+        <path d="M28.5 58.5l-3.4-4.2M37.5 65.8l.8 4.8M45 60.6l2-4.4M56 67.4l-1 4.6M63 59.6l1.4-4.6M71.5 67l3.4 3.6"/>
+      </g>
+    </symbol><symbol id="logo-b" viewBox="0 0 100 104">
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 98C40 90 25 80 25 65C25 56 31 50.5 38.5 50.5C43.5 50.5 47.5 53.5 50 57.5C52.5 53.5 56.5 50.5 61.5 50.5C69 50.5 75 56 75 65C75 80 60 90 50 98Z"/>
+        <path d="M50 8V46M40.5 20H59.5"/>
+        <path d="M39 47C33 39 34.5 30 37.5 22M61 47C67 39 65.5 30 62.5 22M33 49C28 43 28.5 37 30 32M67 49C72 43 71.5 37 70 32"/>
+        <path d="M21 68C31 61 40 75 50 68S69 61 79 68"/>
+        <path d="M21 71.5C31 78.5 40 64.5 50 71.5S69 78.5 79 71.5"/>
+        <path d="M28.5 64.5l-3.4-4.2M37.5 71.8l.8 4.8M45 66.6l2-4.4M56 73.4l-1 4.6M63 65.6l1.4-4.6M71.5 73l3.4 3.6"/>
+      </g>
+    </symbol><symbol id="logo-c" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="100" cy="100" r="66" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="2 5" stroke-linecap="round"/>
+      <path id="sealpath" d="M100 100m-80 0a80 80 0 1 1 160 0a80 80 0 1 1 -160 0" fill="none"/>
+      <text font-family="Jost, sans-serif" font-weight="500" font-size="13" letter-spacing="2.3" fill="currentColor"><textPath href="#sealpath" startOffset="2%">DEUS É AMOR · JOVENS EVANGELIZANDO JOVENS ·</textPath></text>
+      <use href="#logo-a" x="66" y="56" width="68" height="82"/>
+    </symbol><symbol id="d-spark" viewBox="0 0 24 24"><path d="M12 1.6C12.7 8.1 15.9 11.3 22.4 12C15.9 12.7 12.7 15.9 12 22.4C11.3 15.9 8.1 12.7 1.6 12C8.1 11.3 11.3 8.1 12 1.6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-spark-f" viewBox="0 0 24 24"><path d="M12 1.6C12.7 8.1 15.9 11.3 22.4 12C15.9 12.7 12.7 15.9 12 22.4C11.3 15.9 8.1 12.7 1.6 12C8.1 11.3 11.3 8.1 12 1.6Z" fill="currentColor"/></symbol><symbol id="d-sparks" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M9 3c.5 4.5 2.5 6.5 7 7-4.5.5-6.5 2.5-7 7-.5-4.5-2.5-6.5-7-7 4.5-.5 6.5-2.5 7-7Z"/><path d="M18.5 14c.3 2.3 1.2 3.2 3.5 3.5-2.3.3-3.2 1.2-3.5 3.5-.3-2.3-1.2-3.2-3.5-3.5 2.3-.3 3.2-1.2 3.5-3.5Z"/></g><circle cx="19" cy="5" r="1.1" fill="currentColor"/></symbol><symbol id="d-star5" viewBox="0 0 24 24"><path d="M12 2.4l2.9 6.2 6.8.7-5.1 4.6 1.5 6.7L12 17.1l-6.1 3.5 1.5-6.7-5.1-4.6 6.8-.7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-rays" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3.6"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></g></symbol><symbol id="d-drop" viewBox="0 0 24 24"><path d="M12 2.6C12 2.6 5.2 10.8 5.2 15.4a6.8 6.8 0 0 0 13.6 0C18.8 10.8 12 2.6 12 2.6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.9 15.6a3.2 3.2 0 0 0 2.2 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="d-splash" viewBox="0 0 40 40"><g fill="currentColor"><path d="M20 3.5c1.6 0 2.6 1.1 2.4 2.7l-1.5 12.6c-.1.9-1.7.9-1.8 0L17.6 6.2c-.2-1.6.8-2.7 2.4-2.7z"/><path transform="rotate(-48 20 30)" d="M20 6c1.4 0 2.2 1 2 2.4l-1.3 10.8c-.1.8-1.4.8-1.5 0L18 8.4C17.8 7 18.6 6 20 6z"/><path transform="rotate(48 20 30)" d="M20 6c1.4 0 2.2 1 2 2.4l-1.3 10.8c-.1.8-1.4.8-1.5 0L18 8.4C17.8 7 18.6 6 20 6z"/></g></symbol><symbol id="d-orbit" viewBox="0 0 240 70"><path d="M4 60C52 18 150 4 222 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M226 8c.6 5 3 7.4 8 8-5 .6-7.4 3-8 8-.6-5-3-7.4-8-8 5-.6 7.4-3 8-8z" fill="currentColor"/></symbol><symbol id="d-scrib" viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M3 10C28 4 58 13 88 8s62-6 109 1" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol><symbol id="d-heart" viewBox="0 0 32 32"><path d="M16 27.5s-9.4-5.6-11.6-11.4A6.2 6.2 0 0 1 16 11.4a6.2 6.2 0 0 1 11.6 4.7C25.4 21.9 16 27.5 16 27.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 11.4c-2.4-2-1.4-4.6 0-7 1.4 2.4 2.4 5 0 7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-heart2" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.8-9-10.2C2.3 6.6 5 4 8 4.2c2 .1 3.3 1.4 4 3 .7-1.6 2-2.9 4-3 3-.2 5.7 2.4 5 6.1-1 5.4-9 10.2-9 10.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-flame" viewBox="0 0 24 24"><path d="M12 2.5c1 3.5 5.3 5.8 5.3 11a5.3 5.3 0 0 1-10.6 0c0-2.7 1.4-4.3 2.6-5.8.3 1.7 1 2.6 2 3.1-.2-3.2-.9-5.4.7-8.3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 15.5c.5 1 1.6 1.4 1.6 2.5a1.6 1.6 0 0 1-3.2 0c0-.7.5-1.2.9-1.7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol><symbol id="d-dove" viewBox="0 0 50 38"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M5 30C9 29 13 27 17 26C21 25 25 25.5 29 26C32 26.4 35 25 37 22.5C38.6 20.6 41.2 20.2 42.8 21.6L45.6 22.6L43 23.8C42.6 28 39.5 31.5 34.5 32.8C29 34.2 23 33.6 18.5 31.6L11 34.5L12.5 31L5 30Z"/><path d="M21 25.6C18 19 18.6 11.4 23 4.6C25.4 11 28.8 15.4 33.6 18.4"/><path d="M26 25.8C27.2 18.6 31.2 12.4 38.4 8.6C37.8 13.4 37.2 17 35.4 20.6"/><path d="M44 24.5c1.5 1.6 3 2.4 4.5 2.4M46 25.6l-.2 2M47.6 26.4l1.6 1"/></g><circle cx="40.6" cy="22.4" r=".8" fill="currentColor"/></symbol><symbol id="d-thorns" viewBox="0 0 48 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 11c7-6 13 6 22 0s15-6 22 0"/><path d="M2 14c7 6 13-6 22 0s15 6 22 0"/><path d="M8 8.5 6 5M17 14.8l.6 3.4M24 10.6l1.6-3.4M31 15.4l-.6 3.2M38 9l1.2-3.4M44 15l2 2.8"/></g></symbol><symbol id="d-cross" viewBox="0 0 24 24"><path d="M11 2.5h2.2v6h6v2.2h-6V21.5H11V10.7H5V8.5h6Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol><symbol id="d-rosary" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="12" cy="9" r="6.5" stroke-width="2.2" stroke-dasharray=".1 2.6"/><path d="M12 15.5v2" stroke-width="1.3"/><path d="M12 17.5v4.5M10.2 19h3.6" stroke-width="1.5"/></g></symbol><symbol id="d-candle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M8.5 11h7v10.5h-7Z"/><path d="M12 11V9.5"/><path d="M12 9.5c-1.4-1-1.6-2.6 0-5.5 1.6 2.9 1.4 4.5 0 5.5Z"/><path d="M6 21.5h12"/></g></symbol><symbol id="d-halo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="13" rx="8.5" ry="3.2"/><path d="M12 4.5v2.5M6.5 6.3 7.8 8.4M17.5 6.3l-1.3 2.1"/></g></symbol><symbol id="d-lily" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 12.5C9.8 9.5 10 5.5 12 2.5c2 3 2.2 7 0 10Z"/><path d="M12 12.5C9.5 12 6 9.6 4.5 6.6c3.3-.4 6 1.4 7.5 5.9Z"/><path d="M12 12.5c2.5-.5 6-2.9 7.5-5.9-3.3-.4-6 1.4-7.5 5.9Z"/><path d="M12 12.5v9"/><path d="M12 18c1.6-1.8 3.4-2.3 5-2-1 1.7-2.8 2.4-5 2Z"/></g></symbol><symbol id="d-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10.5a3.8 3.8 0 0 0 .3-7.6 5.6 5.6 0 0 0-10.8-1.1A4.4 4.4 0 0 0 7 18.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-wave" viewBox="0 0 48 16"><path d="M2 9c4-5 8-5 11 0s7 5 11 0 7-5 11 0 7 5 11 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol><symbol id="d-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c3-8.5 9.5-12.5 17-11.5"/><path d="M16 4.5l4.2 3.2-4 3"/></g></symbol><symbol id="d-circle" viewBox="0 0 48 24" preserveAspectRatio="none"><path d="M40 5C33 1.5 18 1.5 10 4S1 11 3 15.5 14 22.5 25 22s20-4 20-9.5c0-3-2.5-5.5-7-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol><symbol id="d-asterisk" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol><symbol id="d-quote" viewBox="0 0 24 24"><g fill="currentColor"><path d="M5.8 3.2c-1.8.6-3.4 2.7-3.5 5.5 0 1.5.9 2.5 2.1 2.5 1.1 0 2-.9 2-1.9s-.8-1.8-1.7-1.9c.2-1.4.9-2.7 1.9-3.6Z"/><path transform="translate(5 0)" d="M5.8 3.2c-1.8.6-3.4 2.7-3.5 5.5 0 1.5.9 2.5 2.1 2.5 1.1 0 2-.9 2-1.9s-.8-1.8-1.7-1.9c.2-1.4.9-2.7 1.9-3.6Z"/><g transform="rotate(180 12 12)"><path d="M5.8 3.2c-1.8.6-3.4 2.7-3.5 5.5 0 1.5.9 2.5 2.1 2.5 1.1 0 2-.9 2-1.9s-.8-1.8-1.7-1.9c.2-1.4.9-2.7 1.9-3.6Z"/><path transform="translate(5 0)" d="M5.8 3.2c-1.8.6-3.4 2.7-3.5 5.5 0 1.5.9 2.5 2.1 2.5 1.1 0 2-.9 2-1.9s-.8-1.8-1.7-1.9c.2-1.4.9-2.7 1.9-3.6Z"/></g></g><path d="M4 12.2c3-.8 6 .6 9-.2s4.5-.4 7 .2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".7"/></symbol><symbol id="d-burst" viewBox="0 0 100 100"><polygon points="50.0,1.0 56.0,8.4 63.8,3.0 67.4,11.8 76.5,8.8 77.5,18.3 87.0,17.9 85.3,27.3 94.6,29.6 90.3,38.2 98.5,43.0 92.0,50.0 98.5,57.0 90.3,61.8 94.6,70.4 85.3,72.7 87.0,82.1 77.5,81.7 76.5,91.2 67.4,88.2 63.8,97.0 56.0,91.6 50.0,99.0 44.0,91.6 36.2,97.0 32.6,88.2 23.5,91.2 22.5,81.7 13.0,82.1 14.7,72.7 5.4,70.4 9.7,61.8 1.5,57.0 8.0,50.0 1.5,43.0 9.7,38.2 5.4,29.6 14.7,27.3 13.0,17.9 22.5,18.3 23.5,8.8 32.6,11.8 36.2,3.0 44.0,8.4" fill="currentColor"/><polygon points="50.0,9.0 55.3,13.4 61.6,10.7 65.4,16.3 72.2,15.5 74.2,22.0 81.0,23.2 81.1,30.0 87.3,33.0 85.5,39.6 90.6,44.2 87.0,50.0 90.6,55.8 85.5,60.4 87.3,67.0 81.1,70.0 81.0,76.8 74.2,78.0 72.2,84.5 65.4,83.7 61.6,89.3 55.3,86.6 50.0,91.0 44.7,86.6 38.4,89.3 34.6,83.7 27.8,84.5 25.8,78.0 19.0,76.8 18.9,70.0 12.7,67.0 14.5,60.4 9.4,55.8 13.0,50.0 9.4,44.2 14.5,39.6 12.7,33.0 18.9,30.0 19.0,23.2 25.8,22.0 27.8,15.5 34.6,16.3 38.4,10.7 44.7,13.4" fill="none" stroke="#FBF8F0" stroke-width="1.3" opacity=".9"/></symbol><symbol id="d-tee" viewBox="0 0 120 120"><path d="M38 14 22 20 6 40l15 11 9-8v65h60V43l9 8 15-11-16-20-16-6c-2 8-11 13-22 13S40 22 38 14Z" fill="currentColor"/><path d="M38 14c2 8 11 13 22 13s20-5 22-13" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1.5"/></symbol><symbol id="d-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5v4M8.5 21.5h7"/></g></symbol><symbol id="d-music" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.6"/><circle cx="17.5" cy="16" r="2.6"/></g></symbol><symbol id="d-bubble" viewBox="0 0 24 24"><path d="M4 5.5c0-1.4 1.1-2.5 2.5-2.5h11C18.9 3 20 4.1 20 5.5v8c0 1.4-1.1 2.5-2.5 2.5H11l-4.5 4v-4h0C5.1 16 4 14.9 4 13.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol><symbol id="d-clap" viewBox="0 0 120 100"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M10 38h100v56H10Z"/><path d="M10 38 8 22l98-14 2 16Z"/><path d="M10 54h100"/></g><g stroke="#C8372D" stroke-width="5.5"><path d="M22 20.3l10 15.5M42 17.5l10 15.5M62 14.6l10 15.5M82 11.8l10 15.5"/></g><g fill="currentColor" font-family="Gochi Hand, cursive" font-size="9.2"><text x="16" y="50">DESAFIO DAS MÁSCARAS</text><text x="16" y="70">DIRETOR: DEUS</text><text x="16" y="87">TOMADA: 3 DIAS</text></g></symbol><symbol id="d-mask" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 5.5c3 1.4 6 1.4 9 0 3 1.4 6 1.4 9 0 .4 6.5-1.5 13-9 14.5C4.5 18.5 2.6 12 3 5.5Z"/><path d="M6.5 10c1-.9 2.3-.9 3.3 0M14.2 10c1-.9 2.3-.9 3.3 0"/><path d="M8.5 14.5c2.2 1.6 4.8 1.6 7 0"/></g></symbol><symbol id="d-hand-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 10.5s-3.6-2.2-4.2-4.6A2.3 2.3 0 0 1 12 4.3a2.3 2.3 0 0 1 4.2 1.6c-.6 2.4-4.2 4.6-4.2 4.6Z"/><path d="M2.5 15.5h3l3.5-1.6c1-.4 2.1 0 2.6.9h3.2c.9 0 1.5.7 1.5 1.5"/><path d="M15.8 16.3l3.4-2c.8-.4 1.8-.1 2.1.7.2.6 0 1.2-.5 1.6L14 21H5.5"/></g></symbol><symbol id="d-hoodie" viewBox="0 0 120 120"><path d="M42 14c-2 10 6 20 18 20s20-10 18-20l16 6 18 26-14 10-6-6v58H28V50l-6 6-14-10 18-26Z" fill="currentColor"/><path d="M44 16c4 12 28 12 32 0M54 34v14M66 34v14M38 82h44" fill="none" stroke="rgba(0,0,0,.14)" stroke-width="2"/></symbol><symbol id="d-cap" viewBox="0 0 120 120"><path d="M22 74c0-26 16-42 38-42s38 16 38 42Z" fill="currentColor"/><path d="M14 76c26-6 66-6 98 4-4 8-30 10-52 8s-42-4-46-12Z" fill="currentColor"/><circle cx="60" cy="32" r="4" fill="rgba(0,0,0,.18)"/><path d="M60 32v42" stroke="rgba(0,0,0,.12)" stroke-width="2"/></symbol><symbol id="d-bag" viewBox="0 0 120 120"><path d="M28 42h64l6 66H22Z" fill="currentColor"/><path d="M44 44c0-24 32-24 32 0" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></symbol><symbol id="d-notebook" viewBox="0 0 120 120"><rect x="26" y="14" width="70" height="92" rx="6" fill="currentColor"/><g stroke="rgba(0,0,0,.18)" stroke-width="2"><path d="M36 14v92"/></g><g fill="none" stroke="#C8372D" stroke-width="2.4"><path d="M20 26h12M20 42h12M20 58h12M20 74h12M20 90h12"/></g></symbol></svg>
+
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="eyebrow">Design doc · versão final · Site do Grupo Deus é Amor · 11 de outubro de 2026</div>
+  <h1>Um site com cara de encontro de quinta à noite</h1>
+  <p class="lede">O guia para quem vai desenhar ou programar o site do grupo, seja uma pessoa ou uma IA. Aqui estão a visão, as regras, as cores, as fontes, as texturas, os desenhos, a aquarela, as peças que se repetem e o modelo de cada página. Os exemplos de páginas prontas ficam na <a href="https://claude.ai/artifact/2KfCohMU1MXpQtJEJ2jR8M">Galeria de páginas</a>, que é a referência visual oficial.</p>
+  <div class="dd-intro">
+    <div><b>1. Leia primeiro</b><span>As seções 1 e 2 (essência e regras de ouro). Elas evitam 90% dos erros.</span></div>
+    <div><b>2. Copie daqui</b><span>Cores, fontes, tamanhos e texturas já estão em código no <a href="#kit">kit</a>: tokens.css, desenhos.svg e as aquarelas em PNG.</span></div>
+    <div><b>3. Confira na galeria</b><span>Toda página nova deve parecer “irmã” das páginas da <a href="https://claude.ai/artifact/2KfCohMU1MXpQtJEJ2jR8M">galeria</a>. Na dúvida, copie uma seção de lá.</span></div>
+  </div>
+  <nav class="toc" aria-label="Seções">
+    <a href="#essencia">1 · Essência</a><a href="#regras">2 · Regras de ouro</a><a href="#logo">3 · Logo</a><a href="#cores">4 · Cores</a><a href="#tipografia">5 · Fontes</a><a href="#texturas">6 · Fundos e texturas</a><a href="#desenhos">7 · Desenhos à mão</a><a href="#aquarela">8 · Aquarela</a><a href="#fotos">9 · Fotos</a><a href="#componentes">10 · Componentes</a><a href="#secoes">11 · Seções</a><a href="#paginas">12 · Páginas</a><a href="#layout">13 · Layout e celular</a><a href="#voz">14 · Tom de voz</a><a href="#conteudo">15 · Conteúdo do grupo</a><a href="#kit">16 · Kit e pendências</a>
+  </nav>
+</header>
+
+<!-- 1 -->
+<section class="s" id="essencia">
+  <div class="s-head"><span class="num">1 · ESSÊNCIA</span><h2>Caderno + Novo Lote</h2><p>O Deus é Amor é um grupo de oração de jovens católicos de Maringá, desde 2000, que se reúne toda quinta às 19h30 no Auditório Dona Guilhermina. O site precisa passar a mesma sensação de chegar numa quinta: gente jovem, acolhimento, fé de verdade e um pouco de bagunça boa.</p></div>
+  <div class="dd-intro" style="margin-bottom:18px">
+    <div><b>Humanista</b><span>Pessoas reais, fotos do grupo, letra à mão. Nada de banco de imagens.</span></div>
+    <div><b>Jovem</b><span>Títulos gordos, palavras repetidas, cor forte, humor leve com a fé.</span></div>
+    <div><b>Acolhedor</b><span>Papel claro, bilhetes, “tem lugar pra você”. Fala com quem nunca veio.</span></div>
+    <div><b>Comunidade</b><span>O grupo é uma família: “jovem que evangeliza jovem”.</span></div>
+  </div>
+  <div class="mix">
+    <div class="mode caderno"><span class="hand" style="color:var(--m-heart)">modo</span><h3>Caderno</h3><p>Papel claro, títulos azuis, anotações à mão, post-its com alfinete, linha vermelha da margem e folhas soltas. É o lado <b>acolhedor e humano</b>.</p><ul><li>Convites, “primeira vez?”, informações práticas</li><li>Quem somos, ministérios, encontros, artigos</li><li>Aquarela: o caderno de esboços do grupo</li></ul></div>
+    <div class="mode lote"><span class="hand" style="color:var(--m-sand)">modo</span><h3>Novo Lote</h3><p>Azul com grão, títulos gigantes e repetidos, brilhinhos, fotos de fundo inteiras. É o lado <b>jovem e com energia</b>.</p><ul><li>Abertura da página inicial</li><li>Loja, eventos, campanhas</li><li>Versículos em destaque e números grandes</li></ul></div>
+  </div>
+  <h3 class="sub">O ritmo de uma página</h3>
+  <div class="rhythm">
+    <div class="strip" role="img" aria-label="Exemplo de página alternando os modos">
+      <div class="l" style="padding-block:24px">Abertura <span class="t">Novo Lote</span></div>
+      <div class="c" style="padding-block:20px">Convite <span class="t">Caderno</span></div>
+      <div class="l" style="background-image:linear-gradient(to top,rgba(11,37,80,.9),rgba(11,37,80,.3)),url(img/louvor-maos.jpg);background-size:cover;background-position:center">Foto de fundo <span class="t">Novo Lote</span></div>
+      <div class="p" style="padding-block:20px">Post-its <span class="t">Caderno</span></div>
+      <div class="l" style="padding-block:20px">Loja <span class="t">Novo Lote</span></div>
+      <div class="n">Rodapé <span class="t">Azul Noite</span></div>
+    </div>
+    <ul class="rules">
+      <li>Alterne papel e azul. Duas faixas azuis lisas nunca ficam coladas; uma foto de fundo pode ficar entre elas.</li>
+      <li>O azul aparece em faixas largas de ponta a ponta, nunca em cartõezinhos azuis espalhados.</li>
+      <li>Páginas de informação são quase todas Caderno. Loja, eventos e campanhas podem ter mais Novo Lote.</li>
+      <li>Toda página termina no rodapé Azul Noite com “Jovens evangelizando jovens” repetido no fundo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="s" id="regras">
+  <div class="s-head"><span class="num">2 · REGRAS DE OURO</span><h2>O que nunca pode mudar</h2><p>Estas regras vieram das conversas com o grupo. Valem mais do que qualquer outra parte deste documento.</p></div>
+  <div class="golden">
+    <div><b>A abertura da página inicial é fixa</b><span>Azul com grão, “Jovens evangelizando jovens”, polaroid da família DéA e “toda quinta, 19h30!”. Seguida do “primeira vez?” no papel pautado. Não redesenhar.</span></div>
+    <div><b>Não usar a palavra “louvor”</b><span>Soa protestante. Use “oração”, “oração cantada”, “música” ou “adoração”, conforme o caso.</span></div>
+    <div><b>Folha pautada só em pedaços</b><span>Pode em faixas, folhas soltas e no “primeira vez?”. Nunca como fundo da página inteira: “não somos cursinho”.</span></div>
+    <div><b>Vermelho como no caderno</b><span>Detalhes de caneta: margem, anotações, alfinetes, carimbos, datas especiais, números. A proporção atual de azul e vermelho foi aprovada.</span></div>
+    <div><b>Respingo de tinta nunca vermelho</b><span>Respingo vermelho parece sangue. Respingos são sempre azuis.</span></div>
+    <div><b>Alfinete é uma bolinha</b><span>Círculo simples vermelho ou azul, alternando. Nada de tachinha desenhada.</span></div>
+    <div><b>Fotos com propósito</b><span>Cada foto passa a mensagem da seção. Seções com foto de fundo inteira são bem-vindas; fora delas, uma foto por seção. Muitas fotos juntas, só na Galeria.</span></div>
+    <div><b>Aquarela é tinta, não névoa</b><span>Pinceladas, manchas com borda e papel de aquarela. Nunca borrões desfocados. Texto dentro de mancha sempre com margem generosa.</span></div>
+    <div><b>Palavras repetidas bem clarinhas</b><span>Frases repetidas no fundo com 4% a 8% de opacidade. É textura, não é para ler.</span></div>
+    <div><b>Humor leve com a fé</b><span>Pode brincar (“vergonha: deixa em casa”, a ovelha perdida no 404), sem nunca brincar com o sagrado.</span></div>
+    <div><b>Conteúdo fiel</b><span>Datas, preços e produtos inventados ficam marcados como exemplo até o grupo confirmar.</span></div>
+    <div><b>Mudou algo aprovado? Pergunte</b><span>O que o grupo aprovou na galeria fica como está. Só se refaz o que for pedido.</span></div>
+  </div>
+  <h3 class="sub">Faça e evite</h3>
+  <div class="dodont">
+    <div class="do"><h4>Faça</h4><ul>
+      <li>Use fotos reais do grupo, com rostos e luz boa.</li>
+      <li>Escreva bilhetes curtos à mão: “sério, vem!”, “corre que acaba!”.</li>
+      <li>Prenda post-its e folhas com alfinete-bolinha ou fita.</li>
+      <li>Use o degradê azul-noite para o texto ficar legível em cima de foto.</li>
+      <li>Deixe os desenhos nas bordas, apontando para algo.</li>
+      <li>Repita uma frase do grupo no fundo de seções grandes.</li>
+    </ul></div>
+    <div class="dont"><h4>Evite</h4><ul>
+      <li>“Louvor”, jargão de instituição e linguagem de cursinho.</li>
+      <li>Pauta azul na página inteira.</li>
+      <li>Respingos vermelhos, aquarela borrada e névoa.</li>
+      <li>Fotos de banco de imagens ou fotos sem função.</li>
+      <li>Letra à mão em textos longos (só frases curtas).</li>
+      <li>Muitas cores novas: fique na paleta e nos tons de post-it.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="s" id="logo">
+  <div class="s-head"><span class="num">3 · LOGO</span><h2>Cruz e Coração</h2><p>A cruz atrás, o Sagrado Coração na frente, a chama no alto e a coroa de espinhos em volta, num traço só e numa cor só. Símbolo <code>logo-a</code> no arquivo de desenhos.</p></div>
+  <div class="uses">
+    <div class="use"><div class="stage" style="background:var(--m-paper)"><div class="lockup-h"><svg><use href="#logo-a"/></svg><span>Deus é Amor</span></div></div><p><b>Horizontal</b> · topo do site, sobre papel</p></div>
+    <div class="use"><div class="stage" style="background-color:var(--m-blue);background-image:var(--grain);--lbg:#00479F"><div class="lockup-h" style="color:var(--m-sand)"><svg><use href="#logo-a"/></svg><span>Deus é Amor</span></div></div><p><b>Sobre o azul</b> · cor Areia</p></div>
+    <div class="use"><div class="stage" style="background:var(--m-paper)"><div class="avatar"><svg><use href="#logo-a"/></svg></div></div><p><b>Foto de perfil</b> · Instagram e WhatsApp</p></div>
+    <div class="use"><div class="stage" style="background:var(--m-paper);gap:18px;display:flex;justify-content:center;align-items:center"><div class="fav"><svg><use href="#logo-a"/></svg></div></div><p><b>Ícone do site</b> · aba do navegador</p></div>
+    <div class="use"><div class="stage" style="background:var(--m-sand);--lbg:#E7E0CA"><svg style="width:120px;height:120px;color:var(--m-heart)"><use href="#logo-c"/></svg></div><p><b>Selo em vermelho</b> · estampa e adesivo</p></div>
+  </div>
+  <ul class="rules cols">
+    <li>Cor do dia a dia: Azul Manto sobre papel, Areia sobre azul e foto.</li>
+    <li>O nome “Deus é Amor” vai ao lado, em Fraunces Black macia.</li>
+    <li>A logo usa a variável <code>--lbg</code> com a cor do fundo para os recortes do traço.</li>
+    <li>É um esboço de direção: vale alguém do grupo redesenhar a versão final a partir do arquivo .ai.</li>
+  </ul>
+</section>
+
+<!-- 4 -->
+<section class="s" id="cores">
+  <div class="s-head"><span class="num">4 · CORES</span><h2>Paleta</h2><p>O papel é o fundo, o Azul Manto é a marca, o vermelho é a caneta. Os nomes abaixo são os mesmos do <code>tokens.css</code>.</p></div>
+  <div class="swatches">
+    <div class="sw"><div class="chipc" style="background:var(--m-blue);color:var(--m-sand)">Aa</div><div class="info"><b>Azul Manto</b><code>#00479F · --azul-manto</code><span>Cor principal. Títulos, botões, faixas Novo Lote e a logo.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-sky);color:var(--m-night)">Aa</div><div class="info"><b>Azul Céu</b><code>#84ADBD · --azul-ceu</code><span>Desenhos, sublinhados, títulos repetidos sobre o azul.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-sand);color:var(--m-blue)">Aa</div><div class="info"><b>Areia</b><code>#E7E0CA · --areia</code><span>Cartões, chips, botões e texto sobre o azul.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-paper);color:var(--m-blue);border-bottom:1px solid var(--line)">Aa</div><div class="info"><b>Papel</b><code>#F6F2E7 · --papel</code><span>Fundo do modo Caderno.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-cream);color:var(--m-blue);border-bottom:1px solid var(--line)">Aa</div><div class="info"><b>Creme</b><code>#FBF8F0 · --creme</code><span>Cartões claros, polaroid e folha solta.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-night);color:var(--m-sky)">Aa</div><div class="info"><b>Azul Noite</b><code>#0B2550 · --azul-noite</code><span>Rodapé, oração, adoração e o degradê das fotos.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-heart);color:var(--m-cream)">Aa</div><div class="info"><b>Vermelho Coração</b><code>#C8372D · --vermelho-coracao</code><span>A caneta: margem, anotações, alfinetes, datas e números.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#F2A49B;color:var(--m-night)">Aa</div><div class="info"><b>Vermelho claro</b><code>#F2A49B · --vermelho-claro</code><span>Anotações e sobretítulos vermelhos em cima de foto ou azul.</span></div></div>
+    <div class="sw"><div class="chipc" style="background:var(--m-ink);color:var(--m-sand)">Aa</div><div class="info"><b>Preto</b><code>#000 · --preto</code><span>Texto corrido. Em post-its e folhas use <code>#1D2230</code>.</span></div></div>
+  </div>
+  <h3 class="sub">Proporção aproximada numa página</h3>
+  <div class="propbar" role="img" aria-label="Proporção de cores">
+    <div style="flex:46;background:#F6F2E7;color:#00479F">Papel 46%</div>
+    <div style="flex:24;background:#00479F;color:#E7E0CA">Azul Manto 24%</div>
+    <div style="flex:12;background:#0B2550;color:#84ADBD">Noite 12%</div>
+    <div style="flex:8;background:#E7E0CA;color:#00479F">Areia 8%</div>
+    <div style="flex:5;background:#84ADBD;color:#0B2550">Céu</div>
+    <div style="flex:5;background:#C8372D;color:#FBF8F0">Verm.</div>
+  </div>
+  <p class="proplegend">O vermelho fica em torno de 5%: muitos detalhes pequenos, nunca grandes áreas. Fotos de fundo contam como Azul Noite por causa do degradê.</p>
+  <h3 class="sub">Cores de post-it</h3>
+  <p class="note" style="margin-top:0">Só para bilhetes e post-its. Alterne as cores e gire cada um entre −2° e 2°.</p>
+  <div class="postits-sw"><span style="background:#F3E7B3">amarelo</span><span style="background:#D3E3EA">azul</span><span style="background:#EDE3CC">areia</span><span style="background:#F1D7D0">rosa</span><span style="background:#DCE8D6">verde</span></div>
+  <h3 class="sub">Combinações de texto</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Exemplo</th><th>Texto sobre fundo</th><th>Pode usar em</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pair" style="background:var(--m-paper);color:var(--m-ink)">Aa</span></td><td>Preto sobre Papel</td><td class="ok">Qualquer texto</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-paper);color:var(--m-blue)">Aa</span></td><td>Azul Manto sobre Papel</td><td class="ok">Qualquer texto</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-blue);color:var(--m-sand)">Aa</span></td><td>Areia ou Creme sobre Azul Manto</td><td class="ok">Qualquer texto</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-night);color:var(--m-sky)">Aa</span></td><td>Azul Céu sobre Azul Noite</td><td class="ok">Qualquer texto</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-paper);color:var(--m-heart)">Aa</span></td><td>Vermelho sobre Papel</td><td class="mid">Anotações e títulos curtos</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-blue);color:var(--m-sky)">Aa</span></td><td>Azul Céu sobre Azul Manto</td><td class="mid">Só títulos grandes</td></tr>
+      <tr><td><span class="pair" style="background:var(--m-blue);color:var(--m-heart)">Aa</span></td><td>Vermelho sobre Azul Manto</td><td class="no">Nunca (use Vermelho claro)</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- 5 -->
+<section class="s" id="tipografia">
+  <div class="s-head"><span class="num">5 · FONTES</span><h2>Cinco papéis, cinco fontes</h2><p>Todas gratuitas no Google Fonts. O link pronto está no <a href="#kit">kit</a>.</p></div>
+  <div class="scale">
+    <div><span class="lbl">Título</span><span style="font:900 44px/1 var(--f-display);font-variation-settings:'SOFT' 100,'WONK' 1;color:var(--m-blue)">Tem lugar pra você</span><code>Fraunces 900 · SOFT 100 · --t-h1 / --t-h2</code></div>
+    <div><span class="lbl">Título repetido</span><span style="font:900 40px/.86 var(--f-display);font-variation-settings:'SOFT' 100;color:var(--m-sky);background:var(--m-blue);padding:8px 12px;border-radius:8px">NOVO LOTE</span><code>Fraunces 900 · caixa alta · Azul Céu · --t-repetido</code></div>
+    <div><span class="lbl">Interface e texto</span><span style="font:400 18px/1.5 var(--f-ui)">Toda quinta, às 19h30, no Auditório Dona Guilhermina.</span><code>Jost 400/500 · --t-corpo</code></div>
+    <div><span class="lbl">Sobretítulo</span><span style="font:500 13px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--m-blue)">Grupo de oração jovem · desde 2000</span><code>Jost 500 · caixa alta · .14em</code></div>
+    <div><span class="lbl">Bilhete à mão</span><span style="font:400 30px/1.05 var(--f-hand);color:var(--m-heart);transform:rotate(-3deg);display:inline-block">sério, vem!</span><code>Gochi Hand · só frases curtas · gire −2° a −5°</code></div>
+    <div><span class="lbl">Versículo à mão</span><span style="font:600 34px/1.15 'Caveat',cursive;color:#1D2230">“Deus é amor.”</span><code>Caveat 600 · centralizado · versículos em aquarela</code></div>
+    <div><span class="lbl">Versículo e leitura</span><span style="font:italic 400 22px/1.45 var(--f-read);color:#11141B">“Amados, amemo-nos uns aos outros.” <span style="font-style:normal;font-size:13px;letter-spacing:.14em;color:var(--m-blue)">1 JO 4, 7</span></span><code>Newsreader itálico · artigos e citações</code></div>
+  </div>
+  <ul class="rules cols">
+    <li>Títulos sempre em Fraunces 900 com <code>"SOFT" 100</code>. Sem negrito “falso” em outra fonte.</li>
+    <li>Referência bíblica em Jost caixa alta, espaçada, em Azul Manto ou Azul Céu.</li>
+    <li>Na letra à mão, no máximo uma frase por bloco e nunca para informação essencial sozinha.</li>
+    <li>Texto corrido com no máximo ~46 caracteres por linha nos blocos de destaque e ~65 em artigos.</li>
+  </ul>
+</section>
+
+<!-- 6 -->
+<section class="s" id="texturas">
+  <div class="s-head"><span class="num">6 · FUNDOS E TEXTURAS</span><h2>Papel, grão e caneta</h2><p>Textura em alguns fundos, não em todos. Os fundos lisos fazem os texturizados aparecerem.</p></div>
+  <div class="tex">
+    <div class="tx"><div class="sf t-liso"><span>papel liso</span></div><p><b>Papel liso</b>Fundo padrão. A maior parte do site.</p></div>
+    <div class="tx"><div class="sf t-amas"><span>mural</span></div><p><b>Papel amassado</b>Murais de post-its e seções de destaque.</p></div>
+    <div class="tx"><div class="sf t-areia"><span>dia de grupo</span></div><p><b>Areia com grão</b>Cartão de encontro e caixas de aviso.</p></div>
+    <div class="tx"><div class="sf t-azul"><span>novo lote</span></div><p><b>Azul com grão</b>Todas as faixas Novo Lote.</p></div>
+    <div class="tx"><div class="sf" style="background:var(--m-night)"><span style="color:var(--m-sky)">rodapé</span></div><p><b>Azul Noite</b>Rodapé e momentos de oração.</p></div>
+    <div class="tx"><div class="sf wcp"><span>aquarela</span></div><p><b>Papel de aquarela</b>Páginas e campanhas em aquarela.</p></div>
+    <div class="tx"><div class="sf t-paut"><span>primeira vez?</span></div><p><b>Faixa pautada</b>Só no “primeira vez?” e em faixas curtas. Nunca a página toda.</p></div>
+    <div class="tx"><div class="sf" style="background:var(--m-paper);display:grid;place-items:center"><div class="margin-l" style="height:70%;display:grid;place-items:center;padding-left:14px"><span style="position:static">artigo</span></div></div><p><b>Linha da margem</b>3,5 px vermelha ao lado de textos e convites.</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="s" id="desenhos">
+  <div class="s-head"><span class="num">7 · DESENHOS À MÃO</span><h2>Banco de desenhos</h2><p>Traço fino e uniforme, como se tudo fosse feito pela mesma mão. Cada desenho é um símbolo em <code>desenhos.svg</code>; o nome está embaixo. A cor vem de <code>currentColor</code>.</p></div>
+  <div class="doodles all">
+<div class="dd"><div class="stage"><svg><use href="#d-spark"/></svg></div><p><code>d-spark</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-spark-f"/></svg></div><p><code>d-spark-f</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-sparks"/></svg></div><p><code>d-sparks</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-star5"/></svg></div><p><code>d-star5</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-rays"/></svg></div><p><code>d-rays</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-drop"/></svg></div><p><code>d-drop</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-splash"/></svg></div><p><code>d-splash</code></p></div><div class="dd wide"><div class="stage"><svg><use href="#d-orbit"/></svg></div><p><code>d-orbit</code></p></div><div class="dd wide"><div class="stage"><svg><use href="#d-scrib"/></svg></div><p><code>d-scrib</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-heart"/></svg></div><p><code>d-heart</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-heart2"/></svg></div><p><code>d-heart2</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-flame"/></svg></div><p><code>d-flame</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-dove"/></svg></div><p><code>d-dove</code></p></div><div class="dd wide"><div class="stage"><svg><use href="#d-thorns"/></svg></div><p><code>d-thorns</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-cross"/></svg></div><p><code>d-cross</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-rosary"/></svg></div><p><code>d-rosary</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-candle"/></svg></div><p><code>d-candle</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-halo"/></svg></div><p><code>d-halo</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-lily"/></svg></div><p><code>d-lily</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-cloud"/></svg></div><p><code>d-cloud</code></p></div><div class="dd wide"><div class="stage"><svg><use href="#d-wave"/></svg></div><p><code>d-wave</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-arrow"/></svg></div><p><code>d-arrow</code></p></div><div class="dd wide"><div class="stage"><svg><use href="#d-circle"/></svg></div><p><code>d-circle</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-asterisk"/></svg></div><p><code>d-asterisk</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-quote"/></svg></div><p><code>d-quote</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-burst"/></svg></div><p><code>d-burst</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-tee"/></svg></div><p><code>d-tee</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-mic"/></svg></div><p><code>d-mic</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-music"/></svg></div><p><code>d-music</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-bubble"/></svg></div><p><code>d-bubble</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-clap"/></svg></div><p><code>d-clap</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-mask"/></svg></div><p><code>d-mask</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-hand-heart"/></svg></div><p><code>d-hand-heart</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-hoodie"/></svg></div><p><code>d-hoodie</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-cap"/></svg></div><p><code>d-cap</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-bag"/></svg></div><p><code>d-bag</code></p></div><div class="dd"><div class="stage"><svg><use href="#d-notebook"/></svg></div><p><code>d-notebook</code></p></div>
+  </div>
+  <ul class="rules cols">
+    <li>Até três desenhos soltos por tela, nas bordas ou apontando para algo. Nunca atrás de texto.</li>
+    <li>Sobre papel: Azul Manto, Azul Céu ou Vermelho. Sobre azul e foto: Areia, Creme ou Azul Céu.</li>
+    <li>Ícones de seção (ministérios, passos) podem aparecer um por cartão.</li>
+    <li>Use o símbolo pelo sentido: pomba para o Espírito Santo, lírio para Nossa Senhora, chama para missão, máscara para o Desafio.</li>
+    <li>Só o brilho pode se mexer, devagar, e nunca para quem desativou animações.</li>
+    <li>Desenhos novos devem seguir o mesmo traço: 1,5 px num quadro de 24 × 24, pontas arredondadas.</li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section class="s" id="aquarela">
+  <div class="s-head"><span class="num">8 · AQUARELA</span><h2>Tinta de verdade, com traço por cima</h2><p>A aquarela é o caderno de esboços do grupo. Ela aparece em páginas de campanha e de encontro, e em detalhes do site. Os arquivos estão em <code>img/wc-*.png</code> e <code>img/papel-aquarela.jpg</code>.</p></div>
+  <div class="wcp" style="border-radius:16px;padding:20px;display:grid;gap:18px">
+    <div class="kit">
+      <div><span class="lw" style="--s:84px"><img src="img/wc-coracao.png" alt=""><svg><use href="#d-heart2"/></svg></span>traço + mancha<br><code>wc-coracao</code></div>
+      <div><span class="lw" style="--s:84px"><img src="img/wc-cruz.png" alt=""><svg><use href="#d-cross"/></svg></span>cruz<br><code>wc-cruz</code></div>
+      <div><span class="lw" style="--s:84px"><img src="img/wc-chama.png" alt=""><svg><use href="#d-flame"/></svg></span>chama<br><code>wc-chama</code></div>
+      <div><span class="lw" style="--s:84px"><img src="img/wc-ceu.png" alt=""><svg><use href="#d-dove"/></svg></span>pomba<br><code>wc-ceu</code></div>
+      <div><span class="lw" style="--s:84px"><img src="img/wc-areia.png" alt=""><svg><use href="#d-candle"/></svg></span>vela<br><code>wc-areia</code></div>
+      <div><span style="display:block;width:100%;height:84px;background:url('img/wc-respingos.png') center/contain no-repeat"></span>respingos azuis<br><code>wc-respingos</code></div>
+      <div><span style="display:block;width:100%;height:84px;background:url('img/wc-faixa-ceu.png') center/100% 70% no-repeat"></span>faixa céu<br><code>wc-faixa-ceu</code></div>
+      <div><span style="display:block;width:100%;height:84px;background:url('img/wc-faixa-azul.png') center/100% 70% no-repeat"></span>faixa azul<br><code>wc-faixa-azul</code></div>
+      <div><span style="display:block;width:100%;height:84px;background:url('img/wc-faixa-areia.png') center/100% 70% no-repeat"></span>faixa areia<br><code>wc-faixa-areia</code></div>
+      <div><span style="display:grid;place-items:center;height:84px"><span class="brush" style="font:900 22px var(--f-display);font-variation-settings:'SOFT' 100">perdoar</span></span>pincelada azul<br><code>wc-pincel</code></div>
+      <div><span style="display:grid;place-items:center;height:84px"><span class="brush r" style="font:600 26px 'Caveat',cursive;color:#1D2230">Deus é amor</span></span>pincelada vermelha<br><code>wc-pincel-vermelho</code></div>
+      <div><span style="display:grid;place-items:center;height:84px"><span class="ep2"><span class="num" style="width:80px">2</span></span></span>número em mancha<br><code>wc-azul · wc-areia</code></div>
+    </div>
+    <p class="cursive" style="font-size:34px">“Aquele que não ama não conhece a Deus, porque <span class="brush r" style="color:#1D2230">Deus é amor</span>.”</p>
+  </div>
+  <ul class="rules cols">
+    <li><b>Traço + mancha:</b> o desenho à mão em Azul Noite por cima, a mancha levemente deslocada para baixo e para a direita.</li>
+    <li><b>Pincelada</b> só atrás de uma palavra ou expressão curta. A vermelha só em uma por tela.</li>
+    <li><b>Faixas</b> pintadas servem de fundo para blocos: o texto fica a pelo menos 8% da borda da mancha (veja <code>.wband</code>).</li>
+    <li><b>Respingos</b> sempre azuis, num canto, perto de um título.</li>
+    <li><b>Versículo em aquarela:</b> Caveat, centralizado, com pincelada vermelha na palavra-chave.</li>
+    <li><b>Ilustração de campanha</b> entra como um quadro com moldura de papel, nunca de fundo.</li>
+    <li>Para criar novas manchas, use o mesmo processo: borda mais escura, granulação, cor da paleta. Nunca desfoque.</li>
+  </ul>
+</section>
+
+<!-- 9 -->
+<section class="s" id="fotos">
+  <div class="s-head"><span class="num">9 · FOTOS</span><h2>As fotos do grupo são o centro</h2><p>Só fotos reais do grupo. Quatro tratamentos cobrem tudo.</p></div>
+  <div class="photos">
+    <div class="ph-card"><div class="ph-stage"><div class="polaroid" style="max-width:200px;transform:rotate(-2deg)"><div class="tape"></div><img src="img/grupo.jpg" alt="Foto do grupo reunido"><div class="hand">a família DéA</div></div></div><p><b>Polaroid com fita.</b> Momentos alegres, legenda à mão.</p></div>
+    <div class="ph-card"><div class="ph-stage" style="padding:0;display:block;position:relative;min-height:260px"><div class="fb duo center" style="min-height:260px"><img src="img/louvor-maos.jpg" alt="Jovens de mãos levantadas"><div class="in" style="padding:20px"><span style="font:900 24px/1.1 var(--f-display);font-variation-settings:'SOFT' 100">Deus é amor</span></div></div></div><p><b>Azul de carimbo.</b> Foto em preto e branco tingida de azul, com texto por cima. Para versículos.</p></div>
+    <div class="ph-card"><div class="ph-stage" style="padding:0;display:block;position:relative;min-height:260px"><div class="fb left" style="min-height:260px"><img src="img/sacrario.jpg" alt="Sacrário com flores e velas"><div class="in" style="padding:20px"><span class="chapter" style="font-size:56px">3</span><span style="font:900 26px/1 var(--f-display);font-variation-settings:'SOFT' 100">Adoração</span></div></div></div><p><b>Foto de fundo inteira.</b> De ponta a ponta, com degradê Azul Noite do lado do texto.</p></div>
+    <div class="ph-card"><div class="ph-stage" style="background:var(--m-night)"><div style="max-width:220px;width:100%;border-radius:10px;overflow:hidden;filter:grayscale(1)"><img src="img/oracao-pb.jpg" alt="Jovem rezando" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover"></div></div><p><b>Preto e branco.</b> Oração e momentos íntimos.</p></div>
+  </div>
+  <ul class="rules cols">
+    <li>Foto de fundo inteira: degradê para baixo (<code>--foto-baixo</code>), esquerda ou direita, conforme o lado do texto. Texto sempre em Creme ou Areia.</li>
+    <li>Escolha a foto pela mensagem: mãos levantadas para oração, abraço para família, luvas para serviço, sacrário para adoração.</li>
+    <li>Fora das seções de fundo inteiro, uma foto por seção. A página Galeria é o único mural de fotos.</li>
+    <li>Fotos com menores de idade precisam de autorização de uso de imagem.</li>
+    <li>Toda foto tem texto alternativo descrevendo a cena (sem a palavra “louvor”).</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section class="s" id="componentes">
+  <div class="s-head"><span class="num">10 · COMPONENTES</span><h2>Peças que se repetem</h2><p>Cada peça abaixo existe pronta na galeria. O nome da classe usada lá vem embaixo, para facilitar copiar do <code>estilos-da-galeria.css</code>.</p></div>
+  <div class="demo-grid">
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper);gap:10px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center"><span class="m-btn pri">Quero participar</span><span class="m-btn sec">Como chegar</span><span class="chip">Campanha</span><span class="chip on">Todos</span></div><p><b>Botões e etiquetas · papel</b><code>.m-btn.pri · .m-btn.sec · .chip</code></p></div>
+    <div class="demo-card"><div class="stage" style="background-color:var(--m-blue);background-image:var(--grain);gap:10px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center"><span class="m-btn sand">Ver a loja</span><span class="m-btn ghost">Saiba mais</span><span class="chip inv">Evento</span></div><p><b>Botões e etiquetas · azul e foto</b><code>.m-btn.sand · .m-btn.ghost · .chip.inv</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper)"><div class="meet" style="width:100%"><div class="date"><span class="d1">QUI</span><span class="d2">15</span><span class="d3">OUT</span></div><div style="display:grid;gap:4px"><span class="meet-t">Próximo encontro</span><span class="m-small">19h30 · Auditório Dona Guilhermina</span></div></div></div><p><b>Cartão de encontro e data</b><code>.meet · .date (.date.red para datas especiais)</code></p></div>
+    <div class="demo-card"><div class="stage t-amas"><div class="pi c1" style="width:190px;min-height:0"><i class="pin"></i><svg><use href="#d-music"/></svg><b>Música</b><span>Conduz a oração cantada.</span><i>precisa de: voz</i></div></div><p><b>Post-it com alfinete</b><code>.pi.c1–c5 · .pin (vermelho/azul alternando)</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper)"><div class="sheet tilt" style="width:230px"><i class="pin"></i><p class="hand-v">☑ você</p><p class="hand-v" style="color:var(--m-heart)">☐ vergonha</p></div></div><p><b>Folha de caderno solta</b><code>.sheet.tilt · .hand-v</code></p></div>
+    <div class="demo-card"><div class="stage" style="background-color:var(--m-blue);background-image:var(--grain);--lbg:#00479F"><div class="polaroid" style="width:150px;transform:rotate(3deg)"><div class="tape"></div><img src="img/grupo.jpg" alt=""><div class="hand">toda quinta</div></div><div class="sticky" style="left:8%;top:10%">19h30!</div></div><p><b>Polaroid com fita e bilhete</b><code>.polaroid · .tape · .hand · .sticky</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper);gap:22px;display:flex;align-items:center;justify-content:center"><span class="stamp" style="width:110px">desde<b>2001</b>Maringá</span><span style="font:500 17px var(--f-ui)">cerca de <span class="circ" style="font-weight:600">250 jovens<svg viewBox="0 0 48 24" preserveAspectRatio="none"><use href="#d-circle"/></svg></span></span></div><p><b>Carimbo e círculo de caneta</b><code>.stamp · .circ</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper);display:grid;gap:8px;place-items:center"><span class="m-h2" style="font-size:30px">Jovens <span class="scrib">jovens<svg><use href="#d-scrib"/></svg></span></span><span class="m-hand red" style="transform:rotate(-3deg)">anota aí!</span></div><p><b>Sublinhado e anotação à mão</b><code>.scrib · .m-hand.red</code></p></div>
+    <div class="demo-card"><div class="stage rel on-paper" style="background:var(--m-paper);overflow:hidden"><div class="echo " aria-hidden="true"><span> Servir servir servir servir Servir servir servir servir Servir servir servir servir Servir servir servir servir</span><span> Servir servir servir servir Servir servir servir servir Servir servir servir servir Servir servir servir servir</span><span> Servir servir servir servir Servir servir servir servir Servir servir servir servir Servir servir servir servir</span><span> Servir servir servir servir Servir servir servir servir Servir servir servir servir Servir servir servir servir</span></div><span class="m-h2" style="font-size:30px">Onde a gente serve</span></div><p><b>Palavras repetidas no fundo</b><code>.echo (opacidade 4% no papel, 7% no azul) · .echo.out = contorno</code></p></div>
+    <div class="demo-card"><div class="stage" style="background-color:var(--m-blue);background-image:var(--grain);gap:10px;display:grid;place-items:center"><div class="rep" style="font-size:44px"><span>NOVO LOTE</span><span>NOVO LOTE</span></div></div><p><b>Título repetido</b><code>.rep (2 linhas, a 2ª deslocada e 70%)</code></p></div>
+    <div class="demo-card"><div class="stage" style="background-color:var(--m-blue);background-image:var(--grain)"><div style="position:relative;width:120px;height:120px;display:grid;place-items:center"><svg style="position:absolute;inset:0;width:100%;height:100%;color:var(--m-sky)"><use href="#d-burst"/></svg><span style="position:relative;font:900 26px var(--f-display);font-variation-settings:'SOFT' 100;color:var(--m-cream)">R$100</span></div></div><p><b>Selo de preço</b><code>d-burst + Fraunces</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper)"><div class="steps-r" style="width:100%"><div><b>1</b><h6>Participe</h6></div><div><b>2</b><h6>Converse</h6></div><div><b>3</b><h6>Sirva</h6></div></div></div><p><b>Passo a passo com números vermelhos</b><code>.steps-r</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper)"><div class="ag" style="width:100%"><div class="date red"><span class="d1">SÁB</span><span class="d2">24</span><span class="d3">OUT</span></div><div style="display:grid;gap:2px"><h5>Luau · Jesus Pop Star</h5><span class="meta">18h · Centro Catequético</span></div></div></div><p><b>Linha de agenda</b><code>.ag</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-night);color:var(--m-sand);display:grid;gap:4px;place-items:start;align-content:end"><span class="chapter" style="font-size:72px">90%</span><span style="font:900 20px var(--f-display);font-variation-settings:'SOFT' 100;color:var(--m-cream)">dos servos vieram da catequese</span></div><p><b>Número grande vermelho</b><code>.chapter (capítulos e dados)</code></p></div>
+    <div class="demo-card"><div class="stage" style="background:var(--m-paper)"><div class="pcard" style="width:200px"><div class="art crumple" style="aspect-ratio:16/9;display:grid;place-items:center"><svg style="width:40px;height:40px;color:var(--m-blue)"><use href="#d-heart2"/></svg></div><div class="body"><span class="chip">Ação social</span><h5>DEA Ajuda</h5></div></div></div><p><b>Cartão de projeto</b><code>.pcard</code></p></div>
+  </div>
+  <p class="note"><b>Rodapé:</b> Azul Noite, logo em Areia, “@grupodeusamor”, a linha “Evangelização · Amizade · Humildade · Serviço” e “Jovens evangelizando jovens” repetido no fundo. Igual em todas as páginas.</p>
+</section>
+
+<!-- 11 -->
+<section class="s" id="secoes">
+  <div class="s-head"><span class="num">11 · SEÇÕES</span><h2>Blocos para montar páginas</h2><p>Toda página é uma pilha destes blocos. O exemplo de cada um está na galeria, na página indicada.</p></div>
+  <div class="tbl-wrap"><table class="pat">
+    <thead><tr><th>Bloco</th><th>Modo</th><th>Quando usar</th><th>Exemplo na galeria</th></tr></thead>
+    <tbody>
+      <tr><td>Abertura Novo Lote</td><td><span class="md">Novo Lote</span></td><td>Topo da página inicial (fixo) e de páginas de evento. Título gigante, polaroid ou ilustração, bilhete à mão.</td><td>Início, Desafio das Máscaras</td></tr>
+      <tr><td>Abertura com foto inteira</td><td><span class="md">Foto</span></td><td>Topo de páginas com uma imagem forte: ministérios, ação social, artigo, produto.</td><td>Ministérios, DEA Ajuda, Artigo com foto, Loja</td></tr>
+      <tr><td>Abertura no papel</td><td><span class="md">Caderno</span></td><td>Páginas de informação. Título azul, anotação vermelha, uma foto em polaroid.</td><td>Quem somos</td></tr>
+      <tr><td>Primeira vez?</td><td><span class="md">Caderno pautado</span></td><td>Convite para quem nunca veio, com o cartão do próximo encontro.</td><td>Início</td></tr>
+      <tr><td>Versículo</td><td><span class="md">3 versões</span></td><td>Sobre foto azul (A), em aquarela cursiva (B) ou em folha colada no azul (C).</td><td>Início A, B e C</td></tr>
+      <tr><td>Capítulos com foto</td><td><span class="md">Foto</span></td><td>Contar algo em partes, com número vermelho e palavra repetida no fundo.</td><td>Quinta à noite</td></tr>
+      <tr><td>Mural de post-its</td><td><span class="md">Caderno</span></td><td>Listas de 3 a 8 itens: valores, ministérios, destaques, avisos.</td><td>Ministérios, Quem somos, Início A e C</td></tr>
+      <tr><td>Mapa com caminho vermelho</td><td><span class="md">Caderno</span></td><td>Etapas em sequência: encontros, passos, inscrição.</td><td>Encontros</td></tr>
+      <tr><td>Linha do tempo</td><td><span class="md">Caderno</span></td><td>História e marcos, com anotações à mão.</td><td>Quem somos</td></tr>
+      <tr><td>Lista com aquarela</td><td><span class="md">Caderno</span></td><td>Frentes de trabalho ou temas, cada um com um desenho traço + mancha.</td><td>DEA Ajuda</td></tr>
+      <tr><td>Faixa de aquarela</td><td><span class="md">Aquarela</span></td><td>Destaque dentro de páginas em aquarela.</td><td>Conhece-te, Início B</td></tr>
+      <tr><td>Folha solta</td><td><span class="md">Caderno</span></td><td>Checklists, orações curtas, testes divertidos.</td><td>Quinta à noite, Ministérios, Artigo</td></tr>
+      <tr><td>Vitrine</td><td><span class="md">Novo Lote + Caderno</span></td><td>Produtos desenhados com etiqueta vermelha.</td><td>Loja</td></tr>
+      <tr><td>Agenda</td><td><span class="md">Caderno</span></td><td>Datas com caixa azul; vermelha para datas especiais.</td><td>Agenda, Encontros</td></tr>
+      <tr><td>Faixa “E fora do auditório”</td><td><span class="md">Novo Lote</span></td><td>Resumo da ação social com link para o DEA Ajuda.</td><td>Encontros</td></tr>
+      <tr><td>Rodapé</td><td><span class="md">Azul Noite</span></td><td>Sempre.</td><td>Todas</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- 12 -->
+<section class="s" id="paginas">
+  <div class="s-head"><span class="num">12 · PÁGINAS</span><h2>Mapa do site e modelo de cada página</h2><p>Menu com quatro itens (Quem somos, Encontros, Loja, Agenda) e o botão “Participe”. As demais páginas ficam acessíveis pelos blocos e pelo rodapé. A ordem dos blocos é a da galeria.</p></div>
+  <div class="pages">
+    <div class="pgc"><h4>Início</h4><span class="st pend">Abertura aprovada · 2ª metade: escolher A, B ou C</span><ol><li>Abertura Novo Lote (fixa)</li><li>Primeira vez? (fixa)</li><li>Versículo do grupo, 1 Jo 4, 8</li><li>O que está rolando (3 destaques)</li><li>Lojinha · novo lote</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Quem somos</h4><span class="st ok">Aprovada</span><ol><li>Abertura no papel: “Jovem que evangeliza jovem”, 1 Jo 4, 7-8, polaroid do abraço</li><li>Linha do tempo desde 2000</li><li>No que a gente acredita (4 post-its)</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Quinta à noite</h4><span class="st ok">Aprovada</span><ol><li>Abertura com foto do auditório</li><li>Capítulos: 1 Oração · 2 Pregação · 3 Adoração</li><li>O que levar (folha solta)</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Ministérios</h4><span class="st ok">Aprovada</span><ol><li>Abertura com foto: “Qual é o seu dom?”</li><li>Mural dos 7 ministérios + “e você?”</li><li>Quer servir? 3 passos + teste rápido</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Encontros</h4><span class="st ok">Aprovada</span><ol><li>Abertura azul com “caminhada” repetido</li><li>Mapa: Rally, Luau, Desafio, Conhece-te</li><li>Foto: 90% dos servos vieram da catequese</li><li>Próximas datas + recado para pais e catequistas</li><li>E fora do auditório</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Página de encontro</h4><span class="st ok">Desafio das Máscaras (Novo Lote) e Conhece-te (aquarela)</span><ol><li>Abertura com nome, data e chamada</li><li>Contagem regressiva ou ilustração</li><li>O que esperar / três perguntas</li><li>Próxima edição e inscrição</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>DEA Ajuda</h4><span class="st ok">Aprovada</span><ol><li>Abertura com foto: “Fé que arregaça as mangas”</li><li>Onde a gente serve (lista com aquarela)</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Campanha</h4><span class="st ok">Aprovada · “Como e por quê?”</span><ol><li>Abertura em papel de aquarela com pincelada</li><li>Ilustração da campanha em quadro</li><li>Episódios com números em mancha</li><li>Versículo cursivo centralizado</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Artigos</h4><span class="st ok">Aprovada · não é prioridade</span><ol><li>Lista com destaque e filtros</li><li>Artigo: margem vermelha e anotações, ou abertura com foto</li><li>Folha “pra rezar hoje”</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Loja</h4><span class="st ok">Vitrine · pedido por Direct ou WhatsApp</span><ol><li>Produto em destaque com foto real</li><li>Filtros e vitrine desenhada</li><li>Como comprar</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Agenda e convites</h4><span class="st ok">Aprovada</span><ol><li>Lista do mês</li><li>Convite no formato de stories gerado por evento</li><li>Rodapé</li></ol></div>
+    <div class="pgc"><h4>Galeria · 404 · celular</h4><span class="st ok">Aprovadas</span><ol><li>Galeria: mural de fotos com filtros e etiquetas à mão</li><li>404: “Mas até a ovelha perdida foi encontrada”</li><li>Celular: menu no azul, convite com margem vermelha</li></ol></div>
+  </div>
+  <p class="note"><b>Páginas novas:</b> monte com os blocos da seção 11, comece por uma abertura (Novo Lote, foto ou papel), alterne os modos e termine no rodapé. Use no máximo uma pincelada vermelha e uma seção de palavras repetidas por página.</p>
+</section>
+
+<!-- 13 -->
+<section class="s" id="layout">
+  <div class="s-head"><span class="num">13 · LAYOUT E CELULAR</span><h2>Medidas e comportamento</h2></div>
+  <div class="dd-intro">
+    <div><b>Largura</b><span>Conteúdo até ~1200 px. Faixas de cor e fotos de fundo vão de ponta a ponta da tela.</span></div>
+    <div><b>Margens</b><span>Laterais <code>clamp(14px, 4vw, 48px)</code>. Respiro entre seções <code>clamp(34px, 7vw, 84px)</code>.</span></div>
+    <div><b>Grades</b><span>Cartões em 3 ou 4 colunas no computador, 2 no tablet, 1 no celular. Post-its ficam em 2 colunas até 420 px.</span></div>
+    <div><b>Cantos</b><span>Botões 14 px, cartões 18 px, chips redondos. Post-its, folhas e polaroids sem canto arredondado.</span></div>
+    <div><b>Rotação</b><span>Post-its, polaroids e folhas giram entre −3° e 3°. Bilhetes à mão entre −2° e −6°. Nada mais gira.</span></div>
+    <div><b>Celular</b><span>Fotos de fundo passam a usar o degradê de baixo e o texto alinha à esquerda. Desenhos soltos diminuem ou somem.</span></div>
+    <div><b>Acessibilidade</b><span>Contraste das combinações da seção 4, texto mínimo 15 px, foco visível em Areia ou Azul Manto, texto alternativo em toda foto, animações só com <code>prefers-reduced-motion: no-preference</code>.</span></div>
+    <div><b>Palavras repetidas</b><span>Marcar com <code>aria-hidden="true"</code>: são enfeite.</span></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="s" id="voz">
+  <div class="s-head"><span class="num">14 · TOM DE VOZ</span><h2>Direto, caloroso e sem jargão de instituição</h2><p>Como um amigo do grupo convidando outro jovem. Frases curtas, “a gente”, “você”, humor leve.</p></div>
+  <div class="glos">
+    <div><b>Use</b> oração, oração cantada, música, adoração</div>
+    <div><b>Evite</b> <s>louvor</s>, <s>louvando</s></div>
+    <div><b>Use</b> servos (quem serve no grupo), ministérios</div>
+    <div><b>Use</b> quinta, encontro, dia de grupo</div>
+    <div><b>Use</b> “tem lugar pra você”, “chega mais”, “vem com a gente”</div>
+    <div><b>Evite</b> “prezados”, “venha participar de nossas atividades”</div>
+  </div>
+  <h3 class="sub">Frases do grupo para usar</h3>
+  <div class="glos">
+    <div>“Jovens evangelizando jovens”</div><div>“Jovem que evangeliza jovem”</div><div>“Conhecer mais para amar mais”</div><div>“Toda quinta, 19h30!”</div><div>“Aqui ninguém fica sozinho”</div><div>“Quem foi acolhido, acolhe”</div><div>“Fé que arregaça as mangas”</div><div>“Corre que acaba!”</div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="s" id="conteudo">
+  <div class="s-head"><span class="num">15 · CONTEÚDO DO GRUPO</span><h2>Fatos confirmados</h2><p>Use estes dados como estão. Tudo que não estiver aqui (datas futuras, preços, produtos, horários de cada parte) deve aparecer como exemplo até o grupo confirmar.</p></div>
+  <div class="facts">
+    <p><b>Versículo do grupo:</b> 1 João 4, 7-8. “Aquele que não ama não conhece a Deus, porque Deus é amor.”</p>
+    <p><b>Encontro:</b> toda quinta, 19h30, Auditório Dona Guilhermina, ao lado do Centro Catequético da Catedral de Maringá. Cerca de 250 jovens.</p>
+    <p><b>2000:</b> fundado por jovens do Colégio Regina Mundi que queriam continuar depois da crisma. Fundadores: Bruno Mariano e Sra. Maria Alice, com no máximo 5 participantes, no Centro de Catequese da Catedral.</p>
+    <p><b>A virada:</b> com o Pe. Júlio (pároco da Catedral Basílica Nossa Senhora da Glória) e a Ir. Nazaré de Lima, o grupo passa da linha carismática para a pastoral da juventude.</p>
+    <p><b>Casas:</b> quase 8 anos no Colégio Regina Mundi (Damas da Instrução Cristã), depois Colégio Marista, hoje Auditório Dona Guilhermina.</p>
+    <p><b>2001:</b> nasce o Desafio das Máscaras, encontro de 3 dias para a última etapa da catequese de adolescentes, num cenário todo temático. Também levado para Sinope e Sorriso (MT).</p>
+    <p><b>Caminhada da catequese:</b> Rally de Deus (1ª etapa), Luau · Jesus Pop Star (2ª etapa), Desafio das Máscaras (3ª etapa). Conhece-te é o encontro mais novo, para jovens.</p>
+    <p><b>Servos:</b> cerca de 90% vieram da catequese.</p>
+    <p><b>Ministérios:</b> Música, Dança, Teatro, Intercessão, Espiritualidade, Comunicação, Acolhimento.</p>
+    <p><b>Ação social (DEA Ajuda):</b> visitas a asilos, creches e aldeias indígenas, e campanhas como a de brinquedos.</p>
+    <p><b>Valores:</b> Evangelização, Amizade, Humildade, Serviço. Lemas: “jovem que evangeliza jovem”, “conhecermos mais para amarmos mais”.</p>
+    <p><b>Instagram:</b> @grupodeusamor. Site atual: dea-blog.vercel.app.</p>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="s" id="kit">
+  <div class="s-head"><span class="num">16 · KIT E PENDÊNCIAS</span><h2>Arquivos para começar</h2><p>Abra os arquivos abaixo (eles também estão na pasta <code>design-deus-e-amor/kit</code> do projeto). O <code>tokens.css</code> tem as cores, fontes, tamanhos, texturas e degradês com os nomes deste documento. O CSS da galeria tem todas as peças prontas para copiar.</p></div>
+  <div class="files">
+    <a href="kit/tokens.css" target="_blank" rel="noopener"><b>tokens.css</b><span>Variáveis de cor, fonte, tamanho, textura e degradê</span></a>
+    <a href="kit/desenhos.svg" target="_blank" rel="noopener"><b>desenhos.svg</b><span>Logo e os 37 desenhos à mão em um arquivo</span></a>
+    <a href="kit/estilos-da-galeria.css" target="_blank" rel="noopener"><b>estilos-da-galeria.css</b><span>CSS completo das páginas de exemplo</span></a>
+    <a href="https://claude.ai/artifact/2KfCohMU1MXpQtJEJ2jR8M"><b>Galeria de páginas</b><span>Referência visual de todas as páginas</span></a>
+  </div>
+  <h3 class="sub">Aquarelas e texturas (pasta img)</h3>
+  <p class="note" style="margin-top:0">wc-coracao.png · wc-cruz.png · wc-chama.png · wc-ceu.png · wc-azul.png · wc-areia.png · wc-faixa-ceu.png · wc-faixa-azul.png · wc-faixa-areia.png · wc-pincel.png · wc-pincel-vermelho.png · wc-respingos.png · papel-aquarela.jpg. Estão publicadas junto deste documento em <code>img/</code> e na pasta do projeto <code>design-deus-e-amor/</code>.</p>
+  <h3 class="sub">Fontes</h3>
+  <pre class="code">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&amp;family=Jost:ital,wght@0,300..700;1,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Gochi+Hand&amp;family=Caveat:wght@500..700&amp;display=swap"&gt;</pre>
+  <h3 class="sub">tokens.css</h3>
+  <pre class="code">/* =========================================================
+   Deus é Amor · tokens do design (versão final, out/2026)
+   Use estes nomes no código. Os valores vêm do design doc.
+   ========================================================= */
+/* Fontes (Google Fonts):
+   https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&amp;family=Jost:ital,wght@0,300..700;1,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Gochi+Hand&amp;family=Caveat:wght@500..700&amp;display=swap
+*/
+:root{
+  /* cores da marca */
+  --azul-manto:#00479F;     /* cor principal: títulos, botões, faixas Novo Lote, logo */
+  --azul-ceu:#84ADBD;       /* desenhos, sublinhados, títulos repetidos sobre o azul */
+  --areia:#E7E0CA;          /* cartões, chips, texto sobre o azul */
+  --preto:#000000;          /* texto corrido */
+  --papel:#F6F2E7;          /* fundo do modo Caderno */
+  --creme:#FBF8F0;          /* cartões claros, polaroid, folha solta */
+  --azul-noite:#0B2550;     /* rodapé, oração, degradê das fotos de fundo */
+  --vermelho-coracao:#C8372D; /* margem do caderno, anotações, alfinetes, datas especiais */
+  --vermelho-claro:#F2A49B; /* anotações vermelhas sobre fundo escuro */
+  --texto-escuro:#1D2230;   /* texto em post-its e folhas */
+
+  /* post-its (só para bilhetes) */
+  --postit-amarelo:#F3E7B3; --postit-azul:#D3E3EA; --postit-areia:#EDE3CC; --postit-rosa:#F1D7D0; --postit-verde:#DCE8D6;
+
+  /* fontes */
+  --f-titulo:&quot;Fraunces&quot;, &quot;Cooper Black&quot;, Georgia, serif;   /* sempre peso 900 com font-variation-settings:&quot;SOFT&quot; 100 */
+  --f-ui:&quot;Jost&quot;, &quot;Futura&quot;, system-ui, sans-serif;
+  --f-mao:&quot;Gochi Hand&quot;, &quot;Comic Sans MS&quot;, cursive;          /* bilhetes curtos */
+  --f-cursiva:&quot;Caveat&quot;, cursive;                            /* versículos escritos à mão */
+  --f-leitura:&quot;Newsreader&quot;, Georgia, serif;                 /* versículos em livro e artigos */
+
+  /* tamanhos (fluidos) */
+  --t-h1:clamp(30px, 6.6vw, 82px);
+  --t-h2:clamp(22px, 3.7vw, 46px);
+  --t-h3:clamp(17px, 2.4vw, 26px);
+  --t-corpo:clamp(15px, 1.65vw, 18px);
+  --t-pequeno:clamp(12px, 1.3vw, 14px);
+  --t-sobretitulo:clamp(10px, 1.25vw, 13px); /* caixa alta, espaçamento .14em */
+  --t-mao:clamp(16px, 2.6vw, 30px);
+  --t-repetido:clamp(40px, 11vw, 130px);
+
+  /* espaço, cantos e sombras */
+  --margem-lateral:clamp(14px, 4vw, 48px);
+  --respiro-secao:clamp(34px, 7vw, 84px);
+  --raio-botao:14px; --raio-cartao:18px; --raio-chip:999px;
+  --sombra-papel:0 12px 18px -12px rgba(0,20,60,.5);
+  --sombra-polaroid:0 22px 30px -16px rgba(0,10,40,.55);
+
+  /* texturas */
+  --grao:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;180&#x27; height=&#x27;180&#x27;%3E%3Cfilter id=&#x27;n&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;.9&#x27; numOctaves=&#x27;2&#x27; stitchTiles=&#x27;stitch&#x27;/%3E%3CfeColorMatrix values=&#x27;0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .10 0&#x27;/%3E%3C/filter%3E%3Crect width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; filter=&#x27;url(%23n)&#x27;/%3E%3C/svg%3E&quot;);
+  --grao-escuro:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;180&#x27; height=&#x27;180&#x27;%3E%3Cfilter id=&#x27;n&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;.85&#x27; numOctaves=&#x27;2&#x27; stitchTiles=&#x27;stitch&#x27;/%3E%3CfeColorMatrix values=&#x27;0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .15 0 0 0 .13 0&#x27;/%3E%3C/filter%3E%3Crect width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; filter=&#x27;url(%23n)&#x27;/%3E%3C/svg%3E&quot;);
+  --amassado:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;420&#x27; height=&#x27;420&#x27;%3E%3Cfilter id=&#x27;c&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;.011&#x27; numOctaves=&#x27;4&#x27; seed=&#x27;7&#x27;/%3E%3CfeDiffuseLighting lighting-color=&#x27;%23F6F2E7&#x27; surfaceScale=&#x27;2.4&#x27;%3E%3CfeDistantLight azimuth=&#x27;225&#x27; elevation=&#x27;58&#x27;/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; filter=&#x27;url(%23c)&#x27;/%3E%3C/svg%3E&quot;);
+  --pauta:repeating-linear-gradient(to bottom, transparent 0 31px, rgba(132,173,189,.5) 31px 32px);
+  --margem-vermelha:linear-gradient(to right, transparent 0 38px, rgba(200,55,45,.7) 38px 41.5px, transparent 41.5px);
+  --linha-margem:3.5px solid rgba(200,55,45,.78);
+
+  /* degradês das fotos de fundo */
+  --foto-baixo:linear-gradient(to top, rgba(11,37,80,.92) 0%, rgba(11,37,80,.55) 42%, rgba(11,37,80,.08) 78%);
+  --foto-esquerda:linear-gradient(to right, rgba(11,37,80,.92) 0%, rgba(11,37,80,.6) 42%, rgba(11,37,80,0) 75%);
+  --foto-direita:linear-gradient(to left, rgba(11,37,80,.92) 0%, rgba(11,37,80,.6) 42%, rgba(11,37,80,0) 75%);
+
+  /* palavras repetidas no fundo */
+  --eco-papel:.04;  /* opacidade sobre papel */
+  --eco-azul:.07;   /* sobre azul e fotos */
+}
+</pre>
+  <h3 class="sub">O que ainda falta decidir</h3>
+  <div class="pend-list">
+    <div><b>Segunda metade da página inicial:</b> versão A (foto de fundo), B (aquarela) ou C (caderno e desenho), ou uma mistura.</div>
+    <div><b>Logo final:</b> redesenho da “Cruz e Coração” por alguém do grupo, a partir do arquivo .ai.</div>
+    <div><b>Fotos:</b> seleção do Drive e autorização de uso de imagem de menores.</div>
+    <div><b>Conteúdo real:</b> datas, preços, produtos e horários que hoje aparecem como exemplo.</div>
+    <div><b>Fontes Baggy e Now:</b> só se o grupo comprar licença de webfont. Até lá, Fraunces e Jost.</div>
+  </div>
+</section>
+
+</div>
+
+</body></html>

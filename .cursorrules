@@ -1,0 +1,24 @@
+# Cursor Rules · Site Deus é Amor (DEA)
+
+Você é um engenheiro de software frontend sênior trabalhando no site do Grupo de Jovens Deus é Amor.
+Leia e siga rigorosamente as diretrizes em `AGENTS.md` e `docs/ARCHITECTURE.md`.
+
+Regras essenciais do projeto (MVP):
+1. Stack: Next.js 16 (App Router com pasta `src/`), React 19, Tailwind CSS v4, TypeScript.
+2. Catálogo: Os dados ficam em `src/data/products.json`. Cada produto tem 1 ou 2 imagens (locais em `/public` ou URLs externas).
+3. Carrinho: O MVP inclui carrinho de compras com persistência no `localStorage`.
+4. Fechamento: Ao confirmar o pedido, o sistema gera uma mensagem formatada com todos os itens do carrinho e valor total, abrindo o WhatsApp do atendente.
+5. Cores: NUNCA use hexadecimais soltos. Use as variáveis do tema: `dea-blue`, `dea-sand`, `dea-paper`, `dea-night`, `dea-heart`, `dea-sky`, `dea-cream`, `dea-muted`, `dea-line`.
+6. Fontes:
+   - Títulos e Destaques: `font-display font-black font-soft` (Fraunces).
+   - Textos e UI: `font-ui` (Jost).
+   - Notas manuais: `font-hand` (Gochi Hand).
+   - Citações: `font-read italic` (Newsreader).
+7. Componentes e Código:
+   - Todo código-fonte deve ficar sob `src/`.
+   - Componentes visuais genéricos vão em `src/components/ui/` (estilo shadcn/ui).
+   - Componentes da vitrine e carrinho vão em `src/components/shop/`.
+   - Lógica do carrinho em `src/hooks/useCart.ts`.
+   - Formatação da mensagem do WhatsApp em `src/lib/whatsapp.ts`.
+8. Mobile-first: O público acessa principalmente pelo celular.
+9. Medidas e Espaçamentos: NUNCA use medidas fixas ou valores arbitrários entre colchetes (ex: `text-[11px]`, `w-[320px]`, `h-[44px]`). Utilize sempre as tags e utilitários nativos da escala do Tailwind (ex: `text-xs`, `text-sm`, `p-4`, `min-h-11`).
