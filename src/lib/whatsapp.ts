@@ -20,16 +20,22 @@ export function buildWhatsAppOrderMessage(lines: OrderLine[], totalCents: number
   });
   return [
     "Oi! Vim pelo site e gostaria de comprar:",
+    "",
     ...items,
+    "",
     "----------",
+    "",
     `Minha compra deu ${money(totalCents)}.`,
     "Podem reservar pra mim?",
   ].join("\n");
 }
 
-/** Link wa.me com a mensagem codificada. */
+/**
+ * Link api.whatsapp.com/send com a mensagem codificada (\n vira %0A).
+ * Preserva melhor as quebras de linha no WhatsApp Web e no desktop do que wa.me.
+ */
 export function buildWhatsAppUrl(message: string, phone: string = WHATSAPP_NUMBER): string {
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 }
 
 /** Corta o texto em `max` caracteres, terminando com "...". */

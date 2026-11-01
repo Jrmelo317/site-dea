@@ -32,7 +32,7 @@ src/
 │       ├── Highlights.tsx    [C] 44 l.   abas Novidades/Promoções/Mais pedidos → grade de ProductCard
 │       ├── ProductCard.tsx   [S] 59 l.   CARD MODELO (TODO): imagem, selo, nome (link esticado), preço/"de"
 │       ├── ProductDetails.tsx[C] 155 l.  DETALHES MODELO (TODO): galeria simples, tamanho, quantidade, adicionar
-│       ├── CartView.tsx      [C] 208 l.  título com contagem, estados (carregando/vazio), folha de caderno, itens, resumo, WhatsApp
+│       ├── CartView.tsx      [C] 212 l.  título com contagem, estados (carregando/vazio), folha de caderno, itens, resumo, WhatsApp
 │       ├── QuantityStepper.tsx[C] 42 l.  −/valor/+ (fieldset + legend + output aria-live)
 │       ├── SampleDataNotice.tsx[S] 7 l.  aviso de "dados de exemplo"
 │       └── decor/                        ENFEITES "feito à mão" (portados do DEA-blog)
@@ -45,7 +45,7 @@ src/
 │   ├── formatters.ts         [—] 6 l.    formatPrice (centavos → BRL)
 │   ├── whatsapp.ts           [—] 38 l.   buildWhatsAppOrderMessage (pura), buildWhatsAppUrl, truncateText
 │   └── utils.ts              [—] 1 l.    re-exporta `cn`
-├── config/contact.ts         [—] 7 l.    WHATSAPP_NUMBER (placeholder + TODO)
+├── config/contact.ts         [—] 2 l.    WHATSAPP_NUMBER (número oficial, só dígitos)
 ├── types/
 │   ├── product.ts            [—] 36 l.   Product, ProductImage, ProductVariant, ProductHighlight
 │   └── cart.ts               [—] 13 l.   CartItem (snapshot do produto + key + quantity)
@@ -107,9 +107,9 @@ src/
    - `CartView` fica só como orquestrador dos estados carregando, vazio e com itens.
 
    Isso facilita testes e evita conflitos de merge com quem for mexer no carrinho.
-2. **Ritmo da pauta acoplado por "número mágico".** O passo de 32px de `--ruled` no CSS precisa bater com `h-8`/`h-16`/`h-32`/`gap-8` no TSX. Documentar em comentário nos dois lados ou expor `--pauta: 2rem` e derivar o gradiente dele. Um nome com mais de uma linha já é contido pelo `truncate`, mas uma fonte maior (zoom de texto) desalinha.
+2. **Ritmo da pauta acoplado por "número mágico".** Item do carrinho = 3 pautas (`h-24`), com a quantidade na coluna da direita, abaixo da lixeira. O passo de 32px de `--ruled` no CSS precisa bater com `h-8`/`h-16`/`h-24`/`gap-8` no TSX. Documentar em comentário nos dois lados ou expor `--pauta: 2rem` e derivar o gradiente dele. Um nome com mais de uma linha já é contido pelo `truncate`, mas uma fonte maior (zoom de texto) desalinha.
 3. **Pendências do PR #7 ainda abertas** (cruzamento detalhado abaixo): cores triplicadas no `globals.css`, `px`/`rgba` fixos nos efeitos, `.dark` sem tema, tamanhos `xs`/`sm`/`icon-xs`/`icon-sm` do Button abaixo de 44px e falta de Vitest/Playwright.
-4. **Placeholder do WhatsApp.** `WHATSAPP_NUMBER = "5500000000000"` leva a um número inválido. Sugestão: mover para `NEXT_PUBLIC_WHATSAPP_NUMBER` (com fallback) e esconder ou desabilitar o botão enquanto for o placeholder.
+4. ~~**Placeholder do WhatsApp.**~~ Resolvido: `WHATSAPP_NUMBER = "5544999701412"`, e o link usa `api.whatsapp.com/send`, que preserva as quebras de linha. Opcional: mover para `NEXT_PUBLIC_WHATSAPP_NUMBER` para trocar sem deploy de código.
 
 ### P2 — logo após
 5. **`MAX_QUANTITY` mora em `hooks/useCart`** e é importado pelo `QuantityStepper` (UI dependendo de um hook). Mover para `config/cart.ts` ou `lib/cart.ts`, junto com `clampQuantity`/`buildKey`, que também podem virar funções puras exportadas para teste.
@@ -131,7 +131,7 @@ src/
 
 ### Acessibilidade — ajustes finos
 - O tooltip do nome truncado usa `title`, que não aparece no toque nem por teclado. O `aria-label` do botão já tem o nome completo; para mobile, considerar mostrar o nome inteiro na página de Detalhes (já acontece) ou trocar por Tooltip/Popover acessível.
-- O botão do WhatsApp abre em nova aba e avisa por `sr-only` ✔. Quando o número for placeholder, desabilitar (P1-4).
+- O botão do WhatsApp abre em nova aba e avisa por `sr-only` ✔.
 - O `h2` "Itens do carrinho" está `sr-only`. Confirmar que a ordem de títulos (h1 → h2 → h3) faz sentido para quem usa leitor de tela ✔.
 - O contraste do creme sobre `dea-good` (#1e7a4c) é de cerca de 5,0:1 (AA) ✔.
 
