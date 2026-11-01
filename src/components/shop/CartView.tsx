@@ -139,7 +139,8 @@ export function CartView() {
                       </div>
                     </div>
                     <div className="flex h-16 items-end justify-between gap-2">
-                      <div className="pb-1">
+                      {/* Stepper (44px) apoiado na pauta de baixo, com fundo de papel para a pauta do meio não cortá-lo. */}
+                      <div className="mb-px rounded-lg bg-dea-cream shadow-sm">
                         <QuantityStepper
                           value={item.quantity}
                           label={`Quantidade de ${item.name}${variant}`}
