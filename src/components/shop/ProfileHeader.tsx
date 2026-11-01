@@ -42,8 +42,8 @@ export function ProfileHeader({ productCount }: ProfileHeaderProps) {
         </h1>
         <p className="text-sm text-dea-muted">@deuseamor · lojinha do grupo</p>
         <p className="text-sm text-dea-ink">
-          Jovens evangelizando jovens. 💙 Camisetas, terços e lembranças do grupo — retirada e pagamento no encontro
-          de quinta-feira.
+          Jovens evangelizando jovens. 💙 Camisetas, terços e lembranças do grupo — retirada e
+          pagamento no encontro de quinta-feira.
         </p>
       </div>
     </section>

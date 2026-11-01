@@ -70,8 +70,12 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <h1 className="font-display text-3xl font-black font-soft text-dea-blue">{product.name}</h1>
-          <p className="font-display text-2xl font-black font-soft text-dea-ink">{formatPrice(product.price)}</p>
+          <h1 className="font-display text-3xl font-black font-soft text-dea-blue">
+            {product.name}
+          </h1>
+          <p className="font-display text-2xl font-black font-soft text-dea-ink">
+            {formatPrice(product.price)}
+          </p>
           <p className="text-base text-dea-ink">{product.description}</p>
         </div>
 
@@ -101,7 +105,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                       selected
                         ? "border-dea-blue bg-dea-blue text-dea-cream"
                         : "border-dea-line bg-dea-cream text-dea-blue hover:border-dea-blue",
-                      !variant.available && "cursor-not-allowed text-dea-muted line-through opacity-60",
+                      !variant.available &&
+                        "cursor-not-allowed text-dea-muted line-through opacity-60",
                     )}
                   >
                     {variant.label}
@@ -134,7 +139,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {added && (
               <span className="inline-flex items-center gap-1 text-dea-good">
                 <Check className="size-4" aria-hidden="true" /> Adicionado!{" "}
-                <Link href="/carrinho" className="font-semibold text-dea-blue underline underline-offset-4">
+                <Link
+                  href="/carrinho"
+                  className="font-semibold text-dea-blue underline underline-offset-4"
+                >
                   Ver carrinho
                 </Link>
               </span>

@@ -34,20 +34,32 @@ export function CartView() {
     <div className="grid gap-6 md:grid-cols-3">
       <ul className="flex flex-col gap-3 md:col-span-2" aria-label="Itens no carrinho">
         {items.map((item) => (
-          <li key={item.key} className="flex gap-3 rounded-lg border border-dea-line bg-dea-cream p-3">
+          <li
+            key={item.key}
+            className="flex gap-3 rounded-lg border border-dea-line bg-dea-cream p-3"
+          >
             <Link
               href={`/produtos/${item.slug}`}
               className="relative size-20 shrink-0 overflow-hidden rounded-md bg-dea-sand outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50 sm:size-24"
             >
               {item.image && (
-                <Image src={item.image} alt={item.imageAlt} fill unoptimized sizes="96px" className="object-cover" />
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  fill
+                  unoptimized
+                  sizes="96px"
+                  className="object-cover"
+                />
               )}
             </Link>
             <div className="flex min-w-0 flex-1 flex-col gap-2">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <h2 className="font-semibold text-dea-ink">{item.name}</h2>
-                  {item.variantLabel && <p className="text-sm text-dea-muted">Tamanho: {item.variantLabel}</p>}
+                  {item.variantLabel && (
+                    <p className="text-sm text-dea-muted">Tamanho: {item.variantLabel}</p>
+                  )}
                   <p className="text-sm text-dea-muted">{formatPrice(item.price)} cada</p>
                 </div>
                 <Button
@@ -84,9 +96,13 @@ export function CartView() {
         </p>
         <p className="flex items-baseline justify-between gap-2">
           <span>Total</span>
-          <span className="font-display text-2xl font-black font-soft">{formatPrice(totalPrice)}</span>
+          <span className="font-display text-2xl font-black font-soft">
+            {formatPrice(totalPrice)}
+          </span>
         </p>
-        <p className="font-hand text-base text-dea-sand">Pagamento e retirada no encontro de quinta-feira.</p>
+        <p className="font-hand text-base text-dea-sand">
+          Pagamento e retirada no encontro de quinta-feira.
+        </p>
         <Button asChild variant="secondary">
           <Link href="/">Continuar comprando</Link>
         </Button>

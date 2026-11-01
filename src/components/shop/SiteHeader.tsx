@@ -10,8 +10,17 @@ export function SiteHeader() {
           href="/"
           className="flex min-h-11 min-w-0 items-center gap-2 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50"
         >
-          <Image src="/images/avatar-dea.svg" alt="" width={32} height={32} unoptimized className="size-8" />
-          <span className="truncate font-display text-lg font-black font-soft text-dea-blue">Loja Deus é Amor</span>
+          <Image
+            src="/images/avatar-dea.svg"
+            alt=""
+            width={32}
+            height={32}
+            unoptimized
+            className="size-8"
+          />
+          <span className="truncate font-display text-lg font-black font-soft text-dea-blue">
+            Loja Deus é Amor
+          </span>
         </Link>
         <CartButton />
       </div>

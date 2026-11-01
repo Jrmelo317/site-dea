@@ -40,7 +40,9 @@ export function ProductGrid({ products }: ProductGridProps) {
                 )}
                 <span className="absolute inset-x-0 bottom-0 flex flex-col bg-dea-night/80 px-1.5 py-1 text-dea-cream opacity-100 transition-opacity sm:px-2 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
                   <span className="hidden truncate text-sm sm:block">{product.name}</span>
-                  <span className="truncate text-xs font-semibold sm:text-sm">{formatPrice(product.price)}</span>
+                  <span className="truncate text-xs font-semibold sm:text-sm">
+                    {formatPrice(product.price)}
+                  </span>
                 </span>
               </Link>
             </li>

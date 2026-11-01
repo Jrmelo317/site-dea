@@ -84,7 +84,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const updateQuantity = useCallback((key: string, quantity: number) => {
     setItems((current) =>
-      current.map((item) => (item.key === key ? { ...item, quantity: clampQuantity(quantity) } : item)),
+      current.map((item) =>
+        item.key === key ? { ...item, quantity: clampQuantity(quantity) } : item,
+      ),
     );
   }, []);
 
