@@ -15,6 +15,11 @@ interface ProductDetailsProps {
   product: Product;
 }
 
+/**
+ * Estrutura MODELO da página de Detalhes: funcional (tamanho, quantidade,
+ * adicionar ao carrinho), sem acabamento visual.
+ * TODO: detalhamento a cargo de outro membro da equipe.
+ */
 export function ProductDetails({ product }: ProductDetailsProps) {
   const { addItem } = useCart();
   const sizeLabelId = useId();
@@ -49,7 +54,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
   return (
     <article className="grid gap-6 md:grid-cols-2 md:gap-8">
-      <div className="relative aspect-square overflow-hidden rounded-lg bg-dea-sand polaroid-shadow">
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-dea-sand">
         {image && (
           <Image
             src={image.url}
@@ -60,11 +65,6 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             sizes="(min-width: 768px) 448px, 100vw"
             className="object-cover"
           />
-        )}
-        {product.badge && (
-          <span className="absolute top-3 left-3 rounded-sm bg-dea-heart px-2 py-0.5 text-sm font-semibold text-dea-cream">
-            {product.badge}
-          </span>
         )}
       </div>
 
