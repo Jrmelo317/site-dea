@@ -35,6 +35,10 @@ export const metadata: Metadata = {
   title: "Loja Deus é Amor · Jovens Evangelizando Jovens",
   description:
     "Vitrine de produtos do Grupo de Jovens Deus é Amor: camisetas, acessórios, artigos de oração e devoção.",
+  icons: {
+    icon: "/logo-deus-e-amor.png",
+    apple: "/logo-deus-e-amor.png",
+  },
 };
 
 export default function RootLayout({
