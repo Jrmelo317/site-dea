@@ -38,88 +38,10 @@
     "featured": true,
     "active": true,
     "order": 1,
-    "badge": "Novo lote"
-  },
-  {
-    "id": "camiseta-jovens-evangelizando",
-    "slug": "camiseta-jovens-evangelizando",
-    "name": "Camiseta Jovens Evangelizando",
-    "description": "Camiseta areia com a frase \"Jovens evangelizando jovens\" em letra de caderno.",
-    "categoryId": "camisetas",
-    "price": 6000,
-    "images": [
-      {
-        "url": "/images/products/camiseta-jovens-evangelizando.svg",
-        "alt": "Camiseta Jovens Evangelizando — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
-    ],
-    "variants": [
-      {
-        "id": "camiseta-jovens-evangelizando-p",
-        "label": "P",
-        "available": true
-      },
-      {
-        "id": "camiseta-jovens-evangelizando-m",
-        "label": "M",
-        "available": true
-      },
-      {
-        "id": "camiseta-jovens-evangelizando-g",
-        "label": "G",
-        "available": true
-      },
-      {
-        "id": "camiseta-jovens-evangelizando-gg",
-        "label": "GG",
-        "available": false
-      }
-    ],
-    "featured": false,
-    "active": true,
-    "order": 2
-  },
-  {
-    "id": "moletom-deus-e-amor",
-    "slug": "moletom-deus-e-amor",
-    "name": "Moletom Deus é Amor",
-    "description": "Moletom azul-noite com capuz, bordado do grupo no peito. Quentinho para as quintas de inverno.",
-    "categoryId": "moletons",
-    "price": 14000,
-    "images": [
-      {
-        "url": "/images/products/moletom-deus-e-amor.svg",
-        "alt": "Moletom Deus é Amor — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
-    ],
-    "variants": [
-      {
-        "id": "moletom-deus-e-amor-p",
-        "label": "P",
-        "available": true
-      },
-      {
-        "id": "moletom-deus-e-amor-m",
-        "label": "M",
-        "available": true
-      },
-      {
-        "id": "moletom-deus-e-amor-g",
-        "label": "G",
-        "available": true
-      },
-      {
-        "id": "moletom-deus-e-amor-gg",
-        "label": "GG",
-        "available": true
-      }
-    ],
-    "featured": true,
-    "active": true,
-    "order": 3,
-    "badge": "Novo lote"
+    "badge": "Novo lote",
+    "highlights": [
+      "novidades"
+    ]
   },
   {
     "id": "terco-madeira-azul",
@@ -136,28 +58,14 @@
       }
     ],
     "variants": [],
-    "featured": false,
+    "featured": true,
     "active": true,
-    "order": 4
-  },
-  {
-    "id": "terco-dezena-pulseira",
-    "slug": "terco-dezena-pulseira",
-    "name": "Dezena de Pulso",
-    "description": "Dezena em formato de pulseira ajustável, para rezar em qualquer lugar.",
-    "categoryId": "devocao",
-    "price": 1500,
-    "images": [
-      {
-        "url": "/images/products/terco-dezena-pulseira.svg",
-        "alt": "Dezena de Pulso — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
+    "order": 2,
+    "highlights": [
+      "promocoes"
     ],
-    "variants": [],
-    "featured": false,
-    "active": true,
-    "order": 5
+    "badge": "Promoção",
+    "compareAtPrice": 3000
   },
   {
     "id": "caneca-deus-e-amor",
@@ -174,72 +82,13 @@
       }
     ],
     "variants": [],
-    "featured": false,
-    "active": true,
-    "order": 6
-  },
-  {
-    "id": "ecobag-caderno",
-    "slug": "ecobag-caderno",
-    "name": "Ecobag Caderno",
-    "description": "Ecobag de algodão cru com estampa de caderno pautado e recadinhos do grupo.",
-    "categoryId": "acessorios",
-    "price": 3000,
-    "images": [
-      {
-        "url": "/images/products/ecobag-caderno.svg",
-        "alt": "Ecobag Caderno — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
-    ],
-    "variants": [],
-    "featured": false,
-    "active": true,
-    "order": 7
-  },
-  {
-    "id": "bone-dea",
-    "slug": "bone-dea",
-    "name": "Boné DEA",
-    "description": "Boné aba curva azul com bordado \"DEA\" na frente. Regulagem atrás.",
-    "categoryId": "acessorios",
-    "price": 4500,
-    "images": [
-      {
-        "url": "/images/products/bone-dea.svg",
-        "alt": "Boné DEA — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
-    ],
-    "variants": [
-      {
-        "id": "bone-dea-único",
-        "label": "Único",
-        "available": true
-      }
-    ],
-    "featured": false,
-    "active": true,
-    "order": 8
-  },
-  {
-    "id": "caderno-de-oracao",
-    "slug": "caderno-de-oracao",
-    "name": "Caderno de Oração",
-    "description": "Caderno pautado de 96 folhas para anotar intenções, leituras e recados de Deus.",
-    "categoryId": "devocao",
-    "price": 3500,
-    "images": [
-      {
-        "url": "/images/products/caderno-de-oracao.svg",
-        "alt": "Caderno de Oração — imagem ilustrativa de exemplo",
-        "kind": "product"
-      }
-    ],
-    "variants": [],
     "featured": true,
     "active": true,
-    "order": 9,
-    "badge": "Últimas unidades"
+    "order": 3,
+    "highlights": [
+      "mais-pedidos",
+      "novidades"
+    ],
+    "badge": "Mais pedido"
   }
 ]

@@ -1,5 +1,5 @@
 import productsData from "@/data/products.json";
-import type { Product } from "@/types/product";
+import type { Product, ProductHighlight } from "@/types/product";
 
 /** Catálogo de EXEMPLO — substituir pelos produtos reais do grupo. */
 const products = (productsData as Product[])
@@ -12,4 +12,8 @@ export function getProducts(): Product[] {
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((product) => product.slug === slug);
+}
+
+export function getProductsByHighlight(highlight: ProductHighlight): Product[] {
+  return products.filter((product) => product.highlights?.includes(highlight));
 }
