@@ -1,0 +1,42 @@
+name: CI
+
+# Quando rodar: em todo Pull Request e em todo push na main
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Se alguém mandar outro push no mesmo PR, cancela a execução antiga
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, formatação, tipos e build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v5
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Formatação
+        run: npm run format:check
+
+      - name: Tipos (TypeScript)
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
