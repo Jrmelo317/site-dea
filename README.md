@@ -68,6 +68,7 @@ Todos os desenvolvedores e assistentes de inteligência artificial (Cursor, Copi
 
 * 📄 **[`AGENTS.md`](AGENTS.md)**: Regras obrigatórias de tokens, convenção de pastas, carrinho e padrões de código para IAs.
 * 📐 **[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)**: Arquitetura detalhada do MVP, fluxo do carrinho, gestão de imagens e formatação do WhatsApp.
+* 🧩 **[`docs/ESTRUTURA-COMPONENTES.md`](docs/ESTRUTURA-COMPONENTES.md)**: Estrutura de componentes da loja (server/client, dependências, pontos de extensão e melhorias).
 * 🎨 **[`docs/design/`](docs/design/)**: Modelos e protótipos originais de referência (`design.html` e `galeria.html`).
 * ⚙️ **[`.cursorrules`](.cursorrules)**: Regras rápidas para editores baseados em IA.
 
