@@ -96,64 +96,67 @@ export function CartView() {
                 const variant = item.variantLabel ? ` tamanho ${item.variantLabel}` : "";
                 const shortName = truncateText(item.name);
                 return (
-                  <li key={item.key} className="flex h-32 flex-col">
-                    <div className="flex h-16 gap-3">
-                      <Link
-                        href={`/produtos/${item.slug}`}
+                  <li key={item.key} className="flex h-24 gap-3">
+                    {/* Quantidade na coluna da direita, abaixo da lixeira. Item = 3 pautas (h-24). */}
+                    <Link
+                      href={`/produtos/${item.slug}`}
+                      title={item.name}
+                      className="relative hidden size-16 shrink-0 -rotate-2 overflow-hidden rounded-sm border-4 border-dea-cream bg-dea-sand shadow-sm outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50 sm:block"
+                    >
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt={item.imageAlt}
+                          fill
+                          unoptimized
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      )}
+                    </Link>
+                    <div className="flex min-w-0 flex-1 flex-col">
+                      <h3
                         title={item.name}
-                        className="relative size-16 shrink-0 -rotate-2 overflow-hidden rounded-sm border-4 border-dea-cream bg-dea-sand shadow-sm outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50"
+                        className={`${ON_LINE} min-w-0 font-semibold text-dea-ink`}
                       >
-                        {item.image && (
-                          <Image
-                            src={item.image}
-                            alt={item.imageAlt}
-                            fill
-                            unoptimized
-                            sizes="64px"
-                            className="object-cover"
-                          />
-                        )}
-                      </Link>
-                      <div className="flex min-w-0 flex-1 flex-col">
-                        <div className={`${ON_LINE} justify-between gap-1`}>
-                          <h3
-                            title={item.name}
-                            className="min-w-0 truncate font-semibold text-dea-ink"
-                          >
-                            {shortName}
-                          </h3>
-                          {/* Ícone apoiado na pauta; o botão transparente se estende para cima até 44px. */}
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="-mr-2 -mb-1 size-11 items-end pb-1 text-dea-heart"
-                            onClick={() => removeItem(item.key)}
-                            aria-label={`Remover ${item.name}${variant}`}
-                          >
-                            <Trash2 aria-hidden="true" />
-                          </Button>
-                        </div>
-                        <p className={`${ON_LINE} truncate text-sm text-dea-muted`}>
+                        <span className="truncate">{shortName}</span>
+                      </h3>
+                      <p className={`${ON_LINE} text-sm text-dea-muted`}>
+                        <span className="truncate">
                           {item.variantLabel && <>Tam. {item.variantLabel} · </>}
                           {formatPrice(item.price)} cada
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex h-16 items-end justify-between gap-2">
-                      {/* Stepper (44px) apoiado na pauta de baixo, com fundo de papel para a pauta do meio não cortá-lo. */}
-                      <div className="mb-px rounded-lg bg-dea-cream shadow-sm">
-                        <QuantityStepper
-                          value={item.quantity}
-                          label={`Quantidade de ${item.name}${variant}`}
-                          onChange={(value) => updateQuantity(item.key, value)}
-                        />
-                      </div>
+                        </span>
+                      </p>
                       <p
                         className={`${ON_LINE} font-display text-lg font-black font-soft text-dea-blue`}
                       >
                         <span className="sr-only">Subtotal: </span>
                         {formatPrice(item.price * item.quantity)}
                       </p>
+                    </div>
+                    <div className="flex shrink-0 flex-col items-end">
+                      {/* Ícone apoiado na pauta; o botão transparente se estende para cima até 44px. */}
+                      <div className="flex h-8 items-end">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="-mr-2 -mb-1 size-11 items-end pb-1 text-dea-heart"
+                          onClick={() => removeItem(item.key)}
+                          aria-label={`Remover ${item.name}${variant}`}
+                        >
+                          <Trash2 aria-hidden="true" />
+                        </Button>
+                      </div>
+                      {/* Stepper (44px) apoiado na 3ª pauta, com fundo de papel para a pauta do meio não cortá-lo. */}
+                      <div className="flex h-16 items-end">
+                        <div className="mb-px rounded-lg bg-dea-cream shadow-sm">
+                          <QuantityStepper
+                            value={item.quantity}
+                            label={`Quantidade de ${item.name}${variant}`}
+                            onChange={(value) => updateQuantity(item.key, value)}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </li>
                 );
