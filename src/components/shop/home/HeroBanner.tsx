@@ -26,15 +26,14 @@ export function HeroBanner() {
           id="faixa-titulo"
           className="max-w-xl font-display text-4xl font-black font-soft text-dea-cream sm:text-5xl"
         >
-          Vista a fé que{" "}
+          Jovens evangelizando{" "}
           <span className="relative inline-block">
-            une
+            jovens
             <HandDrawing
               name="sublinhado"
               className="absolute -bottom-2 left-0 h-3 w-full text-dea-heart"
             />
-          </span>{" "}
-          a gente.
+          </span>
         </h1>
         <p className="max-w-md text-base text-dea-sand sm:text-lg">
           Camisetas, terços e lembranças do Grupo Deus é Amor. Pagamento e retirada no encontro de
@@ -45,7 +44,7 @@ export function HeroBanner() {
             <Link href="#destaques">Ver destaques</Link>
           </Button>
           <span className="flex items-center gap-1 font-hand text-lg text-dea-sky">
-            <HandDrawing name="brilhinhos" className="size-6" /> jovens evangelizando jovens
+            <HandDrawing name="brilhinhos" className="size-6" /> toda quinta, 19h30!
           </span>
         </div>
       </div>
