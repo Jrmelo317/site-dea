@@ -3,6 +3,7 @@ import { Fraunces, Gochi_Hand, Jost, Newsreader } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/providers/CartProvider";
 import { SiteHeader } from "@/components/shop/layout/SiteHeader";
+import { SITE_NAME } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const fraunces = Fraunces({
@@ -32,7 +33,7 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Loja Deus é Amor · Jovens Evangelizando Jovens",
+  title: `${SITE_NAME} · Jovens Evangelizando Jovens`,
   description:
     "Vitrine de produtos do Grupo de Jovens Deus é Amor: camisetas, acessórios, artigos de oração e devoção.",
   icons: {

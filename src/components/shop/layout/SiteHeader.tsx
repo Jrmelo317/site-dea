@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HandDrawing } from "@/components/decor/HandDrawing";
 import { CartButton } from "@/components/shop/layout/CartButton";
+import { SITE_NAME } from "@/config/site";
 
 const navLinks = [
   { href: "/#destaques", label: "Destaques" },
@@ -14,7 +15,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-3 py-2 sm:px-6">
         <Link
           href="/"
-          aria-label="Loja Deus É Amor, página inicial"
+          aria-label={`${SITE_NAME}, página inicial`}
           className="group flex min-h-11 min-w-0 items-center gap-2 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50"
         >
           <Image
@@ -28,7 +29,7 @@ export function SiteHeader() {
           />
           <span className="flex min-w-0 flex-col pb-1 leading-none">
             <span className="relative truncate font-display text-lg font-black font-soft text-dea-blue sm:text-xl">
-              Loja Deus É Amor
+              {SITE_NAME}
               <HandDrawing
                 name="sublinhado"
                 className="absolute -bottom-1 left-0 h-2 w-full text-dea-heart"

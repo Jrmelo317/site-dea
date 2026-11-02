@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { CartView } from "@/components/shop/cart/CartView";
+import { SITE_NAME } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Carrinho · Loja Deus é Amor",
+  title: `Carrinho · ${SITE_NAME}`,
 };
 
 export default function CartPage() {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductDetails } from "@/components/shop/product/ProductDetails";
 import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
+import { SITE_NAME } from "@/config/site";
 import { getProductBySlug, getProducts } from "@/lib/products";
 
 interface ProductPageProps {
@@ -20,8 +21,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
-  if (!product) return { title: "Produto não encontrado · Loja Deus é Amor" };
-  return { title: `${product.name} · Loja Deus é Amor`, description: product.description };
+  if (!product) return { title: `Produto não encontrado · ${SITE_NAME}` };
+  return { title: `${product.name} · ${SITE_NAME}`, description: product.description };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
