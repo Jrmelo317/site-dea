@@ -7,9 +7,9 @@ export default function NotFound() {
       <h1 className="font-display text-3xl font-black font-soft text-dea-blue">
         Página não encontrada
       </h1>
-      <p className="text-dea-muted">O produto que você procura não existe ou saiu do catálogo.</p>
+      <p className="text-dea-muted">Essa página ainda não foi configurada ou não existe.</p>
       <Button asChild>
-        <Link href="/">Voltar ao catálogo</Link>
+        <Link href="/">Voltar ao início</Link>
       </Button>
     </main>
   );
