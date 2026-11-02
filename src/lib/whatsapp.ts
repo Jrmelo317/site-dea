@@ -33,8 +33,13 @@ export function buildWhatsAppOrderMessage(lines: OrderLine[], totalCents: number
 /**
  * Link api.whatsapp.com/send com a mensagem codificada (\n vira %0A).
  * Preserva melhor as quebras de linha no WhatsApp Web e no desktop do que wa.me.
+ * Retorna `null` quando não há número configurado (`NEXT_PUBLIC_WHATSAPP_NUMBER`).
  */
-export function buildWhatsAppUrl(message: string, phone: string = WHATSAPP_NUMBER): string {
+export function buildWhatsAppUrl(
+  message: string,
+  phone: string | undefined = WHATSAPP_NUMBER,
+): string | null {
+  if (!phone) return null;
   return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 }
 

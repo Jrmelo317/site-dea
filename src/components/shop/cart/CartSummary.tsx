@@ -36,13 +36,20 @@ export function CartSummary({ items, totalItems, totalPrice }: CartSummaryProps)
           </div>
         </dl>
         <div className="mt-5 flex flex-col gap-2">
-          <Button asChild size="lg" className="bg-dea-good text-dea-cream hover:bg-dea-good/90">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon />
-              Confirmar pelo WhatsApp
-              <span className="sr-only"> (abre em nova aba)</span>
-            </a>
-          </Button>
+          {whatsappUrl ? (
+            <Button asChild size="lg" className="bg-dea-good text-dea-cream hover:bg-dea-good/90">
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon />
+                Confirmar pelo WhatsApp
+                <span className="sr-only"> (abre em nova aba)</span>
+              </a>
+            </Button>
+          ) : (
+            <p role="note" className="rounded-md bg-dea-cream p-3 text-sm text-dea-muted">
+              O pedido pelo WhatsApp está indisponível no momento. Fale com a gente no encontro de
+              quinta-feira.
+            </p>
+          )}
           <Button asChild variant="outline" size="lg">
             <Link href="/#destaques">Continuar comprando</Link>
           </Button>

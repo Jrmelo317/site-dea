@@ -27,6 +27,9 @@ O projeto funciona como uma vitrine virtual com carrinho de compras integrado, p
 # Instalar dependências
 npm install
 
+# Variáveis de ambiente (veja abaixo)
+cp .env.example .env.local
+
 # Iniciar o servidor de desenvolvimento
 npm run dev
 
@@ -38,6 +41,14 @@ npm run build
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar o projeto.
+
+### Variáveis de ambiente
+
+| Variável | Obrigatória | Uso |
+| --- | --- | --- |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Recomendada | Número que recebe os pedidos do carrinho, só dígitos (DDI + DDD + número), ex.: `5544999701412`. Sem ela, o carrinho esconde o botão "Confirmar pelo WhatsApp" e mostra um aviso. |
+
+Na Vercel, cadastre em **Settings → Environment Variables** (Production e Preview). Por ser `NEXT_PUBLIC_`, o valor entra no bundle no build: depois de mudar, faça um novo deploy.
 
 ---
 
