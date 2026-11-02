@@ -30,20 +30,20 @@ function clampQuantity(quantity: number) {
   return Math.min(MAX_QUANTITY, Math.max(1, Math.floor(quantity)));
 }
 
+/** Confere o mínimo para o carrinho funcionar; dados antigos ou corrompidos são descartados. */
+function isCartItem(value: unknown): value is CartItem {
+  const item = value as Partial<CartItem> | null;
+  return (
+    typeof item?.key === "string" &&
+    typeof item.price === "number" &&
+    typeof item.quantity === "number"
+  );
+}
+
 function readStorage(): CartItem[] {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed: unknown = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter(
-      (item): item is CartItem =>
-        typeof item === "object" &&
-        item !== null &&
-        typeof item.key === "string" &&
-        typeof item.price === "number" &&
-        typeof item.quantity === "number",
-    );
+    const parsed: unknown = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "[]");
+    return Array.isArray(parsed) ? parsed.filter(isCartItem) : [];
   } catch {
     return [];
   }
