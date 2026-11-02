@@ -1,23 +1,16 @@
 "use client";
 
-import { Trash2 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { HandDrawing } from "@/components/decor/HandDrawing";
 import { WashiTape } from "@/components/decor/WashiTape";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { useCart } from "@/components/providers/CartProvider";
-import { QuantityStepper } from "@/components/shop/cart/QuantityStepper";
+import { CartItemRow } from "@/components/shop/cart/CartItemRow";
+import { ON_LINE } from "@/components/shop/cart/notebook";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPrice } from "@/lib/formatters";
-import { buildWhatsAppOrderMessage, buildWhatsAppUrl, truncateText } from "@/lib/whatsapp";
-
-/**
- * Uma linha de texto "escrita" na pauta do caderno: altura de uma pauta (h-8 = 32px,
- * igual ao passo de --ruled) e conteúdo apoiado no fundo, logo acima do traço.
- */
-const ON_LINE = "flex h-8 items-end pb-1 leading-none";
+import { buildWhatsAppOrderMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 function CartTitle({ count }: { count?: number }) {
   const suffix =
@@ -112,77 +105,16 @@ export function CartView() {
             <h2 id="itens-titulo" className="sr-only">
               Itens do carrinho
             </h2>
-            {/* Cada item ocupa 4 pautas (h-32) e o espaço entre itens é 1 pauta, mantendo o ritmo. */}
+            {/* Cada item ocupa 3 pautas (h-24) e o espaço entre itens é 1 pauta, mantendo o ritmo. */}
             <ul className="flex flex-col gap-8">
-              {items.map((item) => {
-                const variant = item.variantLabel ? ` tamanho ${item.variantLabel}` : "";
-                const shortName = truncateText(item.name);
-                return (
-                  <li key={item.key} className="flex h-24 gap-3">
-                    {/* Quantidade na coluna da direita, abaixo da lixeira. Item = 3 pautas (h-24). */}
-                    <Link
-                      href={`/produtos/${item.slug}`}
-                      title={item.name}
-                      className="relative hidden size-16 shrink-0 -rotate-2 overflow-hidden rounded-sm border-4 border-dea-cream bg-dea-sand shadow-sm outline-none focus-visible:ring-3 focus-visible:ring-dea-blue/50 sm:block"
-                    >
-                      {item.image && (
-                        <Image
-                          src={item.image}
-                          alt={item.imageAlt}
-                          fill
-                          unoptimized
-                          sizes="64px"
-                          className="object-cover"
-                        />
-                      )}
-                    </Link>
-                    <div className="flex min-w-0 flex-1 flex-col">
-                      <h3
-                        title={item.name}
-                        className={`${ON_LINE} min-w-0 font-semibold text-dea-ink`}
-                      >
-                        <span className="truncate">{shortName}</span>
-                      </h3>
-                      <p className={`${ON_LINE} text-sm text-dea-muted`}>
-                        <span className="truncate">
-                          {item.variantLabel && <>Tam. {item.variantLabel} · </>}
-                          {formatPrice(item.price)} cada
-                        </span>
-                      </p>
-                      <p
-                        className={`${ON_LINE} font-display text-lg font-black font-soft text-dea-blue`}
-                      >
-                        <span className="sr-only">Subtotal: </span>
-                        {formatPrice(item.price * item.quantity)}
-                      </p>
-                    </div>
-                    <div className="flex shrink-0 flex-col items-end">
-                      {/* Ícone apoiado na pauta; o botão transparente se estende para cima até 44px. */}
-                      <div className="flex h-8 items-end">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="-mr-2 -mb-1 size-11 items-end pb-1 text-dea-heart"
-                          onClick={() => removeItem(item.key)}
-                          aria-label={`Remover ${item.name}${variant}`}
-                        >
-                          <Trash2 aria-hidden="true" />
-                        </Button>
-                      </div>
-                      {/* Stepper (44px) apoiado na 3ª pauta, com fundo de papel para a pauta do meio não cortá-lo. */}
-                      <div className="flex h-16 items-end">
-                        <div className="mb-px rounded-lg bg-dea-cream shadow-sm">
-                          <QuantityStepper
-                            value={item.quantity}
-                            label={`Quantidade de ${item.name}${variant}`}
-                            onChange={(value) => updateQuantity(item.key, value)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
+              {items.map((item) => (
+                <CartItemRow
+                  key={item.key}
+                  item={item}
+                  onQuantityChange={(value) => updateQuantity(item.key, value)}
+                  onRemove={() => removeItem(item.key)}
+                />
+              ))}
             </ul>
             <div className="mt-8 flex h-8 items-end justify-end">
               <Button
