@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CartView } from "@/components/shop/CartView";
+import { CartView } from "@/components/shop/cart/CartView";
 
 export const metadata: Metadata = {
   title: "Carrinho · Loja Deus é Amor",

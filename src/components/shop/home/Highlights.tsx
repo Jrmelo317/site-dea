@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductCard } from "@/components/shop/ProductCard";
+import { ProductCard } from "@/components/shop/product/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Product, ProductHighlight } from "@/types/product";
 

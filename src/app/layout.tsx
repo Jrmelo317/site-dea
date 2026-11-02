@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Gochi_Hand, Jost, Newsreader } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/shop/SiteHeader";
-import { CartProvider } from "@/hooks/useCart";
+import { CartProvider } from "@/components/providers/CartProvider";
+import { SiteHeader } from "@/components/shop/layout/SiteHeader";
 import { cn } from "@/lib/utils";
 
 const fraunces = Fraunces({

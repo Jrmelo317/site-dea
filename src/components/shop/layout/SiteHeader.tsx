@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartButton } from "@/components/shop/CartButton";
-import { HandDrawing } from "@/components/shop/decor/HandDrawing";
+import { HandDrawing } from "@/components/decor/HandDrawing";
+import { CartButton } from "@/components/shop/layout/CartButton";
 
 const navLinks = [
   { href: "/#destaques", label: "Destaques" },

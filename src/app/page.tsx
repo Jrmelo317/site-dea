@@ -1,6 +1,6 @@
-import { HeroBanner } from "@/components/shop/HeroBanner";
-import { Highlights } from "@/components/shop/Highlights";
-import { ProductCard } from "@/components/shop/ProductCard";
+import { HeroBanner } from "@/components/shop/home/HeroBanner";
+import { Highlights } from "@/components/shop/home/Highlights";
+import { ProductCard } from "@/components/shop/product/ProductCard";
 import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
 import { getProducts, getProductsByHighlight } from "@/lib/products";
 

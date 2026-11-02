@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HandDrawing } from "@/components/shop/decor/HandDrawing";
+import { HandDrawing } from "@/components/decor/HandDrawing";
 import { Button } from "@/components/ui/button";
 
 export function HeroBanner() {

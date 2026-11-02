@@ -3,12 +3,12 @@
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { HandDrawing } from "@/components/decor/HandDrawing";
+import { WashiTape } from "@/components/decor/WashiTape";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
-import { HandDrawing } from "@/components/shop/decor/HandDrawing";
-import { WashiTape } from "@/components/shop/decor/WashiTape";
-import { QuantityStepper } from "@/components/shop/QuantityStepper";
+import { useCart } from "@/components/providers/CartProvider";
+import { QuantityStepper } from "@/components/shop/cart/QuantityStepper";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/formatters";
 import { buildWhatsAppOrderMessage, buildWhatsAppUrl, truncateText } from "@/lib/whatsapp";
 

@@ -2,7 +2,7 @@ import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProductDetails } from "@/components/shop/ProductDetails";
+import { ProductDetails } from "@/components/shop/product/ProductDetails";
 import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
 import { getProductBySlug, getProducts } from "@/lib/products";
 

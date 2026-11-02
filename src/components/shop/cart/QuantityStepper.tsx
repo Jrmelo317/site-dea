@@ -1,8 +1,8 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
+import { MAX_QUANTITY } from "@/components/providers/CartProvider";
 import { Button } from "@/components/ui/button";
-import { MAX_QUANTITY } from "@/hooks/useCart";
 
 interface QuantityStepperProps {
   value: number;
