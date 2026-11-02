@@ -7,7 +7,7 @@ import { useId, useState } from "react";
 import { useCart } from "@/components/providers/CartProvider";
 import { QuantityStepper } from "@/components/shop/cart/QuantityStepper";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/formatters";
+import { formatCentsToBRL } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types/product";
 
@@ -74,7 +74,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {product.name}
           </h1>
           <p className="font-display text-2xl font-black font-soft text-dea-ink">
-            {formatPrice(product.price)}
+            {formatCentsToBRL(product.price)}
           </p>
           <p className="text-base text-dea-ink">{product.description}</p>
         </div>

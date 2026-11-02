@@ -48,7 +48,7 @@ src/
 │
 ├── lib/
 │   ├── products.ts           [—] 19 l.   repositório: getProducts / getProductBySlug / getProductsByHighlight (lê o JSON)
-│   ├── formatters.ts         [—] 6 l.    formatPrice (centavos → BRL)
+│   ├── formatters.ts         [—] 6 l.    formatCentsToBRL (centavos → BRL)
 │   ├── whatsapp.ts           [—] 38 l.   buildWhatsAppOrderMessage (pura), buildWhatsAppUrl, truncateText
 │   └── utils.ts              [—] 1 l.    re-exporta `cn`
 ├── config/
@@ -91,7 +91,7 @@ src/
 1. **Camadas bem separadas:** `data` → `lib/products` (repositório) → `app/*` (Server Components buscam) → `components/shop` (apresentação). A única fonte de estado é o `CartProvider`. Nenhum componente lê o JSON diretamente.
 2. **Server por padrão.** Só usa `"use client"` onde há interação (7 arquivos). Header, Hero, Card, decor e as rotas são Server Components, com pouco JS enviado ao navegador.
 3. **SSR seguro com localStorage.** `readStorage` só roda em `useEffect`, e o flag `hydrated` evita divergência de hidratação: o contador mostra 0 e o carrinho mostra "Abrindo o caderno…" até ler o armazenamento. A leitura valida o formato, e a escrita tolera falha (modo privado ou cota cheia).
-4. **Dinheiro em centavos** (inteiros) com um único `formatPrice`. Não há erro de ponto flutuante.
+4. **Dinheiro em centavos** (inteiros) com um único `formatCentsToBRL`. Não há erro de ponto flutuante.
 5. **Regra de negócio testável:** `buildWhatsAppOrderMessage` e `truncateText` são funções puras, e `clampQuantity`/`buildKey` estão isoladas. O número do WhatsApp fica em config.
 6. **Rota de detalhes robusta:** `generateStaticParams` + `notFound()` + `instant = false`, que dá HTTP 404 real (compatível com `cacheComponents`).
 7. **Tokens.** Os TSX usam só a escala do Tailwind e `dea-*`. Não há hex nem `px` nos componentes (os únicos `[...]` são variantes de dados, como `data-[state=active]`, e seletores do shadcn, que não são medidas arbitrárias).

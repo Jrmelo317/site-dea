@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ON_LINE } from "@/components/shop/cart/notebook";
 import { QuantityStepper } from "@/components/shop/cart/QuantityStepper";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/formatters";
+import { formatCentsToBRL } from "@/lib/formatters";
 import { truncateText } from "@/lib/whatsapp";
 import type { CartItem } from "@/types/cart";
 
@@ -45,12 +45,12 @@ export function CartItemRow({ item, onQuantityChange, onRemove }: CartItemRowPro
         <p className={`${ON_LINE} text-sm text-dea-muted`}>
           <span className="truncate">
             {item.variantLabel && <>Tam. {item.variantLabel} · </>}
-            {formatPrice(item.price)} cada
+            {formatCentsToBRL(item.price)} cada
           </span>
         </p>
         <p className={`${ON_LINE} font-display text-lg font-black font-soft text-dea-blue`}>
           <span className="sr-only">Subtotal: </span>
-          {formatPrice(item.price * item.quantity)}
+          {formatCentsToBRL(item.price * item.quantity)}
         </p>
       </div>
       <div className="flex shrink-0 flex-col items-end">

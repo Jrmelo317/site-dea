@@ -2,7 +2,7 @@ import Link from "next/link";
 import { WashiTape } from "@/components/decor/WashiTape";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/formatters";
+import { formatCentsToBRL } from "@/lib/formatters";
 import { buildWhatsAppOrderMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { CartItem } from "@/types/cart";
 
@@ -31,7 +31,7 @@ export function CartSummary({ items, totalItems, totalPrice }: CartSummaryProps)
           <div className="flex items-baseline justify-between gap-2 border-t-2 border-dashed border-dea-blue/30 pt-2">
             <dt className="font-semibold text-dea-ink">Total</dt>
             <dd className="font-display text-3xl font-black font-soft text-dea-blue">
-              {formatPrice(totalPrice)}
+              {formatCentsToBRL(totalPrice)}
             </dd>
           </div>
         </dl>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice } from "@/lib/formatters";
+import { formatCentsToBRL } from "@/lib/formatters";
 import type { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -44,12 +44,12 @@ export function ProductCard({ product }: ProductCardProps) {
         </h3>
         <p className="flex items-baseline gap-2">
           <span className="font-display font-black font-soft text-dea-blue">
-            {formatPrice(product.price)}
+            {formatCentsToBRL(product.price)}
           </span>
           {product.compareAtPrice && (
             <s className="text-sm text-dea-muted">
               <span className="sr-only">de </span>
-              {formatPrice(product.compareAtPrice)}
+              {formatCentsToBRL(product.compareAtPrice)}
             </s>
           )}
         </p>

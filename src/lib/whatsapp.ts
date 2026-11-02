@@ -1,5 +1,5 @@
 import { WHATSAPP_NUMBER } from "@/config/contact";
-import { formatPrice } from "@/lib/formatters";
+import { formatCentsToBRL } from "@/lib/formatters";
 
 export interface OrderLine {
   name: string;
@@ -10,7 +10,7 @@ export interface OrderLine {
 }
 
 /** Troca o espaço não separável do Intl por espaço comum, para o texto ficar limpo no WhatsApp. */
-const money = (cents: number) => formatPrice(cents).replace(/\u00a0/g, " ");
+const money = (cents: number) => formatCentsToBRL(cents).replace(/\u00a0/g, " ");
 
 /** Monta a mensagem de pedido enviada pelo WhatsApp. Função pura: mesma entrada, mesmo texto. */
 export function buildWhatsAppOrderMessage(lines: OrderLine[], totalCents: number): string {

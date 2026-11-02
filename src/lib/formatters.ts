@@ -1,6 +1,10 @@
 const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-/** Formata um valor em centavos como moeda brasileira (ex.: 6500 → "R$ 65,00"). */
-export function formatPrice(cents: number): string {
+/**
+ * Converte centavos (inteiro) em texto de moeda brasileira.
+ * @param cents valor em centavos, ex.: 6500
+ * @returns ex.: "R$ 65,00" (com espaço não separável do Intl)
+ */
+export function formatCentsToBRL(cents: number): string {
   return brl.format(cents / 100);
 }
