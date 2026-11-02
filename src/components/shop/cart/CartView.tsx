@@ -3,14 +3,11 @@
 import Link from "next/link";
 import { HandDrawing } from "@/components/decor/HandDrawing";
 import { WashiTape } from "@/components/decor/WashiTape";
-import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { useCart } from "@/components/providers/CartProvider";
 import { CartItemRow } from "@/components/shop/cart/CartItemRow";
-import { ON_LINE } from "@/components/shop/cart/notebook";
+import { CartSkeleton } from "@/components/shop/cart/CartSkeleton";
+import { CartSummary } from "@/components/shop/cart/CartSummary";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatPrice } from "@/lib/formatters";
-import { buildWhatsAppOrderMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 function CartTitle({ count }: { count?: number }) {
   const suffix =
@@ -45,33 +42,7 @@ export function CartView() {
       <>
         <CartTitle />
         <NotebookSheet>
-          {/* Esqueleto com o mesmo ritmo dos itens (3 pautas cada, 1 pauta entre eles). */}
-          <div role="status" className="flex flex-col gap-8">
-            <span className="sr-only">Carregando o carrinho…</span>
-            {[0, 1].map((row) => (
-              <div key={row} className="flex h-24 gap-3">
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <div className={ON_LINE}>
-                    <Skeleton className="h-4 w-3/4" />
-                  </div>
-                  <div className={ON_LINE}>
-                    <Skeleton className="h-3 w-1/2" />
-                  </div>
-                  <div className={ON_LINE}>
-                    <Skeleton className="h-5 w-24" />
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-col items-end">
-                  <div className={ON_LINE}>
-                    <Skeleton className="size-5" />
-                  </div>
-                  <div className="flex h-16 items-end">
-                    <Skeleton className="mb-px h-11 w-32 rounded-lg" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <CartSkeleton />
         </NotebookSheet>
       </>
     );
@@ -93,8 +64,6 @@ export function CartView() {
       </>
     );
   }
-
-  const whatsappUrl = buildWhatsAppUrl(buildWhatsAppOrderMessage(items, totalPrice));
 
   return (
     <>
@@ -128,38 +97,7 @@ export function CartView() {
           </NotebookSheet>
         </section>
 
-        <aside aria-labelledby="resumo-titulo" className="relative min-w-0 lg:sticky lg:top-28">
-          <div className="relative rotate-1 bg-dea-sand bg-grain-dark p-5 pt-8 shadow-md">
-            <WashiTape className="top-0 left-1/2 -translate-y-1/2" />
-            <h2 id="resumo-titulo" className="font-hand text-2xl text-dea-blue">
-              Resumo do pedido
-            </h2>
-            <dl className="mt-3 flex flex-col gap-2">
-              <div className="flex items-baseline justify-between gap-2 text-dea-muted">
-                <dt>Itens</dt>
-                <dd>{totalItems}</dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-2 border-t-2 border-dashed border-dea-blue/30 pt-2">
-                <dt className="font-semibold text-dea-ink">Total</dt>
-                <dd className="font-display text-3xl font-black font-soft text-dea-blue">
-                  {formatPrice(totalPrice)}
-                </dd>
-              </div>
-            </dl>
-            <div className="mt-5 flex flex-col gap-2">
-              <Button asChild size="lg" className="bg-dea-good text-dea-cream hover:bg-dea-good/90">
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon />
-                  Confirmar pelo WhatsApp
-                  <span className="sr-only"> (abre em nova aba)</span>
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/#destaques">Continuar comprando</Link>
-              </Button>
-            </div>
-          </div>
-        </aside>
+        <CartSummary items={items} totalItems={totalItems} totalPrice={totalPrice} />
       </div>
     </>
   );
