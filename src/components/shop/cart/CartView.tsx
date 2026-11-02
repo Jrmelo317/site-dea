@@ -92,9 +92,6 @@ export function CartView() {
           <div className="flex flex-col items-center gap-4 py-8 text-center">
             <HandDrawing name="coracao" className="size-14 text-dea-heart" />
             <p className="font-hand text-2xl text-dea-blue">Seu carrinho está vazio.</p>
-            <p className="max-w-xs text-sm text-dea-muted">
-              Dá uma olhada nos destaques e escolha algo com carinho.
-            </p>
             <Button asChild size="lg">
               <Link href="/#destaques">Ver destaques</Link>
             </Button>
