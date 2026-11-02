@@ -26,7 +26,7 @@ function CartTitle({ count }: { count?: number }) {
 /** Folha de caderno pautada com duas fitas — estética "feito à mão" do blog. */
 function NotebookSheet({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative rounded-sm bg-caderno-ruled pt-8 pr-3 pb-6 pl-12 shadow-md sm:pr-6 sm:pl-16">
+    <div className="relative rounded-sm bg-caderno-ruled pt-8 pr-3 pb-6 pl-7 shadow-md sm:pr-6 sm:pl-16">
       <WashiTape className="top-0 left-1/4 -translate-y-1/2" />
       <WashiTape className="top-0 left-3/4 -translate-y-1/2 rotate-3" />
       {children}

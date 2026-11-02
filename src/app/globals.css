@@ -32,12 +32,8 @@
     transparent 0 31px,
     rgba(132, 173, 189, 0.5) 31px 32px
   );
-  --margin: linear-gradient(
-    to right,
-    transparent 0 38px,
-    rgba(200, 55, 45, 0.38) 38px 39.5px,
-    transparent 39.5px
-  );
+  /* Margem vermelha do caderno: a posição (--margin-x) é definida em .bg-caderno-ruled. */
+  --margin-color: rgba(200, 55, 45, 0.38);
   /* Tokens semânticos shadcn/ui → identidade DEA */
   --background: #f6f2e7; /* dea-paper */
   --foreground: #000000; /* dea-ink */
@@ -107,8 +103,23 @@
 }
 
 .bg-caderno-ruled {
+  /* Mobile: margem a 19px para dar mais espaço à lista; sm+: 38px. */
+  --margin-x: 19px;
   background-color: var(--m-paper);
-  background-image: var(--margin), var(--ruled);
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 0 var(--margin-x),
+      var(--margin-color) var(--margin-x) calc(var(--margin-x) + 1.5px),
+      transparent calc(var(--margin-x) + 1.5px)
+    ),
+    var(--ruled);
+}
+
+@media (min-width: 40rem) {
+  .bg-caderno-ruled {
+    --margin-x: 38px;
+  }
 }
 
 /* Variação tipográfica Fraunces Soft & Wonk */
