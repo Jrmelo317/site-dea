@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/shop/product/ProductCard";
 import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
 import { getProducts, getProductsByHighlight } from "@/lib/products";
 
-export default function PaginaInicial() {
+export default function HomePage() {
   const [modelo] = getProducts();
   const groups = {
     novidades: getProductsByHighlight("novidades"),

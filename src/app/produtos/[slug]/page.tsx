@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return { title: `${product.name} · Loja Deus é Amor`, description: product.description };
 }
 
-export default async function DetalhesProduto({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) notFound();
