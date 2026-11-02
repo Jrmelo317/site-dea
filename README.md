@@ -93,10 +93,10 @@ site-dea/
 │   ├── app/                  # Rotas e páginas (Next.js App Router)
 │   ├── components/
 │   │   ├── ui/               # Primitivas visuais genéricas (estilo shadcn/ui)
-│   │   └── shop/             # Componentes específicos da vitrine e carrinho
+│   │   ├── shop/             # Componentes específicos da vitrine e carrinho
+│   │   └── providers/        # CartProvider.tsx: contexto + hook useCart com localStorage
 │   ├── types/                # Contratos e tipos TypeScript (product.ts, cart.ts)
 │   ├── data/                 # Catálogo de produtos em JSON (products.json)
-│   ├── hooks/                # Hooks customizados (useCart.ts com localStorage)
 │   └── lib/                  # Funções utilitárias (gerador WhatsApp, formatadores)
 ├── docs/                     # Documentação e guias de arquitetura
 └── public/                   # Ativos estáticos e imagens locais

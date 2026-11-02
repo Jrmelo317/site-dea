@@ -80,10 +80,10 @@ site-dea/
 │   │   └── page.tsx          # Vitrine principal
 │   ├── components/
 │   │   ├── ui/               # Primitivas visuais genéricas (Button, Badge, Card, Sheet)
-│   │   └── shop/             # Componentes de domínio (ProductCard, ProductGrid, CartDrawer)
+│   │   ├── shop/             # Componentes de domínio (ProductCard, ProductGrid, CartDrawer)
+│   │   └── providers/        # CartProvider.tsx: contexto + hook useCart com localStorage
 │   ├── types/                # Contratos TypeScript (product.ts, cart.ts)
 │   ├── data/                 # Catálogo estático em JSON (products.json)
-│   ├── hooks/                # Hooks customizados (useCart.ts para gerenciar localStorage)
 │   └── lib/                  # Utilitários puros (whatsapp.ts, formatters.ts)
 ├── docs/                     # Documentação de arquitetura
 │   └── design/               # Modelos de referência (design.html, galeria.html)
@@ -99,7 +99,7 @@ site-dea/
    - Utilize o padrão **shadcn/ui** para componentes interativos como a gaveta do carrinho (`Sheet`).
 
 2. **Gerenciamento do Carrinho (`localStorage`):**
-   - Isole o estado do carrinho em um hook reutilizável (ex: `src/hooks/useCart.ts` ou React Context).
+   - Isole o estado do carrinho em um hook reutilizável (`src/components/providers/CartProvider.tsx`, que exporta o hook `useCart`).
    - Previna erros de hidratação (SSR mismatch) lendo o `localStorage` apenas após a montagem do componente no cliente (`useEffect`).
 
 3. **Desacoplamento do WhatsApp (`src/lib/whatsapp.ts`):**

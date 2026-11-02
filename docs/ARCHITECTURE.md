@@ -20,7 +20,7 @@ O projeto é uma aplicação **Next.js (App Router)** estática e modular estrut
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │                    Estado do Carrinho (Frontend)                       │
-│       src/hooks/useCart ou Context  ◄──► localStorage                  │
+│       providers/CartProvider       ◄──► localStorage                  │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │
                                     ▼
