@@ -1,7 +1,6 @@
 import { HeroBanner } from "@/components/shop/home/HeroBanner";
 import { Highlights } from "@/components/shop/home/Highlights";
 import { ProductCard } from "@/components/shop/product/ProductCard";
-import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
 import { getProducts, getProductsByHighlight } from "@/lib/products";
 
 export default function HomePage() {
@@ -17,8 +16,6 @@ export default function HomePage() {
       <HeroBanner />
 
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-3 pt-8 sm:px-6">
-        <SampleDataNotice />
-
         <section
           id="destaques"
           aria-labelledby="destaques-titulo"

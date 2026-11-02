@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductDetails } from "@/components/shop/product/ProductDetails";
-import { SampleDataNotice } from "@/components/shop/SampleDataNotice";
 import { SITE_NAME } from "@/config/site";
 import { getProductBySlug, getProducts } from "@/lib/products";
 
@@ -39,7 +38,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <ChevronLeft className="size-5" aria-hidden="true" /> Voltar ao catálogo
       </Link>
       <ProductDetails product={product} />
-      <SampleDataNotice />
     </main>
   );
 }

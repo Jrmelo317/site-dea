@@ -44,7 +44,6 @@ src/
 │       ├── cart/
 │       │   ├── CartView.tsx      [C] 212 l. título com contagem, estados (carregando/vazio), folha de caderno, itens, resumo, WhatsApp
 │       │   └── QuantityStepper.tsx[C] 42 l. −/valor/+ (fieldset + legend + output aria-live)
-│       └── SampleDataNotice.tsx  [S] 7 l.   aviso de "dados de exemplo" (usado na Início e nos Detalhes)
 │
 ├── lib/
 │   ├── products.ts           [—] 19 l.   repositório: getProducts / getProductBySlug / getProductsByHighlight (lê o JSON)
