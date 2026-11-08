@@ -27,6 +27,9 @@ O projeto funciona como uma vitrine virtual com carrinho de compras integrado, p
 # Instalar dependências
 npm install
 
+# Variáveis de ambiente (veja abaixo)
+cp .env.example .env.local
+
 # Iniciar o servidor de desenvolvimento
 npm run dev
 
@@ -38,6 +41,14 @@ npm run build
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar o projeto.
+
+### Variáveis de ambiente
+
+| Variável | Obrigatória | Uso |
+| --- | --- | --- |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Recomendada | Número que recebe os pedidos do carrinho, só dígitos (DDI + DDD + número), ex.: `5544999701412`. Sem ela, o carrinho esconde o botão "Confirmar pelo WhatsApp" e mostra um aviso. |
+
+Na Vercel, cadastre em **Settings → Environment Variables** (Production e Preview). Por ser `NEXT_PUBLIC_`, o valor entra no bundle no build: depois de mudar, faça um novo deploy.
 
 ---
 
@@ -68,6 +79,7 @@ Todos os desenvolvedores e assistentes de inteligência artificial (Cursor, Copi
 
 * 📄 **[`AGENTS.md`](AGENTS.md)**: Regras obrigatórias de tokens, convenção de pastas, carrinho e padrões de código para IAs.
 * 📐 **[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)**: Arquitetura detalhada do MVP, fluxo do carrinho, gestão de imagens e formatação do WhatsApp.
+* 🧩 **[`docs/ESTRUTURA-COMPONENTES.md`](docs/ESTRUTURA-COMPONENTES.md)**: Estrutura de componentes da loja (server/client, dependências, pontos de extensão e melhorias).
 * 🎨 **[`docs/design/`](docs/design/)**: Modelos e protótipos originais de referência (`design.html` e `galeria.html`).
 * ⚙️ **[`.cursorrules`](.cursorrules)**: Regras rápidas para editores baseados em IA.
 
@@ -81,10 +93,10 @@ site-dea/
 │   ├── app/                  # Rotas e páginas (Next.js App Router)
 │   ├── components/
 │   │   ├── ui/               # Primitivas visuais genéricas (estilo shadcn/ui)
-│   │   └── shop/             # Componentes específicos da vitrine e carrinho
+│   │   ├── shop/             # Componentes específicos da vitrine e carrinho
+│   │   └── providers/        # CartProvider.tsx: contexto + hook useCart com localStorage
 │   ├── types/                # Contratos e tipos TypeScript (product.ts, cart.ts)
 │   ├── data/                 # Catálogo de produtos em JSON (products.json)
-│   ├── hooks/                # Hooks customizados (useCart.ts com localStorage)
 │   └── lib/                  # Funções utilitárias (gerador WhatsApp, formatadores)
 ├── docs/                     # Documentação e guias de arquitetura
 └── public/                   # Ativos estáticos e imagens locais

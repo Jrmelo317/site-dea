@@ -1,0 +1,87 @@
+[
+  {
+    "id": "camiseta-sagrado-coracao",
+    "slug": "camiseta-sagrado-coracao",
+    "name": "Camiseta Sagrado Coração",
+    "description": "Camiseta 100% algodão azul com o Sagrado Coração estampado na frente e \"Deus é Amor\" nas costas.",
+    "categoryId": "camisetas",
+    "price": 6500,
+    "images": [
+      {
+        "url": "/images/products/camiseta-sagrado-coracao.svg",
+        "alt": "Camiseta Sagrado Coração — imagem ilustrativa de exemplo",
+        "kind": "product"
+      }
+    ],
+    "variants": [
+      {
+        "id": "camiseta-sagrado-coracao-p",
+        "label": "P",
+        "available": true
+      },
+      {
+        "id": "camiseta-sagrado-coracao-m",
+        "label": "M",
+        "available": true
+      },
+      {
+        "id": "camiseta-sagrado-coracao-g",
+        "label": "G",
+        "available": true
+      },
+      {
+        "id": "camiseta-sagrado-coracao-gg",
+        "label": "GG",
+        "available": true
+      }
+    ],
+    "featured": true,
+    "active": true,
+    "order": 1,
+    "badge": "Novo lote",
+    "highlights": ["novidades"]
+  },
+  {
+    "id": "terco-madeira-azul",
+    "slug": "terco-madeira-azul",
+    "name": "Terço de Madeira Azul",
+    "description": "Terço artesanal com contas de madeira pintadas de azul e crucifixo de metal.",
+    "categoryId": "devocao",
+    "price": 2500,
+    "images": [
+      {
+        "url": "/images/products/terco-madeira-azul.svg",
+        "alt": "Terço de Madeira Azul — imagem ilustrativa de exemplo",
+        "kind": "product"
+      }
+    ],
+    "variants": [],
+    "featured": true,
+    "active": true,
+    "order": 2,
+    "highlights": ["promocoes"],
+    "badge": "Promoção",
+    "compareAtPrice": 3000
+  },
+  {
+    "id": "caneca-deus-e-amor",
+    "slug": "caneca-deus-e-amor",
+    "name": "Caneca Deus é Amor",
+    "description": "Caneca de cerâmica 325 ml com o logo do grupo. Pode ir ao micro-ondas.",
+    "categoryId": "acessorios",
+    "price": 3500,
+    "images": [
+      {
+        "url": "/images/products/caneca-deus-e-amor.svg",
+        "alt": "Caneca Deus é Amor — imagem ilustrativa de exemplo",
+        "kind": "product"
+      }
+    ],
+    "variants": [],
+    "featured": true,
+    "active": true,
+    "order": 3,
+    "highlights": ["mais-pedidos", "novidades"],
+    "badge": "Mais pedido"
+  }
+]

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Gochi_Hand, Jost, Newsreader } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/providers/CartProvider";
+import { SiteHeader } from "@/components/shop/layout/SiteHeader";
+import { SITE_NAME } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const fraunces = Fraunces({
@@ -30,9 +33,13 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Loja Deus é Amor · Jovens Evangelizando Jovens",
+  title: `${SITE_NAME} · Jovens Evangelizando Jovens`,
   description:
     "Vitrine de produtos do Grupo de Jovens Deus é Amor: camisetas, acessórios, artigos de oração e devoção.",
+  icons: {
+    icon: "/logo-deus-e-amor.png",
+    apple: "/logo-deus-e-amor.png",
+  },
 };
 
 export default function RootLayout({
@@ -43,9 +50,15 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
+      suppressHydrationWarning
       className={cn(fraunces.variable, jost.variable, gochiHand.variable, newsreader.variable)}
     >
-      <body className="font-ui antialiased bg-dea-paper text-dea-ink min-h-screen">{children}</body>
+      <body className="font-ui antialiased bg-dea-paper text-dea-ink min-h-screen overflow-x-hidden">
+        <CartProvider>
+          <SiteHeader />
+          {children}
+        </CartProvider>
+      </body>
     </html>
   );
 }
