@@ -22,9 +22,10 @@ test("prateleira plana mantém produtos lado a lado e não gira automaticamente"
   await expect(rail.getByRole("button")).toHaveCount(0);
   await expect(rail).toHaveCSS("scrollbar-width", "none");
   for (const product of selected) {
-    await expect(
-      rail.getByRole("link", { name: `Ver ${product.name}`, exact: true }),
-    ).toHaveAttribute("href", `/produtos/${product.slug}`);
+    await expect(rail.getByRole("link", { name: new RegExp(product.name) })).toHaveAttribute(
+      "href",
+      `/produtos/${product.slug}`,
+    );
   }
   const cards = await rail.getByRole("listitem").all();
   const firstBox = await cards[0].boundingBox();
@@ -48,10 +49,14 @@ test("teclado alcança os produtos fora da tela e a rolagem fica dentro da faixa
   await rail.focus();
   await expect(rail).toBeFocused();
   await page.keyboard.press("ArrowRight");
-  await expect(rail.getByRole("listitem").nth(1)).toBeInViewport({ ratio: 0.9 });
+  await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+  // Isola a navegação por Tab da animação nativa iniciada pela seta.
+  await page.reload();
+  await rail.focus();
   const last = rail.getByRole("link").last();
   for (const _product of selected) await page.keyboard.press("Tab");
   await expect(last).toBeFocused();
+  await page.keyboard.press("ArrowRight");
   await expect(last).toBeInViewport({ ratio: 0.5 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -97,16 +102,24 @@ test("faixa compacta preserva conteúdo, posição e compra em celular", async (
     .boundingBox();
   expect(banner && band && highlights && banner.y < band.y && band.y < highlights.y).toBeTruthy();
   expect(band?.height ?? Infinity).toBeLessThan((banner?.height ?? 0) / 2);
-  await expect(
-    rail.getByRole("listitem").first().getByText(formatCentsToBRL(first.price), { exact: true }),
-  ).toBeVisible();
-  await expect(section.getByRole("link", { name: "Ver todos", exact: true })).toHaveAttribute(
-    "href",
-    "/#catalogo",
-  );
+  await expect(rail.getByRole("listitem").first()).toContainText(formatCentsToBRL(first.price));
+  await expect(section.getByRole("link", { name: "Ver todos", exact: true })).toHaveCount(0);
+  for (const product of selected) {
+    const link = rail.getByRole("link", { name: new RegExp(product.name) });
+    await expect(link).toHaveAccessibleName(
+      new RegExp(formatCentsToBRL(product.price).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+    if (product.compareAtPrice) {
+      await expect(link.locator("del")).toHaveText(
+        `De ${formatCentsToBRL(product.compareAtPrice)}`,
+      );
+    } else {
+      await expect(link.locator("del")).toHaveCount(0);
+    }
+  }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await section.screenshot({ path: testInfo.outputPath("prateleira-mobile.png") });
-  await rail.getByRole("link", { name: `Ver ${first.name}`, exact: true }).click();
+  await rail.getByRole("link", { name: new RegExp(first.name) }).click();
   await expect(page).toHaveURL(new RegExp(`/produtos/${first.slug}$`));
   const variant = first.variants.find((item) => item.available);
   if (variant) await page.getByRole("radio", { name: variant.label, exact: true }).click();

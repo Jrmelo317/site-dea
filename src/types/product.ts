@@ -27,8 +27,10 @@ export interface Product {
   compareAtPrice?: number;
   images: ProductImage[];
   variants: ProductVariant[];
+  /** Marcador geral legado; não seleciona a faixa editorial nem as abas da home. */
   featured: boolean;
   active: boolean;
+  /** Ordem no catálogo, independente da faixa editorial da home. */
   order: number;
   badge?: string;
   /** Seções de destaque da Página Inicial em que o produto aparece. */

@@ -16,12 +16,6 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
           <h2 id="faixa-produtos-titulo" className="font-hand text-lg text-dea-blue">
             Da nossa lojinha
           </h2>
-          <Link
-            href="/#catalogo"
-            className="inline-flex min-h-11 items-center rounded-sm px-1 text-sm font-medium text-dea-blue underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-dea-blue"
-          >
-            Ver todos
-          </Link>
         </div>
         <section
           aria-label="Produtos em destaque"
@@ -36,14 +30,13 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
                   <article className="h-full">
                     <Link
                       href={`/produtos/${product.slug}`}
-                      aria-label={`Ver ${product.name}`}
                       className="flex h-full min-h-24 items-center gap-3 rounded-md py-1 outline-none focus-visible:ring-3 focus-visible:ring-dea-blue"
                     >
                       <span className="relative size-14 shrink-0 overflow-hidden rounded-md bg-dea-sand">
                         {image && (
                           <Image
                             src={image.url}
-                            alt={image.alt}
+                            alt=""
                             fill
                             unoptimized
                             sizes="56px"
@@ -58,7 +51,18 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
                         <h3 className="text-sm leading-snug font-medium text-dea-blue">
                           {product.name}
                         </h3>
-                        <p className="text-sm text-dea-night">{formatCentsToBRL(product.price)}</p>
+                        <p className="relative flex flex-wrap items-baseline gap-x-2 text-sm text-dea-night">
+                          {product.compareAtPrice && (
+                            <del className="text-xs text-dea-muted">
+                              <span className="sr-only">De </span>
+                              {formatCentsToBRL(product.compareAtPrice)}
+                            </del>
+                          )}
+                          <span>
+                            {product.compareAtPrice && <span className="sr-only">Por </span>}
+                            {formatCentsToBRL(product.price)}
+                          </span>
+                        </p>
                       </div>
                     </Link>
                   </article>

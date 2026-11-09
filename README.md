@@ -18,7 +18,7 @@ O projeto funciona como uma vitrine virtual com carrinho de compras integrado, p
 ## 🚀 Começando
 
 ### Pré-requisitos
-- Node.js 20+ instalado
+- Node.js 24+ instalado (`nvm use`)
 - npm ou pnpm
 
 ### Instalação e Execução
@@ -52,15 +52,15 @@ Na Vercel, cadastre em **Settings → Environment Variables** (Production e Prev
 
 ### Faixa de produtos em destaque
 
-Edite `featuredProductIds` em [`src/config/home.ts`](src/config/home.ts) com os IDs do catálogo na ordem desejada. A faixa é independente dos Destaques em abas e da ordem do catálogo. Use `[]` para ocultá-la. IDs repetidos, inexistentes, inativos e produtos sem nenhuma variação disponível são ignorados; produtos ativos sem variações continuam elegíveis.
+Edite `editorialProductIds` em [`src/config/home.ts`](src/config/home.ts) com os IDs do catálogo na ordem desejada. Esta é a única fonte de seleção e ordem da faixa. `Product.featured` é um marcador geral legado, atualmente sem consumidor; `highlights` seleciona as abas Novidades/Promoções/Mais pedidos, e `order` ordena o catálogo. Esses campos não precisam coincidir com a curadoria da faixa. Na migração para o backend, preserve a seleção ordenada da home como configuração editorial própria, separada das categorias das abas. Use `[]` para ocultá-la. IDs repetidos, inexistentes, inativos e produtos sem nenhuma variação disponível são ignorados; produtos ativos sem variações continuam elegíveis.
 
-A faixa usa uma prateleira horizontal compacta: miniatura, nome e preço, com todos os itens do mesmo tamanho e sem sobreposição. A rolagem é manual por toque, trackpad ou teclado; a barra de rolagem fica oculta. O card inteiro abre o produto e “Ver todos” leva ao catálogo. Não há rotação automática nem controles de carrossel. Com um produto, ele fica alinhado ao início da fileira.
+A faixa usa uma prateleira horizontal compacta: miniatura, nome e preço, com todos os itens do mesmo tamanho e sem sobreposição. A rolagem é manual por toque, trackpad ou teclado; a barra de rolagem fica oculta. O card inteiro abre o produto. O link “Ver todos” ficará oculto enquanto a seção de catálogo ainda for apenas um card modelo. Não há rotação automática nem controles de carrossel. Com um produto, ele fica alinhado ao início da fileira.
 
 ### Testes da faixa
 
-Use Node.js 24. `npm test` valida seleção, ordem e disponibilidade. `npm run test:e2e` valida a home no Google Chrome instalado, incluindo prateleira, teclado, celular e continuidade até o link do WhatsApp (sem envio real). O servidor de testes usa a porta 3100 e um número fictício próprio.
+Use Node.js 24+ (declarado em `engines` e `.nvmrc`). A suíte unitária usa o runner nativo `node:test`, sem um segundo framework; `npm run test:specs` é o alias padronizado para `npm test`. `npm test` valida seleção, ordem e disponibilidade. `npm run test:e2e` valida a home no Chromium do Playwright (`npx playwright install chromium` antes da primeira execução), incluindo prateleira, teclado, celular e continuidade até o link do WhatsApp (sem envio real). O servidor de testes usa a porta 3100 e um número fictício próprio.
 
-A suíte usa a seleção configurada. `npm run test:e2e:states` repete os testes com seleção vazia, única, IDs inválidos/repetidos e dois produtos em ordem invertida. Esse comando altera temporariamente a configuração e a restaura ao terminar; aguarde a conclusão antes de editar a seleção. Precisa de pelo menos dois produtos elegíveis no catálogo.
+A suíte usa a seleção configurada. `npm run test:e2e:states` repete os testes com seleção vazia, única, IDs inválidos/repetidos e dois produtos em ordem invertida. Esse comando injeta `FEATURED_PRODUCT_IDS` (IDs separados por vírgula, vazio para ocultar) no servidor via `webServer.env`, sem alterar arquivos. Essa variável é exclusiva dos testes; não a configure no deploy. Precisa de pelo menos dois produtos elegíveis no catálogo.
 
 ---
 
