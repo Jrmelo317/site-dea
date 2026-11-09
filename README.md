@@ -50,6 +50,18 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar
 
 Na Vercel, cadastre em **Settings → Environment Variables** (Production e Preview). Por ser `NEXT_PUBLIC_`, o valor entra no bundle no build: depois de mudar, faça um novo deploy.
 
+### Faixa de produtos em destaque
+
+Edite `featuredProductIds` em [`src/config/home.ts`](src/config/home.ts) com os IDs do catálogo na ordem desejada. A faixa é independente dos Destaques em abas e da ordem do catálogo. Use `[]` para ocultá-la. IDs repetidos, inexistentes, inativos e produtos sem nenhuma variação disponível são ignorados; produtos ativos sem variações continuam elegíveis.
+
+A faixa usa uma prateleira horizontal compacta: miniatura, nome e preço, com todos os itens do mesmo tamanho e sem sobreposição. A rolagem é manual por toque, trackpad ou teclado; a barra de rolagem fica oculta. O card inteiro abre o produto e “Ver todos” leva ao catálogo. Não há rotação automática nem controles de carrossel. Com um produto, ele fica alinhado ao início da fileira.
+
+### Testes da faixa
+
+Use Node.js 24. `npm test` valida seleção, ordem e disponibilidade. `npm run test:e2e` valida a home no Google Chrome instalado, incluindo prateleira, teclado, celular e continuidade até o link do WhatsApp (sem envio real). O servidor de testes usa a porta 3100 e um número fictício próprio.
+
+A suíte usa a seleção configurada. `npm run test:e2e:states` repete os testes com seleção vazia, única, IDs inválidos/repetidos e dois produtos em ordem invertida. Esse comando altera temporariamente a configuração e a restaura ao terminar; aguarde a conclusão antes de editar a seleção. Precisa de pelo menos dois produtos elegíveis no catálogo.
+
 ---
 
 ## 🎨 Design Tokens & Estilos

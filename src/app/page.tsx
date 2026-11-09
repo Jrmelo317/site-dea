@@ -1,6 +1,9 @@
+import { FeaturedProducts } from "@/components/shop/home/FeaturedProducts";
 import { HeroBanner } from "@/components/shop/home/HeroBanner";
 import { Highlights } from "@/components/shop/home/Highlights";
 import { ProductCard } from "@/components/shop/product/ProductCard";
+import { featuredProductIds } from "@/config/home";
+import { selectFeaturedProducts } from "@/lib/featured-products";
 import { getProducts, getProductsByHighlight } from "@/lib/products";
 
 export default function HomePage() {
@@ -14,6 +17,7 @@ export default function HomePage() {
   return (
     <main className="pb-12">
       <HeroBanner />
+      <FeaturedProducts products={selectFeaturedProducts(getProducts(), featuredProductIds)} />
 
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-3 pt-8 sm:px-6">
         <section
