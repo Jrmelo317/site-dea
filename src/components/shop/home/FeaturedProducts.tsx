@@ -25,6 +25,8 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
           <ul className="flex items-stretch gap-4">
             {products.map((product) => {
               const image = product.images[0];
+              const compareAtPrice = product.compareAtPrice;
+              const isOnSale = compareAtPrice !== undefined && compareAtPrice > product.price;
               return (
                 <li key={product.id} className="w-64 shrink-0 snap-start sm:w-72">
                   <article className="h-full">
@@ -52,14 +54,14 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
                           {product.name}
                         </h3>
                         <p className="relative flex flex-wrap items-baseline gap-x-2 text-sm text-dea-night">
-                          {product.compareAtPrice && (
+                          {isOnSale && (
                             <del className="text-xs text-dea-muted">
                               <span className="sr-only">De </span>
-                              {formatCentsToBRL(product.compareAtPrice)}
+                              {formatCentsToBRL(compareAtPrice)}
                             </del>
                           )}
                           <span>
-                            {product.compareAtPrice && <span className="sr-only">Por </span>}
+                            {isOnSale && <span className="sr-only">Por </span>}
                             {formatCentsToBRL(product.price)}
                           </span>
                         </p>

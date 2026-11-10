@@ -1,4 +1,7 @@
 import { expect, test } from "@playwright/test";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { FeaturedProducts } from "../../src/components/shop/home/FeaturedProducts";
 import { featuredProductIds } from "../../src/config/home";
 import { selectFeaturedProducts } from "../../src/lib/featured-products";
 import { formatCentsToBRL } from "../../src/lib/formatters";
@@ -6,6 +9,10 @@ import { getProducts } from "../../src/lib/products";
 
 const selected = selectFeaturedProducts(getProducts(), featuredProductIds);
 const [first] = selected;
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
@@ -22,10 +29,9 @@ test("prateleira plana mantém produtos lado a lado e não gira automaticamente"
   await expect(rail.getByRole("button")).toHaveCount(0);
   await expect(rail).toHaveCSS("scrollbar-width", "none");
   for (const product of selected) {
-    await expect(rail.getByRole("link", { name: new RegExp(product.name) })).toHaveAttribute(
-      "href",
-      `/produtos/${product.slug}`,
-    );
+    await expect(
+      rail.getByRole("link", { name: new RegExp(escapeRegExp(product.name)) }),
+    ).toHaveAttribute("href", `/produtos/${product.slug}`);
   }
   const cards = await rail.getByRole("listitem").all();
   const firstBox = await cards[0].boundingBox();
@@ -105,11 +111,11 @@ test("faixa compacta preserva conteúdo, posição e compra em celular", async (
   await expect(rail.getByRole("listitem").first()).toContainText(formatCentsToBRL(first.price));
   await expect(section.getByRole("link", { name: "Ver todos", exact: true })).toHaveCount(0);
   for (const product of selected) {
-    const link = rail.getByRole("link", { name: new RegExp(product.name) });
+    const link = rail.getByRole("link", { name: new RegExp(escapeRegExp(product.name)) });
     await expect(link).toHaveAccessibleName(
-      new RegExp(formatCentsToBRL(product.price).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+      new RegExp(escapeRegExp(formatCentsToBRL(product.price))),
     );
-    if (product.compareAtPrice) {
+    if (product.compareAtPrice !== undefined && product.compareAtPrice > product.price) {
       await expect(link.locator("del")).toHaveText(
         `De ${formatCentsToBRL(product.compareAtPrice)}`,
       );
@@ -119,7 +125,7 @@ test("faixa compacta preserva conteúdo, posição e compra em celular", async (
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await section.screenshot({ path: testInfo.outputPath("prateleira-mobile.png") });
-  await rail.getByRole("link", { name: new RegExp(first.name) }).click();
+  await rail.getByRole("link", { name: new RegExp(escapeRegExp(first.name)) }).click();
   await expect(page).toHaveURL(new RegExp(`/produtos/${first.slug}$`));
   const variant = first.variants.find((item) => item.available);
   if (variant) await page.getByRole("radio", { name: variant.label, exact: true }).click();
@@ -151,4 +157,28 @@ test("zero produtos oculta a seção e um produto fica estático sem controles",
     await expect(section.getByRole("heading", { name: first.name })).toBeVisible();
   }
   await section.screenshot({ path: testInfo.outputPath("prateleira-desktop.png") });
+});
+
+test("preço anterior só indica promoção quando supera o preço atual, com nomes literais", async ({
+  page,
+}) => {
+  const products = [undefined, 0, 900, 1000, 1200].map((compareAtPrice, index) => ({
+    ...getProducts()[0],
+    id: `preco-${index}`,
+    name: `Terço (azul) + oração? ${index}`,
+    price: 1000,
+    compareAtPrice,
+  }));
+  await page.setContent(renderToStaticMarkup(createElement(FeaturedProducts, { products })));
+  for (const product of products) {
+    const link = page.getByRole("link", { name: new RegExp(escapeRegExp(product.name)) });
+    await expect(link).toHaveCount(1);
+    if (product.compareAtPrice === 1200) {
+      await expect(link.locator("del")).toHaveText("De R$ 12,00");
+      await expect(link.locator("p")).toHaveText("De R$ 12,00Por R$ 10,00");
+    } else {
+      await expect(link.locator("del")).toHaveCount(0);
+      await expect(link.locator("p")).toHaveText("R$ 10,00");
+    }
+  }
 });
